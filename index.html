@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Do It List</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+
+<div class="topnav">
+    <a>My To-Do List</a>
+</div>
+    
+
+<div id="sidebar">
+    <div id="pageName">
+    <h1>What's Your Task? </h1>
+    </div>
+    <button id="myBtn">Add It</button>
+    </div>
+    
+<div id="myModal" class="modal">
+    <div class="modal-content">
+    <span class="close">&times;</span>
+    <p><form>
+        <input class="input" name="title" id="title" type="text" placeholder="Title" maxlength="20" ><br>
+        <input class="input" name="fname" id="fname" type="text" placeholder="Description" maxlength="10" ><br>
+        <input class="input" name="pubDate" id="pubDate" type="number" placeholder="Due Date" maxlength=4><br>
+        <label for="read">Priority</label> <input name="own" id="own" type="checkbox"><br>
+        <button class="submitButton">Submit</button>
+    </form>
+    </p>
+    </div>
+</div>
+    
+    
+<div id="libraryContainer">
+    
+</div>
+    
+<script src="script.js"></script>
+</body>
+</html>
