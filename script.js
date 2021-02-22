@@ -4,14 +4,23 @@ function Project(projectName) {
   this.projectName = projectName;
 }
 
-const submitButton = document.querySelector(".projectSubmitButton")
-submitButton.addEventListener("click", e => {
+function showAddProject() {
+  var x = document.getElementById("projectSubmitForm");
+  if (x.style.display === "none") {
+    x.style.display = "block";
+  } else {
+    x.style.display = "none";
+  }
+}
+
+const projectSubmitButton = document.querySelector(".projectSubmitButton")
+projectSubmitButton.addEventListener("click", e => {
      e.preventDefault();
      addProjectToList();
      });
 
-const closeButton = document.querySelector(".projectCloseButton")
-closeButton.addEventListener("click", e => {
+const projectCloseButton = document.querySelector(".projectCloseButton")
+projectCloseButton.addEventListener("click", e => {
     e.preventDefault();
     showAddProject();
     document.querySelector("#projectName").value = "";
@@ -21,7 +30,6 @@ function addProjectToList() {
 let projectName = document.querySelector("#projectName").value;
 var addProject = new Project(projectName);
 projectList.push(addProject);
-console.log(projectList)
 renderProject();
 document.querySelector("#projectName").value = "";
 };
@@ -29,20 +37,81 @@ document.querySelector("#projectName").value = "";
 function renderProject() {
   const projectContainer = document.createElement("div");
   projectContainer.classList.add("project-container");
-  console.log(projectList[projectList.length-1].projectName)
-  projectContainer.innerHTML = projectList[projectList.length-1].projectName + "<button id="btn" name="btn">But</button>"
-  /// at the end of each project line, checkmark (strikethrough) and delete icons
+  projectContainer.innerHTML = projectList[projectList.length-1].projectName + 
+  '<button class="projectDoneButton icon-button"><span class="glyphicon glyphicon-ok"></span></button>' + 
+  '<button class="projectDeleteButton icon-button"><span class="glyphicon glyphicon-trash"></span></button>'
   document.getElementById('sidebar').appendChild(projectContainer);
+  // I want to reverse order so the latest is on top
+  numberProjects();
+  console.log(projectContainer.id)
+  console.log(Object.getOwnPropertyNames(projectList))
+  // every new projectContainer will get id=0 so no use console.log(projectContainer.id)
+  const projectDeleteButton = document.querySelector(".projectDeleteButton")
+  projectDeleteButton.addEventListener("click", function(event){
+    alert("Deleted")})
 };
 
-function showAddProject() {
-  var x = document.getElementById("projectSubmitForm");
-  if (x.style.display === "none") {
-    x.style.display = "block";
-  } else {
-    x.style.display = "none";
-  }
+function numberProjects() {
+  let allProjects = document.querySelectorAll('.project-container');
+  let i = allProjects.length-1;
+  allProjects.forEach(element => {
+      element.setAttribute('id', i);
+      i--;})
+  allProjects.forEach(element => {
+    element.addEventListener("click", function(event){
+      alert(element.id)})
+  })
 }
+
+
+
+
+
+
+// first step is to get the button working
+function setProjectDeleteButton() {
+  const projectDeleteButton = document.querySelector(".projectDeleteButton")
+  projectDeleteButton.setAttribute('id', `${myLibrary.length - 1}`);
+  projectDeleteButton.classList.add('delete')
+  projectDeleteButton.addEventListener("click", function(event){
+    alert("Deleted")
+      // numberProjects();
+      // let projectId = projectContainer.getAttribute('id');
+      // projectList.splice(+projectId, 1);
+      // projectContainer.remove();
+})
+}
+
+
+// /// this is kind of like the library check marks for read -- review that
+// const projectDoneButton = document.querySelector(".projectDoneButton")
+// projectDoneButton.addEventListener("click", e => {
+//      strikethroughProject();
+//      });
+
+// const projectTrashButton = document.querySelector(".projectTrashButton")
+// projectTrashButton.addEventListener("click", e => {
+//      trashProject();
+//      });
+
+// function strikethroughProject() {alert("strikethrough")}
+// function trashProject() {alert("trash")}
+
+
+
+
+
+
+
+
+
+
+// const submitButton = document.querySelector(".projectSubmitButton")
+// submitButton.addEventListener("click", e => {
+//      e.preventDefault();
+//      addProjectToList();
+//      });
+
 
 /// at the end of each project line, checkmark (strikethrough) and delete icons
 /// why is project not hidden upon opening?
