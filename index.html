@@ -7,39 +7,65 @@
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="style.css">
+        <link href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet"/>
+        
     </head>
     <body>
 
 <div class="topnav">
-    <a>My To-Do List</a>
+    <h2>My To-Do List</h2>
 </div>
     
-
 <div id="sidebar">
-    <div id="pageName">
-    <h1>What's Your Task? </h1>
+    <!-- first three don't need add they will gather based on time -->
+    <h3 id="Inbox">Inbox</h3>
+    <h3 id="Today">Today</h3>
+    <h3 id="ThisWeek">This Week</h3>
+
+    <h3 id="Projects">Projects 
+        <button class="icon-button" id="projectBtn" onclick="showAddProject()">
+            <span class="glyphicon glyphicon-pencil"></span> Add
+        </button>
+        <p>
+        <div id="projectSubmitForm">
+        <form>
+        <input class="input" id="projectName" type="text" maxlength="17" size="17">
+            <button class="projectSubmitButton icon-button" id="projectSubmitButton">
+            <span class="glyphicon glyphicon-plus"></span>
+            </button>
+            <button class="projectCloseButton icon-button" id="projectCloseButton">
+            <span class="glyphicon glyphicon-remove"></span>
+            </button>
+        </form>
+        </div>
+        </p>
+        </div>
     </div>
-    <button id="myBtn">Add It</button>
+</div>
+
     </div>
+</div>  
     
+<div id="TaskListContainer">
+
+<button id="myBtn">Add Task</button>
+</div>
+
+<!-- 
 <div id="myModal" class="modal">
-    <div class="modal-content">
-    <span class="close">&times;</span>
-    <p><form>
-        <input class="input" name="title" id="title" type="text" placeholder="Title" maxlength="20" ><br>
-        <input class="input" name="fname" id="fname" type="text" placeholder="Description" maxlength="10" ><br>
-        <input class="input" name="pubDate" id="pubDate" type="number" placeholder="Due Date" maxlength=4><br>
-        <label for="read">Priority</label> <input name="own" id="own" type="checkbox"><br>
-        <button class="submitButton">Submit</button>
-    </form>
-    </p>
+        <div class="modal-content">
+        <span class="close">&times;</span>
+        <p><form>
+            <input class="input" name="title" id="title" type="text" placeholder="Title" maxlength="20" ><br>
+            <input class="input" name="fname" id="fname" type="text" placeholder="Description" maxlength="10" ><br>
+            <input class="input" name="pubDate" id="pubDate" type="number" placeholder="Due Date" maxlength=4><br>
+            <label for="read">Priority</label> <input name="own" id="own" type="checkbox"><br>
+            <button class="submitButton">Submit</button>
+        </form>
+        </p>
+        </div>
     </div>
-</div>
-    
-    
-<div id="libraryContainer">
-    
-</div>
+</div> -->
     
 <script src="script.js"></script>
 </body>
