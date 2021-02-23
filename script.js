@@ -6,7 +6,7 @@ function Project(projectName, identifier) {
 }
 
 function showAddProject() {
-  var x = document.getElementById("projectSubmitForm");
+  let x = document.getElementById("projectSubmitForm");
   if (x.style.display === "none") {
     x.style.display = "block";
   } else {
@@ -27,26 +27,46 @@ projectCloseButton.addEventListener("click", e => {
     document.querySelector("#projectName").value = "";
     });
 
+function createUUID() {
+  let s = [];
+  let hexDigits = "0123456789abcdef";
+  for (var i = 0; i < 36; i++) {
+      s[i] = hexDigits.substr(Math.floor(Math.random() * 0x10), 1);
+  }
+  s[14] = "4";  // bits 12-15 of the time_hi_and_version field to 0010
+  s[19] = hexDigits.substr((s[19] & 0x3) | 0x8, 1);  // bits 6-7 of the clock_seq_hi_and_reserved to 01
+  s[8] = s[13] = s[18] = s[23] = "-";
+  return s.join("");
+}
+
 function addProjectToList() {
-var UUID = createUUID()
-let projectName = document.querySelector("#projectName").value;
-var addProject = new Project(projectName, UUID);
-projectList.push(addProject);
-renderProject();
-document.querySelector("#projectName").value = "";
-};
+  const UUID = createUUID()
+  const projectName = document.querySelector("#projectName").value;
+  const addProject = new Project(projectName, UUID);
+  projectList.push(addProject);
+  renderProject();
+  document.querySelector("#projectName").value = "";
+  };
 
 function renderProject() {
   const projectContainer = document.createElement("div");
   projectContainer.classList.add("project-container");
   projectContainer.setAttribute("id",projectList[projectList.length-1].identifier)
   projectContainer.innerHTML = projectList[projectList.length-1].projectName + 
-  '<button class="projectDoneButton icon-button"><span class="glyphicon glyphicon-ok"></span></button>' + 
   '<button class="projectDeleteButton icon-button"><span class="glyphicon glyphicon-trash"></span></button>'
   document.getElementById('projectHolder').appendChild(projectContainer);
-  console.log(projectContainer.id)
-  get projectDoneButton to remove the projectContainer and splice the projectList
+
+  const projectDeleteButton = document.querySelector(".projectDeleteButton")
+  projectDeleteButton.addEventListener("click", function(event){
+    const deleteDivTarget = document.getElementById(projectContainer.id);
+    console.log(projectContainer.id)
+    console.log(projectList)
+  })
 }
+
+  // THEN get projectDeleteButton to remove the projectContainer and splice the projectList
+  // +   '<button class="projectDoneButton icon-button"><span class="glyphicon glyphicon-ok"></span></button>' 
+
 
 // projectContainer.id is not part of the projectList though that's why the id isn't showing there.
 // projectList will remain the same if it's just the ProjectNameValue
@@ -69,17 +89,6 @@ function renderProject() {
 // generate a container, give it an id; click gives you event target value, delete that id when trash is pressed
 
 
-function createUUID() {
-  var s = [];
-  var hexDigits = "0123456789abcdef";
-  for (var i = 0; i < 36; i++) {
-      s[i] = hexDigits.substr(Math.floor(Math.random() * 0x10), 1);
-  }
-  s[14] = "4";  // bits 12-15 of the time_hi_and_version field to 0010
-  s[19] = hexDigits.substr((s[19] & 0x3) | 0x8, 1);  // bits 6-7 of the clock_seq_hi_and_reserved to 01
-  s[8] = s[13] = s[18] = s[23] = "-";
-  return s.join("");
-}
 
 
 
