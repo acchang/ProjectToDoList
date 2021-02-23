@@ -1,7 +1,8 @@
 let projectList = []
 
-function Project(projectName) {
+function Project(projectName, identifier) {
   this.projectName = projectName;
+  this.identifier = identifier;
 }
 
 function showAddProject() {
@@ -27,8 +28,9 @@ projectCloseButton.addEventListener("click", e => {
     });
 
 function addProjectToList() {
+var UUID = createUUID()
 let projectName = document.querySelector("#projectName").value;
-var addProject = new Project(projectName);
+var addProject = new Project(projectName, UUID);
 projectList.push(addProject);
 renderProject();
 document.querySelector("#projectName").value = "";
@@ -37,20 +39,132 @@ document.querySelector("#projectName").value = "";
 function renderProject() {
   const projectContainer = document.createElement("div");
   projectContainer.classList.add("project-container");
+  projectContainer.setAttribute("id",projectList[projectList.length-1].identifier)
   projectContainer.innerHTML = projectList[projectList.length-1].projectName + 
   '<button class="projectDoneButton icon-button"><span class="glyphicon glyphicon-ok"></span></button>' + 
   '<button class="projectDeleteButton icon-button"><span class="glyphicon glyphicon-trash"></span></button>'
   document.getElementById('projectHolder').appendChild(projectContainer);
-  numberProjects();
+  console.log(projectContainer.id)
+  get projectDoneButton to remove the projectContainer and splice the projectList
+}
+
+// projectContainer.id is not part of the projectList though that's why the id isn't showing there.
+// projectList will remain the same if it's just the ProjectNameValue
+// so make projectList a name of the containers. But then that's combining functions.
+// so give the UUID when the name is generated
+
+
+
+  // i may need a supra container for project container
+  // books, the delete was attached outside, this makes it harder.
+  // in library, I used the same remove button for everyone. 
+  // when the remove button is clicked, reference the id of container that numberContainer assigns
+  // remove the corresponding container in the array.
+  // the problem is the "remove" button is part of inner html now so it can't be on the outside and attached.
+  // it doesn't work on the inside because numberProjects is called on every render
+  
+// my other option is to generate the button with a value of the id?
+// make each button that is getting clicked have some sort of identifier for that particular project
+// Then when you click it, event.target.value will tell you which project goes.
+// generate a container, give it an id; click gives you event target value, delete that id when trash is pressed
+
+
+function createUUID() {
+  var s = [];
+  var hexDigits = "0123456789abcdef";
+  for (var i = 0; i < 36; i++) {
+      s[i] = hexDigits.substr(Math.floor(Math.random() * 0x10), 1);
+  }
+  s[14] = "4";  // bits 12-15 of the time_hi_and_version field to 0010
+  s[19] = hexDigits.substr((s[19] & 0x3) | 0x8, 1);  // bits 6-7 of the clock_seq_hi_and_reserved to 01
+  s[8] = s[13] = s[18] = s[23] = "-";
+  return s.join("");
+}
+
+
+
+
+  // const projectDeleteButton = document.querySelector(".projectDeleteButton")
+  // projectDeleteButton.addEventListener("click", function(event){
+  //   numberProjects();
+  //   let projectId = projectContainer.getAttribute('id');
+  //   // containerId of bookContainer corresponds to place in the array
+  //   projectList.splice(+projectId, 1);
+  //   projectContainer.remove();
+  //   console.log(projectList)
+  // })
+
+
+
+  // numberProjects();
+  // let projectId = projectContainer.getAttribute('id');
+  // console.log(projectId);
+  // console.log(projectList)
+// }
+
+
+// projectDeleteButton.addEventListener("click", function(event){
+//   numberProjects();
+//   let projectId = projectContainer.getAttribute('id');
+//   // containerId of bookContainer corresponds to place in the array
+//   projectList.splice(+projectId, 1);
+//   projectContainer.remove();
+//   console.log(projectList)
+// })
+
+
+
+
+
+//number function is only activated when delete is pressed
+//then it gets the id of the container it's in
+//and splices.
+
+
+
+//   let projectId = projectContainer.getAttribute('id');
+//   const projectDeleteButton = document.querySelector(".projectDeleteButton")
+//   projectDeleteButton.addEventListener("click", function(event){alert(projectId)})
+
+
+  // projectContainer.setAttribute('id', `${projectList.length - 1}`);
+  // const projectDeleteButton = document.querySelector(".projectDeleteButton")
+  // projectDeleteButton.addEventListener("click", function(event){
+  //   numberProjects();
+  //   let projectId = projectContainer.getAttribute('id');
+  //   alert(projectId)
+    // containerId of bookContainer corresponds to place in the array
+    // projectList.splice(+projectId, 1);
+    // projectContainer.remove();
+    // console.log(projectList)
+
+
+// const projectDeleteButton = document.querySelector(".projectDeleteButton")
+
+  // use value="<index>"?
+
+  // console.log(projectList);
+
+  // const projectDeleteButton = document.querySelector(".projectDeleteButton")
+  // projectDeleteButton.addEventListener("click", function(event){
+  //   numberProjects();
+  //   alert(projectContainer.id)});
+
+  //   let projectId = projectContainer.getAttribute('id');
+  //   myLibrary.splice(+projectId, 1);
+  //   projectContainer.remove();
+  //   console.log(projectList);}
+
 
   // console.log(projectContainer.id)
   // console.log(Object.getOwnPropertyNames(projectList))
   
 
-  const projectDeleteButton = document.querySelector(".projectDeleteButton")
-  projectDeleteButton.addEventListener("click", function(event){
-    alert(projectContainer.id)})
-};
+  // This does not work because it is only applied to the latest
+  // const projectDeleteButton = document.querySelector(".projectDeleteButton")
+  // projectDeleteButton.addEventListener("click", function(event){
+  //   alert(projectContainer.id)})
+// };
 
 function numberProjects() {
   let allProjects = document.querySelectorAll('.project-container');
@@ -58,10 +172,13 @@ function numberProjects() {
   allProjects.forEach(element => {
       element.setAttribute('id', i);
       i--;})
-  allProjects.forEach(element => {
-    element.addEventListener("click", function(event){
-      alert(element.id)})
-  })
+  // only numberProjects when altering
+
+  // this doesn't work because it goes through every element in all projects
+  // allProjects.forEach(element => {
+  //   element.addEventListener("click", function(event){
+  //     alert(element.id)})
+  // })
 }
 
 
