@@ -45,6 +45,11 @@
   font-size: medium;
 }
 
+#projectHolder {
+  display: flex;
+  flex-direction: column-reverse;
+}
+
   
 #TaskListContainer{
     display: flex;

@@ -40,15 +40,16 @@ function renderProject() {
   projectContainer.innerHTML = projectList[projectList.length-1].projectName + 
   '<button class="projectDoneButton icon-button"><span class="glyphicon glyphicon-ok"></span></button>' + 
   '<button class="projectDeleteButton icon-button"><span class="glyphicon glyphicon-trash"></span></button>'
-  document.getElementById('sidebar').appendChild(projectContainer);
-  // I want to reverse order so the latest is on top
+  document.getElementById('projectHolder').appendChild(projectContainer);
   numberProjects();
-  console.log(projectContainer.id)
-  console.log(Object.getOwnPropertyNames(projectList))
-  // every new projectContainer will get id=0 so no use console.log(projectContainer.id)
+
+  // console.log(projectContainer.id)
+  // console.log(Object.getOwnPropertyNames(projectList))
+  
+
   const projectDeleteButton = document.querySelector(".projectDeleteButton")
   projectDeleteButton.addEventListener("click", function(event){
-    alert("Deleted")})
+    alert(projectContainer.id)})
 };
 
 function numberProjects() {
