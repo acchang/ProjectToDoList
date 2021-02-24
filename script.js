@@ -50,8 +50,6 @@ function addProjectToList() {
 
 function renderProject() {
   let projectUUID = projectList[projectList.length-1].identifier
-  console.log(projectUUID)
-  console.log(projectList)
 
   const projectContainer = document.createElement("div");
   projectContainer.classList.add("project-container");
@@ -60,199 +58,56 @@ function renderProject() {
   projectContainer.textContent = projectList[projectList.length-1].projectName
   document.getElementById('projectHolder').appendChild(projectContainer);
 
-  const projectDeleteButton = document.createElement("button") 
-  projectDeleteButton.setAttribute("class", "projectDeleteButton icon-button")
-  projectDeleteButton.setAttribute("id", "TB" + projectUUID)
+  const projectTrashButton = document.createElement("button") 
+  projectTrashButton.setAttribute("class", "projectTrashButton icon-button")
+  projectTrashButton.setAttribute("id", "TB" + projectUUID)
 
-  document.getElementById("C" + projectUUID).appendChild(projectDeleteButton);
+  const projectDoneButton = document.createElement("button") 
+  projectDoneButton.setAttribute("class", "projectDoneButton icon-button")
+  projectDoneButton.setAttribute("id", "DB" + projectUUID)
+
+  document.getElementById("C" + projectUUID).appendChild(projectDoneButton);
+  document.getElementById("C" + projectUUID).appendChild(projectTrashButton);
+
+  const projectDoneIcon = document.createElement("span") 
+  projectDoneIcon.setAttribute("class", "glyphicon glyphicon-ok")
+  document.getElementById("DB" + projectUUID).appendChild(projectDoneIcon);
 
   const projectTrashIcon = document.createElement("span") 
   projectTrashIcon.setAttribute("class", "glyphicon glyphicon-trash")
   document.getElementById("TB" + projectUUID).appendChild(projectTrashIcon);
 
-  projectDeleteButton.addEventListener("click", function(event)
+  projectTrashButton.addEventListener("click", function(event)
     {const deleteDivTarget = document.getElementById("C" + projectUUID);
      projectHolder.removeChild(deleteDivTarget);
-     // now to pare them out of projectList with a filter method
      projectList = projectList.filter(object => object.identifier !== projectUUID);
-    console.log(projectList)
   })
 
-  // then create strikethrough
-  
-  // write how this differs from project library
+  projectDoneButton.addEventListener("click", function(event)
+    {const doneDivTarget = document.getElementById("C" + projectUUID);
+    if (doneDivTarget.style.textDecoration === "none") {
+      doneDivTarget.style.textDecoration="line-through"
+    } else {
+      doneDivTarget.style.textDecoration = "none";
+    }
 
+    // struck-through but it takes two clicks. why? and why add project shows?
 
-
-
-  // projectContainer.innerHTML = projectList[projectList.length-1].projectName + 
-  // '<button class="projectDeleteButton icon-button"><span class="glyphicon glyphicon-trash"></span></button>'
-  
-  // const projectDeleteButton = document.querySelector(".projectDeleteButton")
-  // projectDeleteButton.addEventListener("click", function(event){
-  //   const deleteDivTarget = document.getElementById(projectContainer.id);
-  //   console.log(projectContainer.id)
-  //   console.log(projectList)
-  // })
-}
-
-
-// You dont track UUID anywhere. 
-// Put the project's uuid as the value in that remove button
-// Then, when it gets clicked, the event.target.value tells you 
-// exactly which project gets removed
-// filter projectList to just those elements that dont have the identifier
-
-// query select the delete button, 
-// it might not exist yet because you created it with innerHTML
-// don't use innerHTML for this (or really anything)
-// consider using a combination of document.createElement() and element.textContent
-// https://medium.com/better-programming/whats-best-innertext-vs-innerhtml-vs-textcontent-903ebc43a3fc
-
-  // THEN get projectDeleteButton to remove the projectContainer and splice the projectList
-  // +   '<button class="projectDoneButton icon-button"><span class="glyphicon glyphicon-ok"></span></button>' 
-
-
-// projectContainer.id is not part of the projectList though that's why the id isn't showing there.
-// projectList will remain the same if it's just the ProjectNameValue
-// so make projectList a name of the containers. But then that's combining functions.
-// so give the UUID when the name is generated
-
-
-
-  // i may need a supra container for project container
-  // books, the delete was attached outside, this makes it harder.
-  // in library, I used the same remove button for everyone. 
-  // when the remove button is clicked, reference the id of container that numberContainer assigns
-  // remove the corresponding container in the array.
-  // the problem is the "remove" button is part of inner html now so it can't be on the outside and attached.
-  // it doesn't work on the inside because numberProjects is called on every render
-  
-// my other option is to generate the button with a value of the id?
-// make each button that is getting clicked have some sort of identifier for that particular project
-// Then when you click it, event.target.value will tell you which project goes.
-// generate a container, give it an id; click gives you event target value, delete that id when trash is pressed
-
-
-
-
-
-
-  // const projectDeleteButton = document.querySelector(".projectDeleteButton")
-  // projectDeleteButton.addEventListener("click", function(event){
-  //   numberProjects();
-  //   let projectId = projectContainer.getAttribute('id');
-  //   // containerId of bookContainer corresponds to place in the array
-  //   projectList.splice(+projectId, 1);
-  //   projectContainer.remove();
-  //   console.log(projectList)
-  // })
-
-
-
-  // numberProjects();
-  // let projectId = projectContainer.getAttribute('id');
-  // console.log(projectId);
-  // console.log(projectList)
-// }
-
-
-// projectDeleteButton.addEventListener("click", function(event){
-//   numberProjects();
-//   let projectId = projectContainer.getAttribute('id');
-//   // containerId of bookContainer corresponds to place in the array
-//   projectList.splice(+projectId, 1);
-//   projectContainer.remove();
-//   console.log(projectList)
-// })
-
-
-
-
-
-//number function is only activated when delete is pressed
-//then it gets the id of the container it's in
-//and splices.
-
-
-
-//   let projectId = projectContainer.getAttribute('id');
-//   const projectDeleteButton = document.querySelector(".projectDeleteButton")
-//   projectDeleteButton.addEventListener("click", function(event){alert(projectId)})
-
-
-  // projectContainer.setAttribute('id', `${projectList.length - 1}`);
-  // const projectDeleteButton = document.querySelector(".projectDeleteButton")
-  // projectDeleteButton.addEventListener("click", function(event){
-  //   numberProjects();
-  //   let projectId = projectContainer.getAttribute('id');
-  //   alert(projectId)
-    // containerId of bookContainer corresponds to place in the array
-    // projectList.splice(+projectId, 1);
-    // projectContainer.remove();
-    // console.log(projectList)
-
-
-// const projectDeleteButton = document.querySelector(".projectDeleteButton")
-
-  // use value="<index>"?
-
-  // console.log(projectList);
-
-  // const projectDeleteButton = document.querySelector(".projectDeleteButton")
-  // projectDeleteButton.addEventListener("click", function(event){
-  //   numberProjects();
-  //   alert(projectContainer.id)});
-
-  //   let projectId = projectContainer.getAttribute('id');
-  //   myLibrary.splice(+projectId, 1);
-  //   projectContainer.remove();
-  //   console.log(projectList);}
-
-
-  // console.log(projectContainer.id)
-  // console.log(Object.getOwnPropertyNames(projectList))
-  
-
-  // This does not work because it is only applied to the latest
-  // const projectDeleteButton = document.querySelector(".projectDeleteButton")
-  // projectDeleteButton.addEventListener("click", function(event){
-  //   alert(projectContainer.id)})
-// };
-
-function numberProjects() {
-  let allProjects = document.querySelectorAll('.project-container');
-  let i = allProjects.length-1;
-  allProjects.forEach(element => {
-      element.setAttribute('id', i);
-      i--;})
-  // only numberProjects when altering
-
-  // this doesn't work because it goes through every element in all projects
-  // allProjects.forEach(element => {
-  //   element.addEventListener("click", function(event){
-  //     alert(element.id)})
-  // })
+  })
 }
 
 
 
-
-
-
-// first step is to get the button working
-function setProjectDeleteButton() {
-  const projectDeleteButton = document.querySelector(".projectDeleteButton")
-  projectDeleteButton.setAttribute('id', `${myLibrary.length - 1}`);
-  projectDeleteButton.classList.add('delete')
-  projectDeleteButton.addEventListener("click", function(event){
-    alert("Deleted")
-      // numberProjects();
-      // let projectId = projectContainer.getAttribute('id');
-      // projectList.splice(+projectId, 1);
-      // projectContainer.remove();
-})
+function showAddProject() {
+  let x = document.getElementById("projectSubmitForm");
+  if (x.style.display === "none") {
+    x.style.display = "block";
+  } else {
+    x.style.display = "none";
+  }
 }
+
+
 
 
 // /// this is kind of like the library check marks for read -- review that
@@ -261,34 +116,13 @@ function setProjectDeleteButton() {
 //      strikethroughProject();
 //      });
 
-// const projectTrashButton = document.querySelector(".projectTrashButton")
-// projectTrashButton.addEventListener("click", e => {
-//      trashProject();
-//      });
-
-// function strikethroughProject() {alert("strikethrough")}
-// function trashProject() {alert("trash")}
-
-
-
-
-
-
-
-
-
-
 // const submitButton = document.querySelector(".projectSubmitButton")
 // submitButton.addEventListener("click", e => {
 //      e.preventDefault();
 //      addProjectToList();
 //      });
 
-
-/// at the end of each project line, checkmark (strikethrough) and delete icons
 /// why is project not hidden upon opening?
-/// review ClassyLibrary to see if classes are more appropriate
-
 
 // let taskList = []
 
@@ -322,11 +156,6 @@ function setProjectDeleteButton() {
 //     document.querySelector("#trashTask").checked = false;
 //     document.querySelector("#notes").value = "";
 //    };
-
-
-
-
-
 
 
 
