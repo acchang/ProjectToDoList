@@ -94,7 +94,7 @@ function renderProject() {
 }
 
 // make each project clickable
-// shows in taskListcontainer with name at top
+// put projectList[projectList.length-1].projectName in taskListcontainer with name at top
 // button to add task
 // task goes into taskList which needs to be associated with project
 
