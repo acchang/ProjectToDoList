@@ -49,20 +49,56 @@ function addProjectToList() {
   };
 
 function renderProject() {
+  let projectUUID = projectList[projectList.length-1].identifier
+  console.log(projectUUID)
+
   const projectContainer = document.createElement("div");
   projectContainer.classList.add("project-container");
-  projectContainer.setAttribute("id",projectList[projectList.length-1].identifier)
-  projectContainer.innerHTML = projectList[projectList.length-1].projectName + 
-  '<button class="projectDeleteButton icon-button"><span class="glyphicon glyphicon-trash"></span></button>'
+  projectContainer.setAttribute("id", "C" + projectUUID)
+  
+  projectContainer.textContent = projectList[projectList.length-1].projectName
   document.getElementById('projectHolder').appendChild(projectContainer);
 
-  const projectDeleteButton = document.querySelector(".projectDeleteButton")
-  projectDeleteButton.addEventListener("click", function(event){
-    const deleteDivTarget = document.getElementById(projectContainer.id);
-    console.log(projectContainer.id)
-    console.log(projectList)
+  const projectDeleteButton = document.createElement("button") 
+  projectDeleteButton.setAttribute("class", "projectDeleteButton icon-button")
+  projectDeleteButton.setAttribute("id", "B" + projectUUID)
+
+  document.getElementById("C" + projectUUID).appendChild(projectDeleteButton);
+
+  const projectTrashIcon = document.createElement("span") 
+  projectTrashIcon.setAttribute("class", "glyphicon glyphicon-trash")
+  document.getElementById("B" + projectUUID).appendChild(projectTrashIcon);
+
+  projectDeleteButton.addEventListener("click", function(event)
+  {  const deleteDivTarget = document.getElementById("C" + projectUUID);
+     projectHolder.removeChild(deleteDivTarget);
+     // now to pare them out of projectList with a filter method
+    alert(projectUUID)
   })
+
+  // projectContainer.innerHTML = projectList[projectList.length-1].projectName + 
+  // '<button class="projectDeleteButton icon-button"><span class="glyphicon glyphicon-trash"></span></button>'
+  
+  // const projectDeleteButton = document.querySelector(".projectDeleteButton")
+  // projectDeleteButton.addEventListener("click", function(event){
+  //   const deleteDivTarget = document.getElementById(projectContainer.id);
+  //   console.log(projectContainer.id)
+  //   console.log(projectList)
+  // })
 }
+
+
+// You dont track UUID anywhere. 
+// Put the project's uuid as the value in that remove button
+// Then, when it gets clicked, the event.target.value tells you 
+// exactly which project gets removed
+// filter projectList to just those elements that dont have the identifier
+
+// query select the delete button, 
+// it might not exist yet because you created it with innerHTML
+// don't use innerHTML for this (or really anything)
+// consider using a combination of document.createElement() and element.textContent
+// https://medium.com/better-programming/whats-best-innertext-vs-innerhtml-vs-textcontent-903ebc43a3fc
 
   // THEN get projectDeleteButton to remove the projectContainer and splice the projectList
   // +   '<button class="projectDoneButton icon-button"><span class="glyphicon glyphicon-ok"></span></button>' 
