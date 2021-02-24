@@ -7,10 +7,10 @@ function Project(projectName, identifier) {
 
 function showAddProject() {
   let x = document.getElementById("projectSubmitForm");
-  if (x.style.display === "none") {
-    x.style.display = "block";
-  } else {
+  if (x.style.display === "block") {
     x.style.display = "none";
+  } else {
+    x.style.display = "block";
   }
 }
 
@@ -85,44 +85,14 @@ function renderProject() {
 
   projectDoneButton.addEventListener("click", function(event)
     {const doneDivTarget = document.getElementById("C" + projectUUID);
-    if (doneDivTarget.style.textDecoration === "none") {
-      doneDivTarget.style.textDecoration="line-through"
+    if (doneDivTarget.style.textDecoration === "line-through") {
+      doneDivTarget.style.textDecoration="none"
     } else {
-      doneDivTarget.style.textDecoration = "none";
+      doneDivTarget.style.textDecoration = "line-through";
     }
-
-    // struck-through but it takes two clicks. why? and why add project shows?
-
   })
+
 }
-
-
-
-function showAddProject() {
-  let x = document.getElementById("projectSubmitForm");
-  if (x.style.display === "none") {
-    x.style.display = "block";
-  } else {
-    x.style.display = "none";
-  }
-}
-
-
-
-
-// /// this is kind of like the library check marks for read -- review that
-// const projectDoneButton = document.querySelector(".projectDoneButton")
-// projectDoneButton.addEventListener("click", e => {
-//      strikethroughProject();
-//      });
-
-// const submitButton = document.querySelector(".projectSubmitButton")
-// submitButton.addEventListener("click", e => {
-//      e.preventDefault();
-//      addProjectToList();
-//      });
-
-/// why is project not hidden upon opening?
 
 // let taskList = []
 
