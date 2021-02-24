@@ -51,6 +51,7 @@ function addProjectToList() {
 function renderProject() {
   let projectUUID = projectList[projectList.length-1].identifier
   console.log(projectUUID)
+  console.log(projectList)
 
   const projectContainer = document.createElement("div");
   projectContainer.classList.add("project-container");
@@ -61,20 +62,28 @@ function renderProject() {
 
   const projectDeleteButton = document.createElement("button") 
   projectDeleteButton.setAttribute("class", "projectDeleteButton icon-button")
-  projectDeleteButton.setAttribute("id", "B" + projectUUID)
+  projectDeleteButton.setAttribute("id", "TB" + projectUUID)
 
   document.getElementById("C" + projectUUID).appendChild(projectDeleteButton);
 
   const projectTrashIcon = document.createElement("span") 
   projectTrashIcon.setAttribute("class", "glyphicon glyphicon-trash")
-  document.getElementById("B" + projectUUID).appendChild(projectTrashIcon);
+  document.getElementById("TB" + projectUUID).appendChild(projectTrashIcon);
 
   projectDeleteButton.addEventListener("click", function(event)
-  {  const deleteDivTarget = document.getElementById("C" + projectUUID);
+    {const deleteDivTarget = document.getElementById("C" + projectUUID);
      projectHolder.removeChild(deleteDivTarget);
      // now to pare them out of projectList with a filter method
-    alert(projectUUID)
+     projectList = projectList.filter(object => object.identifier !== projectUUID);
+    console.log(projectList)
   })
+
+  // then create strikethrough
+  
+  // write how this differs from project library
+
+
+
 
   // projectContainer.innerHTML = projectList[projectList.length-1].projectName + 
   // '<button class="projectDeleteButton icon-button"><span class="glyphicon glyphicon-trash"></span></button>'
