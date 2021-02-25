@@ -9,16 +9,11 @@ function Project(projectName, identifier) {
 // no icon, add the checkbox ahead of the project
 // maybe an icon to rewrite the project name once in
 
-
-
-function showAddProject() {
-  let x = document.getElementById("projectSubmitForm");
-  if (x.style.display === "block") {
-    x.style.display = "none";
-  } else {
-    x.style.display = "block";
-  }
-}
+let Projects = document.getElementById("Projects")
+Projects.querySelector("input[id=projectForm]").addEventListener("click", (event)=>{
+ let projectSubmitForm = document.querySelector(".projectSubmitForm")
+  projectSubmitForm.classList.toggle("hidden")
+});
 
 const projectSubmitButton = document.querySelector(".projectSubmitButton")
 projectSubmitButton.addEventListener("click", e => {
