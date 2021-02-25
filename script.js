@@ -1,18 +1,14 @@
-let projectList = []
+let projectList = [];
+let projectSubmitForm = document.querySelector(".projectSubmitForm");
 
 function Project(projectName, identifier) {
   this.projectName = projectName;
   this.identifier = identifier;
 }
 
-// learn how to do this by checkbox so you can just change styles instead of hardcoding
-// no icon, add the checkbox ahead of the project
-// maybe an icon to rewrite the project name once in
-
 let Projects = document.getElementById("Projects")
 Projects.querySelector("input[id=projectForm]").addEventListener("click", (event)=>{
- let projectSubmitForm = document.querySelector(".projectSubmitForm")
-  projectSubmitForm.classList.toggle("hidden")
+  projectSubmitForm.classList.toggle("show")
 });
 
 const projectSubmitButton = document.querySelector(".projectSubmitButton")
@@ -24,8 +20,7 @@ projectSubmitButton.addEventListener("click", e => {
 const projectCloseButton = document.querySelector(".projectCloseButton")
 projectCloseButton.addEventListener("click", e => {
     e.preventDefault();
-    showAddProject();
-    document.querySelector("#projectName").value = "";
+    projectSubmitForm.classList.toggle("show")
     });
 
 function createUUID() {
@@ -50,56 +45,88 @@ function addProjectToList() {
   };
 
 function renderProject() {
-  let projectUUID = projectList[projectList.length-1].identifier
+ let projectUUID = projectList[projectList.length-1].identifier
 
-  const projectContainer = document.createElement("div");
+ let projectContainer = document.createElement("div");
   projectContainer.classList.add("project-container");
   projectContainer.setAttribute("id", "C" + projectUUID)
-  
-  projectContainer.textContent = projectList[projectList.length-1].projectName
+
   document.getElementById('projectHolder').appendChild(projectContainer);
 
-  const projectTrashButton = document.createElement("button") 
-  projectTrashButton.setAttribute("class", "projectTrashButton icon-button")
+  let projectDoneCheckbox = document.createElement("input") 
+  projectDoneCheckbox.setAttribute("type", "checkbox")
+  projectDoneCheckbox.setAttribute("id", "CB" + projectUUID)
+
+  document.getElementById("C" + projectUUID).appendChild(projectDoneCheckbox);
+
+  // I give some space to the checkbox here but when underlined it also gets marked. Is there a better way?
+  let projectContainerText = document.createTextNode(" " + projectList[projectList.length-1].projectName);
+  document.getElementById("C" + projectUUID).appendChild(projectContainerText);
+
+  let projectTrashButton = document.createElement("button") 
+  projectTrashButton.setAttribute("class", "projectTrashButton icon-button right")
   projectTrashButton.setAttribute("id", "TB" + projectUUID)
-
-  const projectDoneButton = document.createElement("button") 
-  projectDoneButton.setAttribute("class", "projectDoneButton icon-button")
-  projectDoneButton.setAttribute("id", "DB" + projectUUID)
-
-  document.getElementById("C" + projectUUID).appendChild(projectDoneButton);
   document.getElementById("C" + projectUUID).appendChild(projectTrashButton);
 
-  const projectDoneIcon = document.createElement("span") 
-  projectDoneIcon.setAttribute("class", "glyphicon glyphicon-ok")
-  document.getElementById("DB" + projectUUID).appendChild(projectDoneIcon);
-
-  const projectTrashIcon = document.createElement("span") 
+  let projectTrashIcon = document.createElement("span") 
   projectTrashIcon.setAttribute("class", "glyphicon glyphicon-trash")
   document.getElementById("TB" + projectUUID).appendChild(projectTrashIcon);
 
-  projectTrashButton.addEventListener("click", function(event)
-    {const deleteDivTarget = document.getElementById("C" + projectUUID);
-     projectHolder.removeChild(deleteDivTarget);
-     projectList = projectList.filter(object => object.identifier !== projectUUID);
+  projectTrashButton.addEventListener("click", function(event){
+    const deleteDivTarget = document.getElementById("C" + projectUUID);
+    projectHolder.removeChild(deleteDivTarget);
+    projectList = projectList.filter(object => object.identifier !== projectUUID);
   })
 
-  projectDoneButton.addEventListener("click", function(event)
-    {const doneDivTarget = document.getElementById("C" + projectUUID);
-    if (doneDivTarget.style.textDecoration === "line-through") {
-      doneDivTarget.style.textDecoration="none"
-    } else {
-      doneDivTarget.style.textDecoration = "line-through";
-    }
+  let thisProjectContainer = document.getElementById("C" + projectUUID)
+  thisProjectContainer.querySelector("input[type=checkbox]").addEventListener("click", (event)=>{
+    thisProjectContainer.classList.toggle("done")
+  });
+
+  let projectEditButton = document.createElement("button") 
+  projectEditButton.setAttribute("class", "projectEditButton icon-button right")
+  projectEditButton.setAttribute("id", "EB" + projectUUID)
+  document.getElementById("C" + projectUUID).appendChild(projectEditButton);
+
+  let projectEditIcon = document.createElement("span") 
+  projectEditIcon.setAttribute("class", "glyphicon glyphicon-edit")
+  document.getElementById("EB" + projectUUID).appendChild(projectEditIcon);
+
+  projectEditButton.addEventListener("click", function(event) {
+  // modal window with form and existing name
   })
+  
+  let projectOpenButton = document.createElement("button") 
+  projectOpenButton.setAttribute("class", "projectOpenButton icon-button right")
+  projectOpenButton.setAttribute("id", "OB" + projectUUID)
+  document.getElementById("C" + projectUUID).appendChild(projectOpenButton);
+
+  let projectOpenIcon = document.createElement("span") 
+  projectOpenIcon.setAttribute("class", "glyphicon glyphicon-zoom-in")
+  document.getElementById("OB" + projectUUID).appendChild(projectOpenIcon);
+
+  projectOpenButton.addEventListener("click", function(event){ 
+    (alert("open"))
+    // put projectList[projectList.length-1].projectName in taskListcontainer with name at top    
+  })
+
+  // pop up a modal with the title "rename project" and replace; shouldn't be too hard
+  //   {const doneDivTarget = document.getElementById("C" + projectUUID);
+  // draw up a form, take the input replace it as projectList[projectList.length-1].projectName
+  //   if (doneDivTarget.style.textDecoration === "line-through") {
+  //     doneDivTarget.style.textDecoration="none"
+  //   } else {
+  //     doneDivTarget.style.textDecoration = "line-through";
+  //   }
+  // })
 }
 
-// make each project clickable
-// put projectList[projectList.length-1].projectName in taskListcontainer with name at top
+
 // button to add task
 // task goes into taskList which needs to be associated with project
 
 // let taskList = []
+// let id = the task we're in
 
 // function Task(taskName, dueDate, priority, done, trashTask, notes) {
 // // expand to add done, comment and delete

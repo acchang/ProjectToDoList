@@ -24,9 +24,12 @@
     padding-left: 10px;
     }
 
-.hidden {
-  display: none;
+.show {
+  display: block;
 }
+
+.right {
+  float: right;}
 
 .behind-glyphicon {
   position: absolute;
@@ -58,6 +61,9 @@
   flex-direction: column-reverse;
 }
 
+.projectSubmitForm {
+  display: none;
+}
   
 #TaskListContainer{
     display: flex;
@@ -77,36 +83,6 @@
     font-size: xx-small;
     }
 
-
-  
-  /*Book css from https://3d-book-css.netlify.app/ */
-/*   
-  .book-container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 20px;
-  }
-  
-  .volume {
-    /* width: 200px;
-    height: 300px; */
-    /* position: relative;
-    color: #ef8a42;
-    text-align: center;
-    margin: 20px;
-  }
-  
-  .volume > :first-child {
-    position: absolute;
-    top: 0;
-    left: 0;
-    /* width: 200px;
-    height: 300px; */
-    background-color:yellow;
-    border-radius: 0 2px 2px 0;
-    box-shadow: 5px 5px 20px #666;
-  }
   
   /* The Modal (background) */
   .modal {
