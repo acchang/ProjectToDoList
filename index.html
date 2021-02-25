@@ -22,25 +22,34 @@
     <h3 id="Today">Today</h3>
     <h3 id="ThisWeek">This Week</h3>
 
-    <h3 id="Projects">Projects 
-        <button class="icon-button" id="projectBtn" onclick="showAddProject()">
-            <span class="glyphicon glyphicon-pencil"></span> Add
-        </button>
-        <p>
-        <div id="projectSubmitForm">
-        <form>
+
+    <h3 id="Projects">Projects
+
+    <label for="projectForm" class="icon-button">Add <span class="glyphicon glyphicon-pencil"></span></label>
+    <input type="checkbox" id="projectForm" class="behind-glyphicon"> 
+    <div class="projectSubmitForm">
+
+    <!-- <button class="icon-button" id="projectBtn" onclick="showAddProject()">
+        <span class="glyphicon glyphicon-pencil"></span> Add
+    </button> -->
+    <!-- <p>
+    <div id="projectSubmitForm"> -->
+
+    <form>
         <input class="input" id="projectName" type="text" maxlength="17" size="17">
-            <button class="projectSubmitButton icon-button" id="projectSubmitButton">
-            <span class="glyphicon glyphicon-plus"></span>
-            </button>
-            <button class="projectCloseButton icon-button" id="projectCloseButton">
-            <span class="glyphicon glyphicon-remove"></span>
-            </button>
-        </form>
-        </div>
-        <p></p>
-        <div id ="projectHolder">
-        </div>
+        <button class="projectSubmitButton icon-button" id="projectSubmitButton">
+        <span class="glyphicon glyphicon-plus"></span>
+        </button>
+        <button class="projectCloseButton icon-button" id="projectCloseButton">
+        <span class="glyphicon glyphicon-remove"></span>
+        </button>
+    </form>
+    </div>
+    </h3>
+    
+    <p></p>
+    <div id ="projectHolder">
+    </div>
 </div>
  
     

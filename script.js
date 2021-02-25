@@ -5,6 +5,12 @@ function Project(projectName, identifier) {
   this.identifier = identifier;
 }
 
+// learn how to do this by checkbox so you can just change styles instead of hardcoding
+// no icon, add the checkbox ahead of the project
+// maybe an icon to rewrite the project name once in
+
+
+
 function showAddProject() {
   let x = document.getElementById("projectSubmitForm");
   if (x.style.display === "block") {
