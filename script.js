@@ -61,25 +61,38 @@ function renderProject() {
   // I give some space to the checkbox here but when underlined it also gets marked. Is there a better way?
 
   let projectContainerTextHolder = document.createElement("span");
+  projectContainerTextHolder.classList.add("projectContainerTextHolder");
   projectContainerTextHolder.setAttribute("id", "TH" + projectUUID);
+  // projectContainerTextHolder.setAttribute("maxlength", 17);
   projectContainerTextHolder.setAttribute("contentEditable", true);
 
-  // document.getElementById("TH" + projectUUID).innerHTML = 'This text is different!';
   document.getElementById("C" + projectUUID).appendChild(projectContainerTextHolder);
 
   let projectContainerText = document.createTextNode(" " + projectList[projectList.length-1].projectName);
   document.getElementById("TH" + projectUUID).appendChild(projectContainerText);
 
-  // is span right? how can I limit the length? how can I close? returns make it ugly
+ let myEditableElement = document.getElementById("TH" + projectUUID);
+  myEditableElement.addEventListener('input', function() {
+      console.log(myEditableElement.textContent);
+      console.log(projectList);
+  });
+
+  // add eventListener to holder to change array
+  // projectContainerTextHolder.addEventListener('input', function() {
+  //   let newthing = projectContainerTextHolder.textContent;
+  //   alert(newthing)
+  // });
+  // listening to click works
+  // cannot use change event bc its for input, select, text area
+  // need the textcontent to go into array upon closing
+
+  // how can I limit the length? how can I close? returns make it ugly
 
   // var myEditableElement = document.getElementById("C" + projectUUID);
   // myEditableElement.addEventListener('input', function() {
   //   console.log('An edit input has been detected');
   //   console.log(myEditableElement.innerHTML);
   // });
-
-
-
 
 
 
