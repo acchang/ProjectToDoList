@@ -63,8 +63,8 @@ function renderProject() {
   let projectContainerTextHolder = document.createElement("span");
   projectContainerTextHolder.classList.add("projectContainerTextHolder");
   projectContainerTextHolder.setAttribute("id", "TH" + projectUUID);
-  // projectContainerTextHolder.setAttribute("maxlength", 17);
   projectContainerTextHolder.setAttribute("contentEditable", true);
+  projectContainerTextHolder.setAttribute("onkeypress", "return (this.innerText.length <= 25)");
 
   document.getElementById("C" + projectUUID).appendChild(projectContainerTextHolder);
 
@@ -78,6 +78,8 @@ function renderProject() {
   });
 
   // how can I limit the length of contenteditable? how can I close? returns make it ugly
+
+
   // move editedProjectName into projectList array
 
   let projectTrashButton = document.createElement("button") 
@@ -115,6 +117,11 @@ function renderProject() {
   })
 
 }
+
+
+
+
+
 
 
 // button to add task
