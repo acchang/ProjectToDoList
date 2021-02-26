@@ -49,8 +49,7 @@ function renderProject() {
 
  let projectContainer = document.createElement("div");
   projectContainer.classList.add("project-container");
-  projectContainer.setAttribute("id", "C" + projectUUID)
-
+  projectContainer.setAttribute("id", "C" + projectUUID);
   document.getElementById('projectHolder').appendChild(projectContainer);
 
   let projectDoneCheckbox = document.createElement("input") 
@@ -60,8 +59,28 @@ function renderProject() {
   document.getElementById("C" + projectUUID).appendChild(projectDoneCheckbox);
 
   // I give some space to the checkbox here but when underlined it also gets marked. Is there a better way?
+
+  let projectContainerTextHolder = document.createElement("span");
+  projectContainerTextHolder.setAttribute("id", "TH" + projectUUID);
+  projectContainerTextHolder.setAttribute("contentEditable", true);
+
+  // document.getElementById("TH" + projectUUID).innerHTML = 'This text is different!';
+  document.getElementById("C" + projectUUID).appendChild(projectContainerTextHolder);
+
   let projectContainerText = document.createTextNode(" " + projectList[projectList.length-1].projectName);
-  document.getElementById("C" + projectUUID).appendChild(projectContainerText);
+  document.getElementById("TH" + projectUUID).appendChild(projectContainerText);
+
+  
+  // var myEditableElement = document.getElementById("C" + projectUUID);
+  // myEditableElement.addEventListener('input', function() {
+  //   console.log('An edit input has been detected');
+  //   console.log(myEditableElement.innerHTML);
+  // });
+
+
+
+
+
 
   let projectTrashButton = document.createElement("button") 
   projectTrashButton.setAttribute("class", "projectTrashButton icon-button right")
