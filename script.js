@@ -70,7 +70,8 @@ function renderProject() {
   let projectContainerText = document.createTextNode(" " + projectList[projectList.length-1].projectName);
   document.getElementById("TH" + projectUUID).appendChild(projectContainerText);
 
-  
+  // is span right? how can I limit the length? how can I close? returns make it ugly
+
   // var myEditableElement = document.getElementById("C" + projectUUID);
   // myEditableElement.addEventListener('input', function() {
   //   console.log('An edit input has been detected');
