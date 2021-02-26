@@ -29,12 +29,6 @@
     <input type="checkbox" id="projectForm" name="projectForm" class="behind-glyphicon"> 
     <div class="projectSubmitForm">
 
-    <!-- <button class="icon-button" id="projectBtn" onclick="showAddProject()">
-        <span class="glyphicon glyphicon-pencil"></span> Add
-    </button> -->
-    <!-- <p>
-    <div id="projectSubmitForm"> -->
-
     <form>
         <input class="input" id="projectName" type="text" maxlength="17" size="17">
         <button class="projectSubmitButton icon-button" id="projectSubmitButton">
@@ -51,28 +45,27 @@
     <div id ="projectHolder">
     </div>
 </div>
- 
+
+
+<div id="projectNameModal" class="modal">
+    <div class="modal-content">
+        <span class="projectModalClose">&times;</span>
+      <form>
+        <label>Change Project Name to: </label>
+        <input class="input" id="newName" type="text" placeholder="Title" maxlength="17" >
+        <button class="projectNewNameButton icon-button" id="projectNewNameButton">
+        <span class="glyphicon glyphicon-ok"></span>
+      </form>
+    </div>
+</div>
+
+
     
 <div id="TaskListContainer">
 
 <button id="myBtn">Add Task</button>
 </div>
 
-<!-- 
-<div id="myModal" class="modal">
-        <div class="modal-content">
-        <span class="close">&times;</span>
-        <p><form>
-            <input class="input" name="title" id="title" type="text" placeholder="Title" maxlength="20" ><br>
-            <input class="input" name="fname" id="fname" type="text" placeholder="Description" maxlength="10" ><br>
-            <input class="input" name="pubDate" id="pubDate" type="number" placeholder="Due Date" maxlength=4><br>
-            <label for="read">Priority</label> <input name="own" id="own" type="checkbox"><br>
-            <button class="submitButton">Submit</button>
-        </form>
-        </p>
-        </div>
-    </div>
-</div> -->
     
 <script src="script.js"></script>
 </body>

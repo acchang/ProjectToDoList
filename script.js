@@ -93,8 +93,19 @@ function renderProject() {
   document.getElementById("EB" + projectUUID).appendChild(projectEditIcon);
 
   projectEditButton.addEventListener("click", function(event) {
-  // modal window with form and existing name
-  })
+
+    // const domEl = document.createRange()
+    // .createContextualFragment(`<div class='task'>
+    // <strong>Title:</strong> <span class='title'>${title}</span>
+    // <strong>Description:</strong> <span class='description'>${description}</span>
+    // <label><strong>Done:</strong>`).firstChild;
+    // document.getElementById("C" + projectUUID).appendChild(projectEditButton);
+      // projectModal.classList.add("show")
+      /// no modal, make your window show here so you can reference the UUID
+      // get value from projectUUID
+      // reassign projectList + UUID + projectName = value
+      // cannot use "[projectList.length-1]" because that will no longer be true.
+    })
   
   let projectOpenButton = document.createElement("button") 
   projectOpenButton.setAttribute("class", "projectOpenButton icon-button right")
@@ -110,17 +121,31 @@ function renderProject() {
     // put projectList[projectList.length-1].projectName in taskListcontainer with name at top    
   })
 
-  // pop up a modal with the title "rename project" and replace; shouldn't be too hard
-  //   {const doneDivTarget = document.getElementById("C" + projectUUID);
-  // draw up a form, take the input replace it as projectList[projectList.length-1].projectName
-  //   if (doneDivTarget.style.textDecoration === "line-through") {
-  //     doneDivTarget.style.textDecoration="none"
-  //   } else {
-  //     doneDivTarget.style.textDecoration = "line-through";
-  //   }
-  // })
 }
 
+let projectModal = document.getElementById("projectNameModal");
+let projectModalClose = document.getElementsByClassName("projectModalClose")[0];
+
+projectModalClose.onclick = function() {
+  projectModal.classList.remove("show")
+}
+
+window.onclick = function(event) {
+  if (event.target == projectModal) {
+    projectModal.classList.remove("show")
+  }
+}
+
+const projectNewNameButton = document.querySelector(".projectNewNameButton")
+projectNewNameButton.addEventListener("click", e => {
+     e.preventDefault();
+     let replaceName = document.querySelector("#newName").value;
+    //  projectList[projectList.length-1].projectName = replaceName;
+     alert(replaceName);
+     // take value and replace closest name to event target but not the IDS
+     projectModal.classList.remove("show")
+     document.querySelector("#newName").value = "";
+     });
 
 // button to add task
 // task goes into taskList which needs to be associated with project
@@ -132,7 +157,7 @@ function renderProject() {
 // // expand to add done, comment and delete
 //     this.taskName = taskName;
 //     this.dueDate = dueDate;
-//     this.dueDatedueDate = priority;
+//     this.priority = priority;
 //     this.done = done;
 //     this.trashTask = trashTask;
 //     this.notes = notes
