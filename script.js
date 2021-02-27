@@ -46,6 +46,7 @@ function addProjectToList() {
 
 function renderProject() {
  let projectUUID = projectList[projectList.length-1].identifier
+ let projectName = projectList[projectList.length-1].projectName
 
  let projectContainer = document.createElement("div");
   projectContainer.classList.add("project-container");
@@ -68,19 +69,26 @@ function renderProject() {
 
   document.getElementById("C" + projectUUID).appendChild(projectContainerTextHolder);
 
-  let projectContainerText = document.createTextNode(" " + projectList[projectList.length-1].projectName);
+  let projectContainerText = document.createTextNode(" " + projectName);
   document.getElementById("TH" + projectUUID).appendChild(projectContainerText);
 
- let editedProjectName = document.getElementById("TH" + projectUUID);
-    editedProjectName.addEventListener('input', function() {
-      console.log(editedProjectName.textContent);
+ let newProjectContainerTextHolder = document.getElementById("TH" + projectUUID);
+     newProjectContainerTextHolder.addEventListener('input', function() {
+      let newProjectContainerText = newProjectContainerTextHolder.textContent
+      console.log(newProjectContainerText);
       console.log(projectList);
+      
+      const index = projectList.findIndex((el) => el.identifier === projectUUID)
+      projectList[index] = {
+      projectName: newProjectContainerText,
+      identifier: projectUUID,
+      }
+
+
   });
 
-  // how can I limit the length of contenteditable? how can I close? returns make it ugly
-
-
   // move editedProjectName into projectList array
+  // use find and replace
 
   let projectTrashButton = document.createElement("button") 
   projectTrashButton.setAttribute("class", "projectTrashButton icon-button right")
@@ -112,8 +120,12 @@ function renderProject() {
   document.getElementById("OB" + projectUUID).appendChild(projectOpenIcon);
 
   projectOpenButton.addEventListener("click", function(event){ 
-    (alert("open"))
-    // put projectList[projectList.length-1].projectName in taskListcontainer with name at top    
+    let taskProjectHead = document.createTextNode(" " + projectList[projectList.length-1].projectName);
+    document.getElementById("TaskListContainer").appendChild(taskProjectHead); 
+    e.preventDefault();
+    // put projectList[projectList.length-1].projectName in taskListcontainer with name at top  
+    // why is it staying at the same taskProjectHead?
+    // also need some way of formatting.
   })
 
 }
