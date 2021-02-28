@@ -1,4 +1,5 @@
 let projectList = [];
+let taskList = [];
 let projectSubmitForm = document.querySelector(".projectSubmitForm");
 
 function Project(projectName, identifier) {
@@ -64,7 +65,6 @@ function addCheckbox(projectUUID) {
   projectDoneCheckbox.setAttribute("id", "CB" + projectUUID);
   document.getElementById("C" + projectUUID).appendChild(projectDoneCheckbox)
 }
-// needs to cross out with .done class
 
 function activateCheckbox(projectUUID, projectContainerTextHolder) {
   let thisProjectContainer = document.getElementById("C" + projectUUID)
@@ -134,24 +134,34 @@ function addProjectOpenButton(projectUUID) {
 }
 
 function openProject(projectUUID) {
-    const projectIndex = projectList.findIndex((el) => el.identifier === projectUUID)
-    let taskProjectHead = document.createTextNode("Project: " + projectList[projectIndex].projectName);
-    // document.getElementById("taskListProjectName").removeChild(taskProjectHead);
-    document.getElementById("taskListProjectName").appendChild(taskProjectHead); 
+  let projectPrefixSpan = document.getElementById('projectPrefix');
+  let projectHeadlineSpan = document.getElementById('projectHeadline');
+  projectPrefixSpan.innerHTML = '';
+  projectHeadlineSpan.innerHTML = '';
+  const projectIndex = projectList.findIndex((el) => el.identifier === projectUUID)
+  let taskProjectPrefix = document.createTextNode('Project: ');
+  let taskProjectHead = document.createTextNode(projectList[projectIndex].projectName);
+  document.getElementById('projectPrefix').appendChild(taskProjectPrefix); 
+  document.getElementById('projectHeadline').appendChild(taskProjectHead); 
+  // render/populate the TaskHolder with the TaskList that corresponds with the projectUUID
 }
 
+let taskBtn = document.getElementById("taskBtn");
+taskBtn.addEventListener("click", function(event){
+  addTaskToList()
+});
+
+function addTaskToList() {
+  let taskProjectTitleSpace = document.getElementById('projectHeadline');
+  let taskProjectTitle = taskProjectTitleSpace.textContent;
+  (alert(taskProjectTitle));
+  // find the ID from taskProjectTitle and set that as the projectID;
+  // create a form to be filled in for TaskList
+};
 
 
-
-
-// button to add task
-// taskProjectHead does not take the alteredhead
-// give the taskProjectHead an id with the UUID? and then grab that UUID to start a new array when add task?
-// task goes into taskList which needs to be associated with project
 // title and identifier goes to task constructor
-
-// let taskList = []
-// let id = the task we're in, UUID never changes so reference by that out of ProjectList
+// let taskID = projectUUID
 
 // function Task(taskName, dueDate, priority, done, trashTask, notes) {
 // // expand to add done, comment and delete
