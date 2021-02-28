@@ -45,20 +45,35 @@ function addProjectToList() {
   };
 
 function renderProject() {
- let projectUUID = projectList[projectList.length-1].identifier
- let projectName = projectList[projectList.length-1].projectName
-
- let projectContainer = document.createElement("div");
+  let projectUUID = projectList[projectList.length-1].identifier
+  let projectContainer = document.createElement("div");
   projectContainer.classList.add("project-container");
   projectContainer.setAttribute("id", "C" + projectUUID);
+  let projectName = projectList[projectList.length-1].projectName;
   document.getElementById('projectHolder').appendChild(projectContainer);
+  addCheckbox(projectUUID);
+  addProjectText(projectUUID, projectName);
+  editProjectText(projectUUID, projectName);
+  addTrashButton(projectUUID);
+  addProjectOpenButton(projectUUID);
+};
+ 
+function addCheckbox(projectUUID) {
+  let projectDoneCheckbox = document.createElement("input");
+  projectDoneCheckbox.setAttribute("type", "checkbox");
+  projectDoneCheckbox.setAttribute("id", "CB" + projectUUID);
+  document.getElementById("C" + projectUUID).appendChild(projectDoneCheckbox)
+}
+// needs to cross out with .done class
 
-  let projectDoneCheckbox = document.createElement("input") 
-  projectDoneCheckbox.setAttribute("type", "checkbox")
-  projectDoneCheckbox.setAttribute("id", "CB" + projectUUID)
+function activateCheckbox(projectUUID, projectContainerTextHolder) {
+  let thisProjectContainer = document.getElementById("C" + projectUUID)
+  thisProjectContainer.querySelector("input[type=checkbox]").addEventListener("click", (event)=>{
+  projectContainerTextHolder.classList.toggle("done")
+  })
+};
 
-  document.getElementById("C" + projectUUID).appendChild(projectDoneCheckbox);
-
+function addProjectText(projectUUID, projectName) {
   let projectContainerTextHolder = document.createElement("span");
   projectContainerTextHolder.classList.add("projectContainerTextHolder");
   projectContainerTextHolder.setAttribute("id", "TH" + projectUUID);
@@ -66,17 +81,19 @@ function renderProject() {
   projectContainerTextHolder.setAttribute("onkeypress", "return (this.innerText.length <= 25)");
 
   document.getElementById("C" + projectUUID).appendChild(projectContainerTextHolder);
-
   let projectContainerText = document.createTextNode(projectName);
   document.getElementById("TH" + projectUUID).appendChild(projectContainerText);
+  activateCheckbox(projectUUID, projectContainerTextHolder)
+};
 
+function editProjectText(projectUUID, projectName) {
   let newProjectContainerTextHolder = document.getElementById("TH" + projectUUID);
-  
   newProjectContainerTextHolder.addEventListener('input', function() {    
       let newProjectContainerText = newProjectContainerTextHolder.textContent
       const index = projectList.findIndex((el) => el.identifier === projectUUID);
       projectList[index].projectName = newProjectContainerText
       projectName = projectList[projectList.length-1].projectName
+      console.log(projectList)
       });
 
   newProjectContainerTextHolder.addEventListener('keydown', function(e) {
@@ -84,7 +101,9 @@ function renderProject() {
           e.preventDefault();
       }
     });
-  
+};
+
+function addTrashButton(projectUUID) {
   let projectTrashButton = document.createElement("button") 
   projectTrashButton.setAttribute("class", "projectTrashButton icon-button right")
   projectTrashButton.setAttribute("id", "TB" + projectUUID)
@@ -94,17 +113,14 @@ function renderProject() {
   projectTrashIcon.setAttribute("class", "glyphicon glyphicon-trash")
   document.getElementById("TB" + projectUUID).appendChild(projectTrashIcon);
 
-  projectTrashButton.addEventListener("click", function(event){
+  projectTrashButton.addEventListener("click", function(event) {
     const deleteDivTarget = document.getElementById("C" + projectUUID);
     projectHolder.removeChild(deleteDivTarget);
     projectList = projectList.filter(object => object.identifier !== projectUUID);
   })
-
-  let thisProjectContainer = document.getElementById("C" + projectUUID)
-  thisProjectContainer.querySelector("input[type=checkbox]").addEventListener("click", (event)=>{
-    projectContainerTextHolder.classList.toggle("done")
-  });
+};
   
+function addProjectOpenButton(projectUUID) {
   let projectOpenButton = document.createElement("button") 
   projectOpenButton.setAttribute("class", "projectOpenButton icon-button right")
   projectOpenButton.setAttribute("id", "OB" + projectUUID)
@@ -113,13 +129,20 @@ function renderProject() {
   let projectOpenIcon = document.createElement("span") 
   projectOpenIcon.setAttribute("class", "glyphicon glyphicon-zoom-in")
   document.getElementById("OB" + projectUUID).appendChild(projectOpenIcon);
+  projectOpenButton.addEventListener("click", function(event){openProject(projectUUID)}
+  );
+}
 
-  projectOpenButton.addEventListener("click", function(event){ 
-    let taskProjectHead = document.createTextNode("Project: " + projectName);
+function openProject(projectUUID) {
+    const projectIndex = projectList.findIndex((el) => el.identifier === projectUUID)
+    let taskProjectHead = document.createTextNode("Project: " + projectList[projectIndex].projectName);
     // document.getElementById("taskListProjectName").removeChild(taskProjectHead);
     document.getElementById("taskListProjectName").appendChild(taskProjectHead); 
-  })
 }
+
+
+
+
 
 // button to add task
 // taskProjectHead does not take the alteredhead
@@ -130,31 +153,32 @@ function renderProject() {
 // let taskList = []
 // let id = the task we're in, UUID never changes so reference by that out of ProjectList
 
-function Task(taskName, dueDate, priority, done, trashTask, notes) {
-// expand to add done, comment and delete
-    this.taskName = taskName;
-    this.dueDate = dueDate;
-    this.priority = priority;
-    this.done = done;
-    this.trashTask = trashTask;
-    this.notes = notes
-}
+// function Task(taskName, dueDate, priority, done, trashTask, notes) {
+// // expand to add done, comment and delete
+//     this.taskName = taskName;
+//     this.dueDate = dueDate;
+//     this.priority = priority;
+//     this.done = done;
+//     this.trashTask = trashTask;
+//     this.notes = notes
+// }
 // I can hide the notes field the same way I hid projects input
+// one of the properties should be the project identifier
 
-function addTaskToList() {
-    let taskName = document.querySelector("#taskName").value;
-    let dueDate = document.querySelector("#dueDate").value;
-    let priority = document.querySelector("#priority").value;
-    let done = document.querySelector("#done").checked;
-    let trashTask = document.querySelector("#trashTask").checked;
-    let notes = document.querySelector("#notes").value;
-    var addTask = new Task(title, fname, lname, pubDate, contrib, own);
-    taskList.push(addTask);
-    render();
-    document.querySelector("#taskName").value = "";
-    document.querySelector("#dueDate").value = "";
-    document.querySelector("#priority").value = "";
-    document.querySelector("#done").checked = false;
-    document.querySelector("#trashTask").checked = false;
-    document.querySelector("#notes").value = "";
-   };
+// function addTaskToList() {
+//     let taskName = document.querySelector("#taskName").value;
+//     let dueDate = document.querySelector("#dueDate").value;
+//     let priority = document.querySelector("#priority").value;
+//     let done = document.querySelector("#done").checked;
+//     let trashTask = document.querySelector("#trashTask").checked;
+//     let notes = document.querySelector("#notes").value;
+//     var addTask = new Task(title, fname, lname, pubDate, contrib, own);
+//     taskList.push(addTask);
+//     render();
+//     document.querySelector("#taskName").value = "";
+//     document.querySelector("#dueDate").value = "";
+//     document.querySelector("#priority").value = "";
+//     document.querySelector("#done").checked = false;
+//     document.querySelector("#trashTask").checked = false;
+//     document.querySelector("#notes").value = "";
+//    };
