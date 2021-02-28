@@ -59,8 +59,6 @@ function renderProject() {
 
   document.getElementById("C" + projectUUID).appendChild(projectDoneCheckbox);
 
-  // I give some space to the checkbox here but when underlined it also gets marked. Is there a better way?
-
   let projectContainerTextHolder = document.createElement("span");
   projectContainerTextHolder.classList.add("projectContainerTextHolder");
   projectContainerTextHolder.setAttribute("id", "TH" + projectUUID);
@@ -69,27 +67,24 @@ function renderProject() {
 
   document.getElementById("C" + projectUUID).appendChild(projectContainerTextHolder);
 
-  let projectContainerText = document.createTextNode(" " + projectName);
+  let projectContainerText = document.createTextNode(projectName);
   document.getElementById("TH" + projectUUID).appendChild(projectContainerText);
 
- let newProjectContainerTextHolder = document.getElementById("TH" + projectUUID);
-     newProjectContainerTextHolder.addEventListener('input', function() {
+  let newProjectContainerTextHolder = document.getElementById("TH" + projectUUID);
+  
+  newProjectContainerTextHolder.addEventListener('input', function() {    
       let newProjectContainerText = newProjectContainerTextHolder.textContent
-      console.log(newProjectContainerText);
-      console.log(projectList);
-      
-      const index = projectList.findIndex((el) => el.identifier === projectUUID)
-      projectList[index] = {
-      projectName: newProjectContainerText,
-      identifier: projectUUID,
+      const index = projectList.findIndex((el) => el.identifier === projectUUID);
+      projectList[index].projectName = newProjectContainerText
+      projectName = projectList[projectList.length-1].projectName
+      });
+
+  newProjectContainerTextHolder.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter') {
+          e.preventDefault();
       }
-
-
-  });
-
-  // move editedProjectName into projectList array
-  // use find and replace
-
+    });
+  
   let projectTrashButton = document.createElement("button") 
   projectTrashButton.setAttribute("class", "projectTrashButton icon-button right")
   projectTrashButton.setAttribute("id", "TB" + projectUUID)
@@ -120,53 +115,46 @@ function renderProject() {
   document.getElementById("OB" + projectUUID).appendChild(projectOpenIcon);
 
   projectOpenButton.addEventListener("click", function(event){ 
-    let taskProjectHead = document.createTextNode(" " + projectList[projectList.length-1].projectName);
-    document.getElementById("TaskListContainer").appendChild(taskProjectHead); 
-    e.preventDefault();
-    // put projectList[projectList.length-1].projectName in taskListcontainer with name at top  
-    // why is it staying at the same taskProjectHead?
-    // also need some way of formatting.
+    let taskProjectHead = document.createTextNode("Project: " + projectName);
+    // document.getElementById("taskListProjectName").removeChild(taskProjectHead);
+    document.getElementById("taskListProjectName").appendChild(taskProjectHead); 
   })
-
 }
 
-
-
-
-
-
-
 // button to add task
+// taskProjectHead does not take the alteredhead
+// give the taskProjectHead an id with the UUID? and then grab that UUID to start a new array when add task?
 // task goes into taskList which needs to be associated with project
+// title and identifier goes to task constructor
 
 // let taskList = []
-// let id = the task we're in
+// let id = the task we're in, UUID never changes so reference by that out of ProjectList
 
-// function Task(taskName, dueDate, priority, done, trashTask, notes) {
-// // expand to add done, comment and delete
-//     this.taskName = taskName;
-//     this.dueDate = dueDate;
-//     this.priority = priority;
-//     this.done = done;
-//     this.trashTask = trashTask;
-//     this.notes = notes
-// }
+function Task(taskName, dueDate, priority, done, trashTask, notes) {
+// expand to add done, comment and delete
+    this.taskName = taskName;
+    this.dueDate = dueDate;
+    this.priority = priority;
+    this.done = done;
+    this.trashTask = trashTask;
+    this.notes = notes
+}
 // I can hide the notes field the same way I hid projects input
 
-// function addTaskToList() {
-//     let taskName = document.querySelector("#taskName").value;
-//     let dueDate = document.querySelector("#dueDate").value;
-//     let priority = document.querySelector("#priority").value;
-//     let done = document.querySelector("#done").checked;
-//     let trashTask = document.querySelector("#trashTask").checked;
-//     let notes = document.querySelector("#notes").value;
-//     var addTask = new Task(title, fname, lname, pubDate, contrib, own);
-//     taskList.push(addTask);
-//     render();
-//     document.querySelector("#taskName").value = "";
-//     document.querySelector("#dueDate").value = "";
-//     document.querySelector("#priority").value = "";
-//     document.querySelector("#done").checked = false;
-//     document.querySelector("#trashTask").checked = false;
-//     document.querySelector("#notes").value = "";
-//    };
+function addTaskToList() {
+    let taskName = document.querySelector("#taskName").value;
+    let dueDate = document.querySelector("#dueDate").value;
+    let priority = document.querySelector("#priority").value;
+    let done = document.querySelector("#done").checked;
+    let trashTask = document.querySelector("#trashTask").checked;
+    let notes = document.querySelector("#notes").value;
+    var addTask = new Task(title, fname, lname, pubDate, contrib, own);
+    taskList.push(addTask);
+    render();
+    document.querySelector("#taskName").value = "";
+    document.querySelector("#dueDate").value = "";
+    document.querySelector("#priority").value = "";
+    document.querySelector("#done").checked = false;
+    document.querySelector("#trashTask").checked = false;
+    document.querySelector("#notes").value = "";
+   };
