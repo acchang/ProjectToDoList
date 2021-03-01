@@ -84,9 +84,9 @@
   display: flex;
 }
 
-.blah {
+.projectName {
   background-color: gainsboro;
-  padding: 10px;
+  padding: 20px;
   font-weight:800;
   font-size: large;
 }
@@ -97,13 +97,7 @@
   font-size: medium;
 }
 
-
 #TaskList{
-/* 
-  #projectHolder {
-    display: flex;
-    flex-direction: column-reverse;
-  } */
     display: flex;
     justify-content: flex-start;
     align-content: flex-start;
@@ -112,3 +106,37 @@
   }
   
 
+  .dropbtn {
+    background-color: #3498DB;
+    color: white;
+    padding: 4px;
+    font-size: 14px;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .dropbtn:hover, .dropbtn:focus {
+    background-color: #2980B9;
+  }
+  
+  .dropdown {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 20px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+  }
+  
+  .dropdown-content a {
+    color: black;
+    padding: 2px 6px;
+    display: block;
+  }
+  
+  .dropdown a:hover {background-color: #ddd;}
