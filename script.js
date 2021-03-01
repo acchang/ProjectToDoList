@@ -147,7 +147,10 @@ function openProject(projectUUID) {
   document.getElementById('projectHeadline').appendChild(taskProjectHead); 
   // render/populate the TaskHolder with the TaskList that corresponds with the projectUUID
   console.log(projectList)
+  createTaskInput()
 }
+
+// THIS IS WHERE THE TASK PARTS BEGIN
 
 function getProjectIdentifier() {
   let taskProjectTitleSpace = document.getElementById('projectHeadline');
@@ -157,18 +160,27 @@ function getProjectIdentifier() {
   return(taskProjectIdentifier)
 };
 
-let taskBtn = document.getElementById("taskBtn");
-taskBtn.addEventListener("click", function(event){
+// I need the Create Task Button to be on the right
+
+function createTaskInput() {
   let taskInputContainer = document.createElement("div");
+  taskInputContainer.setAttribute("class", "taskInputContainer");
   taskInputContainer.setAttribute("id", "taskInputContainer");
-  // taskInputContainer.textContent = "taskInputContainer"
   document.getElementById('taskProjectHolder').appendChild(taskInputContainer);
   createTaskPriorityField();
   createTaskField();
   createTaskCalendarField();
   createTaskNotesField();
   createTaskProjectField();
+  createAddTaskField();
+}
+
+createTaskInput()
+let taskBtn = document.getElementById("taskBtn");
+taskBtn.addEventListener("click", function(event){ 
+  taskInputContainer.classList.toggle("flex")
 });
+
 
 function createTaskField() {
   let taskInputFieldHolder = document.createElement("span");
@@ -178,8 +190,8 @@ function createTaskField() {
   let taskInputField = document.createElement("input");
   taskInputField.setAttribute("id", "taskInputField");
   taskInputField.setAttribute("type", "text");
-  taskInputField.setAttribute("maxlength", "45");
-  taskInputField.setAttribute("size", "45");
+  taskInputField.setAttribute("maxlength", "55");
+  taskInputField.setAttribute("size", "55");
   taskInputField.setAttribute("placeholder", "Add task name here");
   taskInputField.classList.add("task-input");
   document.getElementById('taskInputFieldHolder').appendChild(taskInputField);
@@ -298,6 +310,23 @@ function createTaskProjectField() {
   document.getElementById("taskProjectButton").appendChild(taskProjectIcon);
 };
 
+function createAddTaskField() {
+  let addTaskField = document.createElement("span");
+  addTaskField.setAttribute("id", "addTaskField");
+  document.getElementById('taskInputContainer').appendChild(addTaskField);
+
+  let addTaskButton = document.createElement("button");
+  addTaskButton.setAttribute("id", "addTaskButton");
+  addTaskButton.innerText = "Add ";
+  document.getElementById('addTaskField').appendChild(addTaskButton);
+
+  let addTaskIcon = document.createElement("span") 
+  addTaskIcon.setAttribute("class", "glyphicon glyphicon-plus-sign");
+  document.getElementById("addTaskButton").appendChild(addTaskIcon);
+// addtaskbutton should push all tasks to task list with selected project.  
+// openProjects would take all tasks matching that UUID and display them.
+// sorting will also teach me when I need to render for today and this week
+};
 
 
 

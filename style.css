@@ -77,7 +77,9 @@
   overflow: hidden;
 };
 
-.TaskListProjectName {
+#TaskListProjectName {
+  display: flex;
+  justify-content: flex-end;
   padding: 5px;
   font-weight: 900;
   background-color: lightblue;
@@ -92,7 +94,6 @@
 }
 
 #taskBtn {
-  float: right;
   font-weight: 500;
   font-size: medium;
 }
@@ -104,7 +105,16 @@
     flex-direction: row;
     padding: 10px;
   }
-  
+
+.taskInputContainer {
+  display: none;
+  justify-content: space-between;
+}
+
+.flex {
+  display: flex;
+}
+
 
   .dropbtn {
     background-color: #3498DB;
