@@ -106,6 +106,10 @@
     padding: 10px;
   }
 
+#taskPrioritySelector {
+  border: 0px;
+}
+
 .taskInputContainer {
   display: none;
   justify-content: space-between;

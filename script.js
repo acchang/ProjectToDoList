@@ -191,53 +191,62 @@ function createTaskField() {
   taskInputField.setAttribute("id", "taskInputField");
   taskInputField.setAttribute("type", "text");
   taskInputField.setAttribute("maxlength", "55");
-  taskInputField.setAttribute("size", "55");
+  taskInputField.setAttribute("size", "75");
   taskInputField.setAttribute("placeholder", "Add task name here");
   taskInputField.classList.add("task-input");
   document.getElementById('taskInputFieldHolder').appendChild(taskInputField);
 };
 
 function createTaskPriorityField() {
-  let inputTest = document.createElement("input");
-  inputTest.setAttribute("type", "text");
-  inputTest.setAttribute("id", "txtprice");
-  inputTest.setAttribute("placeholder", "Priority");
-  document.getElementById('taskInputContainer').appendChild(inputTest);
+  // let taskPriorityInput = document.createElement("input");
+  // taskPriorityInput.setAttribute("type", "text");
+  // taskPriorityInput.setAttribute("size", "7");
+  // taskPriorityInput.setAttribute("id", "taskPriorityInput");
+  // taskPriorityInput.setAttribute("placeholder", "Priority");
+  // document.getElementById('taskInputContainer').appendChild(taskPriorityInput);
 
-  let taskPriorityDropdown = document.createElement("select");
-  taskPriorityDropdown.setAttribute("id", "cmbitems");
-  document.getElementById('taskInputContainer').appendChild(taskPriorityDropdown);
+  let taskPrioritySelector = document.createElement("select");
+  taskPrioritySelector.setAttribute("id", "taskPrioritySelector");
+  document.getElementById('taskInputContainer').appendChild(taskPrioritySelector);
   
+  let taskPriorityTitle = document.createElement("option");
+  taskPriorityTitle.setAttribute("id", "taskPriorityTitle");
+  taskPriorityTitle.setAttribute("value", "Title");
+  taskPriorityTitle.innerText = "Priority";
+  document.getElementById("taskPrioritySelector").appendChild(taskPriorityTitle);
+
+  // no span in selects, best I can do is button to show selector underneath, ugly
+  // let taskPriorityIcon = document.createElement("span") 
+  // taskPriorityIcon.setAttribute("class", "glyphicon glyphicon-sort")
+  // document.getElementById("taskPriorityTitle").appendChild(taskPriorityIcon);
+
   let taskPriorityOne = document.createElement("option");
   taskPriorityOne.setAttribute("value", "High");
-  taskPriorityOne.innerText = "3";
-  document.getElementById("cmbitems").appendChild(taskPriorityOne);
+  taskPriorityOne.innerText = "High";
+  document.getElementById("taskPrioritySelector").appendChild(taskPriorityOne);
 
   let taskPriorityTwo = document.createElement("option");
   taskPriorityTwo.setAttribute("value", "Medium");
-  taskPriorityTwo.innerText = "2";
-  document.getElementById("cmbitems").appendChild(taskPriorityTwo);
+  taskPriorityTwo.innerText = "Medium";
+  document.getElementById("taskPrioritySelector").appendChild(taskPriorityTwo);
 
   let taskPriorityThree = document.createElement("option");
   taskPriorityThree.setAttribute("value", "Low");
-  taskPriorityThree.innerText = "1";
-  document.getElementById("cmbitems").appendChild(taskPriorityThree);
+  taskPriorityThree.innerText = "Low";
+  document.getElementById("taskPrioritySelector").appendChild(taskPriorityThree);
 
   let taskPriorityFour = document.createElement("option");
   taskPriorityFour.setAttribute("value", "Done");
-  taskPriorityFour.innerText = "0";
-  document.getElementById("cmbitems").appendChild(taskPriorityFour);
+  taskPriorityFour.innerText = "Done";
+  document.getElementById("taskPrioritySelector").appendChild(taskPriorityFour);
 
-  var select = document.getElementById('cmbitems');
-  var input = document.getElementById('txtprice');
+  // what I want from this is select.value
+  var select = document.getElementById('taskPrioritySelector');
+  var input = document.getElementById('taskPriorityInput');
   select.onchange = function() {
       input.value = select.value;
   }
 }
-
-
-
-
 
 
 // function createTaskPriorityField() {
@@ -303,6 +312,7 @@ function createTaskPriorityField() {
 // };
 
 
+// on to creating a calendar dropdown and then picking from it
 function createTaskCalendarField() {
   let taskCalendarField = document.createElement("span");
   taskCalendarField.setAttribute("id", "taskCalendarField");
@@ -318,7 +328,7 @@ function createTaskCalendarField() {
   document.getElementById("taskCalendarButton").appendChild(taskCalendarIcon);
 }
 
-// notes hide and show
+// notes hide and show, linebreak then new input field.
 function createTaskNotesField() {
   let taskNotesField = document.createElement("span");
   taskNotesField.setAttribute("id", "taskNotesField");
