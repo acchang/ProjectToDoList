@@ -190,8 +190,8 @@ function createTaskField() {
   let taskInputField = document.createElement("input");
   taskInputField.setAttribute("id", "taskInputField");
   taskInputField.setAttribute("type", "text");
-  taskInputField.setAttribute("maxlength", "55");
-  taskInputField.setAttribute("size", "75");
+  taskInputField.setAttribute("maxlength", "65");
+  taskInputField.setAttribute("size", "65");
   taskInputField.setAttribute("placeholder", "Add task name here");
   taskInputField.classList.add("task-input");
   document.getElementById('taskInputFieldHolder').appendChild(taskInputField);
@@ -211,7 +211,7 @@ function createTaskPriorityField() {
   
   let taskPriorityTitle = document.createElement("option");
   taskPriorityTitle.setAttribute("id", "taskPriorityTitle");
-  taskPriorityTitle.setAttribute("value", "Title");
+  taskPriorityTitle.setAttribute("value", "Neutral");
   taskPriorityTitle.innerText = "Priority";
   document.getElementById("taskPrioritySelector").appendChild(taskPriorityTitle);
 
@@ -316,16 +316,28 @@ function createTaskPriorityField() {
 function createTaskCalendarField() {
   let taskCalendarField = document.createElement("span");
   taskCalendarField.setAttribute("id", "taskCalendarField");
+  taskCalendarField.textContent = "Due: "
   document.getElementById('taskInputContainer').appendChild(taskCalendarField);
 
-  let taskCalendarButton = document.createElement("button");
-  taskCalendarButton.setAttribute("id", "taskCalendarButton");
-  taskCalendarButton.innerText = "due date ";
-  document.getElementById('taskCalendarField').appendChild(taskCalendarButton);
+  let taskCalendarSelector = document.createElement("input");
+  taskCalendarSelector.setAttribute("id", "taskCalendarSelector");
+  taskCalendarSelector.setAttribute("type", "date");
+  document.getElementById('taskCalendarField').appendChild(taskCalendarSelector);
 
-  let taskCalendarIcon = document.createElement("span") 
-  taskCalendarIcon.setAttribute("class", "glyphicon glyphicon-calendar");
-  document.getElementById("taskCalendarButton").appendChild(taskCalendarIcon);
+  // let taskCalendarButton = document.createElement("button");
+  // taskCalendarButton.setAttribute("id", "taskCalendarButton");
+  // taskCalendarButton.innerText = "due date ";
+  // document.getElementById('taskCalendarField').appendChild(taskCalendarButton);
+
+  // let taskCalendarIcon = document.createElement("span") 
+  // taskCalendarIcon.setAttribute("class", "glyphicon glyphicon-calendar");
+  // document.getElementById("taskCalendarField").appendChild(taskCalendarIcon);
+
+  // <form action="/action_page.php">
+  // <label for="birthday">Birthday:</label>
+  // <input type="date" id="birthday" name="birthday">
+  // <input type="submit">
+  // </form>
 }
 
 // notes hide and show, linebreak then new input field.
@@ -487,3 +499,6 @@ function addTaskToList() {
     document.querySelector("#trashTask").checked = false;
     document.querySelector("#notes").value = "";
    };
+
+
+  // when I render I will have to filter by project, sort by date

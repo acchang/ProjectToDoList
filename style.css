@@ -110,6 +110,11 @@
   border: 0px;
 }
 
+#taskCalendarSelector {
+  width: 125px;
+  border: 0px;
+}
+
 .taskInputContainer {
   display: none;
   justify-content: space-between;
