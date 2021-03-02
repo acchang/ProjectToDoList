@@ -198,67 +198,109 @@ function createTaskField() {
 };
 
 function createTaskPriorityField() {
-  let taskPriorityDropdown = document.createElement("span");
-  taskPriorityDropdown.setAttribute("id", "taskPriorityDropdown");
-  taskPriorityDropdown.setAttribute("class", "dropdown");
+  let inputTest = document.createElement("input");
+  inputTest.setAttribute("type", "text");
+  inputTest.setAttribute("id", "txtprice");
+  inputTest.setAttribute("placeholder", "Priority");
+  document.getElementById('taskInputContainer').appendChild(inputTest);
+
+  let taskPriorityDropdown = document.createElement("select");
+  taskPriorityDropdown.setAttribute("id", "cmbitems");
   document.getElementById('taskInputContainer').appendChild(taskPriorityDropdown);
+  
+  let taskPriorityOne = document.createElement("option");
+  taskPriorityOne.setAttribute("value", "High");
+  taskPriorityOne.innerText = "3";
+  document.getElementById("cmbitems").appendChild(taskPriorityOne);
 
-  let taskPriorityButton = document.createElement("button");
-  taskPriorityButton.setAttribute("id", "taskPriorityButton");
-  taskPriorityButton.setAttribute("class", "dropbtn");
-  taskPriorityButton.innerText = "priority";
-  taskPriorityButton.addEventListener("click", function(event) {myFunction()});
-  document.getElementById('taskPriorityDropdown').appendChild(taskPriorityButton);
+  let taskPriorityTwo = document.createElement("option");
+  taskPriorityTwo.setAttribute("value", "Medium");
+  taskPriorityTwo.innerText = "2";
+  document.getElementById("cmbitems").appendChild(taskPriorityTwo);
 
-  let taskPriorityIcon = document.createElement("span") 
-  taskPriorityIcon.setAttribute("class", "glyphicon glyphicon-sort")
-  document.getElementById("taskPriorityButton").appendChild(taskPriorityIcon);
+  let taskPriorityThree = document.createElement("option");
+  taskPriorityThree.setAttribute("value", "Low");
+  taskPriorityThree.innerText = "1";
+  document.getElementById("cmbitems").appendChild(taskPriorityThree);
 
-  // I want these to change to the top field and then be recorded.
-  // I also want the button to be a priority icon
+  let taskPriorityFour = document.createElement("option");
+  taskPriorityFour.setAttribute("value", "Done");
+  taskPriorityFour.innerText = "0";
+  document.getElementById("cmbitems").appendChild(taskPriorityFour);
 
-  let taskPriorityField = document.createElement("div");
-  taskPriorityField.setAttribute("id", "taskPriorityChoices");
-  taskPriorityField.setAttribute("class", "dropdown-content");
-  document.getElementById('taskPriorityDropdown').appendChild(taskPriorityField);
-
-  let priorityOne = document.createElement("a");
-  priorityOne.setAttribute("href", "http://cnn.com");
-  priorityOne.innerText = "Hi"
-  document.getElementById('taskPriorityChoices').appendChild(priorityOne);
-
-  let priorityTwo = document.createElement("a");
-  priorityTwo.setAttribute("href", "http://nyt.com");
-  priorityTwo.innerText = "Med"
-  document.getElementById('taskPriorityChoices').appendChild(priorityTwo);
-
-  let priorityThree = document.createElement("a");
-  priorityThree.setAttribute("href", "http://reddit.com");
-  priorityThree.innerText = "Low"
-  document.getElementById('taskPriorityChoices').appendChild(priorityThree);
-
-  let priorityFour = document.createElement("a");
-  priorityFour.setAttribute("href", "http://google.com");
-  priorityFour.innerText = "Done"
-  document.getElementById('taskPriorityChoices').appendChild(priorityFour);
-
-  function myFunction() {
-    document.getElementById("taskPriorityChoices").classList.toggle("show");
+  var select = document.getElementById('cmbitems');
+  var input = document.getElementById('txtprice');
+  select.onchange = function() {
+      input.value = select.value;
   }
+}
 
-  window.onclick = function(event) {
-    if (!event.target.matches('.dropbtn')) {
-      let dropdowns = document.getElementsByClassName("dropdown-content");
-      let i;
-      for (i = 0; i < dropdowns.length; i++) {
-        var openDropdown = dropdowns[i];
-        if (openDropdown.classList.contains('show')) {
-          openDropdown.classList.remove('show');
-        }
-      }
-    }
-  }
-};
+
+
+
+
+
+// function createTaskPriorityField() {
+//   let taskPriorityDropdown = document.createElement("span");
+//   taskPriorityDropdown.setAttribute("id", "taskPriorityDropdown");
+//   taskPriorityDropdown.setAttribute("class", "dropdown");
+//   document.getElementById('taskInputContainer').appendChild(taskPriorityDropdown);
+
+//   let taskPriorityButton = document.createElement("button");
+//   taskPriorityButton.setAttribute("id", "taskPriorityButton");
+//   taskPriorityButton.setAttribute("class", "dropbtn");
+//   taskPriorityButton.innerText = "priority";
+//   taskPriorityButton.addEventListener("click", function(event) {myFunction()});
+//   document.getElementById('taskPriorityDropdown').appendChild(taskPriorityButton);
+
+//   let taskPriorityIcon = document.createElement("span") 
+//   taskPriorityIcon.setAttribute("class", "glyphicon glyphicon-sort")
+//   document.getElementById("taskPriorityButton").appendChild(taskPriorityIcon);
+
+//   // I want these to change to the top field and then be recorded.n
+
+//   let taskPriorityField = document.createElement("div");
+//   taskPriorityField.setAttribute("id", "taskPriorityChoices");
+//   taskPriorityField.setAttribute("class", "dropdown-content");
+//   document.getElementById('taskPriorityDropdown').appendChild(taskPriorityField);
+
+//   let priorityOne = document.createElement("a");
+//   priorityOne.setAttribute("href", "http://cnn.com");
+//   priorityOne.innerText = "Hi"
+//   document.getElementById('taskPriorityChoices').appendChild(priorityOne);
+
+//   let priorityTwo = document.createElement("a");
+//   priorityTwo.setAttribute("href", "http://nyt.com");
+//   priorityTwo.innerText = "Med"
+//   document.getElementById('taskPriorityChoices').appendChild(priorityTwo);
+
+//   let priorityThree = document.createElement("a");
+//   priorityThree.setAttribute("href", "http://reddit.com");
+//   priorityThree.innerText = "Low"
+//   document.getElementById('taskPriorityChoices').appendChild(priorityThree);
+
+//   let priorityFour = document.createElement("a");
+//   priorityFour.setAttribute("href", "http://google.com");
+//   priorityFour.innerText = "Done"
+//   document.getElementById('taskPriorityChoices').appendChild(priorityFour);
+
+//   function myFunction() {
+//     document.getElementById("taskPriorityChoices").classList.toggle("show");
+//   }
+
+//   window.onclick = function(event) {
+//     if (!event.target.matches('.dropbtn')) {
+//       let dropdowns = document.getElementsByClassName("dropdown-content");
+//       let i;
+//       for (i = 0; i < dropdowns.length; i++) {
+//         var openDropdown = dropdowns[i];
+//         if (openDropdown.classList.contains('show')) {
+//           openDropdown.classList.remove('show');
+//         }
+//       }
+//     }
+//   }
+// };
 
 
 function createTaskCalendarField() {
@@ -295,6 +337,7 @@ function createTaskNotesField() {
 
 // project with default, option to change?
 // goes hidden after entering
+// no way to add new project if in a project
 function createTaskProjectField() {
   let taskProjectField = document.createElement("span");
   taskProjectField.setAttribute("id", "taskProjectField");

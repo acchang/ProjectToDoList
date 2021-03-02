@@ -7,7 +7,7 @@
 .topnav h2 {
     text-align: center;
     color: #f2f2f2;
-    padding: 5px 10px;
+    padding: none;
     text-decoration: none;
   }
 
@@ -78,8 +78,6 @@
 };
 
 #TaskListProjectName {
-  display: flex;
-  justify-content: flex-end;
   padding: 5px;
   font-weight: 900;
   background-color: lightblue;
@@ -87,8 +85,10 @@
 }
 
 .projectName {
+  display: flex;
+  justify-content: space-between;
   background-color: gainsboro;
-  padding: 20px;
+  padding: 10px;
   font-weight:800;
   font-size: large;
 }
@@ -109,6 +109,12 @@
 .taskInputContainer {
   display: none;
   justify-content: space-between;
+  padding: 5px;
+}
+
+#taskInputField {
+  border: 0px;
+  border-bottom: double;
 }
 
 .flex {
