@@ -227,11 +227,11 @@ function createTaskPriorityField() {
   taskPrioritySelector.setAttribute("id", "taskPrioritySelector");
   document.getElementById('taskPrioritySection').appendChild(taskPrioritySelector);
   
-  let taskPriorityTitle = document.createElement("option");
-  taskPriorityTitle.setAttribute("id", "taskPriorityTitle");
-  taskPriorityTitle.setAttribute("value", "Neutral");
-  taskPriorityTitle.innerText = "Select";
-  document.getElementById("taskPrioritySelector").appendChild(taskPriorityTitle);
+  // let taskPriorityTitle = document.createElement("option");
+  // taskPriorityTitle.setAttribute("id", "taskPriorityTitle");
+  // taskPriorityTitle.setAttribute("value", "Neutral");
+  // taskPriorityTitle.innerText = "Select";
+  // document.getElementById("taskPrioritySelector").appendChild(taskPriorityTitle);
 
   let taskPriorityOne = document.createElement("option");
   taskPriorityOne.setAttribute("value", "High");
@@ -332,10 +332,16 @@ function createTaskProjectField() {
   taskProjectButton.addEventListener("click", function(event){ 
   taskProjectSelector.classList.toggle("flex");
 
+  // for (
+    // (i = 0; document.getElementById(taskProjectSelector).options.length; i++
+    // var i=document.getElementById(taskProjectSelector).options.length; i-->0;
+    // ) {document.getElementById(taskProjectSelector).options[i] = null};
+
+  // need to clear this every time it's pressed or it will keep adding.
   let taskProjectTitle = document.createElement("option");
   taskProjectTitle.setAttribute("id", "taskProjectTitle");
-  taskProjectTitle.setAttribute("value", "None");
-  taskProjectTitle.innerText = "None ";
+  taskProjectTitle.setAttribute("value", "Default");
+  taskProjectTitle.innerText = "Default ";
   document.getElementById("taskProjectSelector").appendChild(taskProjectTitle);
 
   for (i = 0; i < projectList.length; i++) {
@@ -364,6 +370,33 @@ function createAddTaskField() {
 // openProjects would take all tasks matching that UUID and display them.
 // sorting will also teach me when I need to render for today and this week
 };
+
+function Task(taskName, dueDate, priority, done, trashTask, notes) {
+  this.priority = priority;
+  this.taskName = taskName;
+  this.dueDate = dueDate;
+  this.projectIdentifier = projectIdentifier;
+  this.trashTask = trashTask;
+  this.notes = notes
+}
+
+function addTaskToList() {
+  let taskName = document.querySelector("#taskName").value;
+  let dueDate = document.querySelector("#dueDate").value;
+  let priority = document.querySelector("#priority").value;
+  let done = document.querySelector("#done").checked;
+  let trashTask = document.querySelector("#trashTask").checked;
+  let notes = document.querySelector("#notes").value;
+  var addTask = new Task(title, fname, lname, pubDate, contrib, own);
+  taskList.push(addTask);
+  render();
+  document.querySelector("#taskName").value = "";
+  document.querySelector("#dueDate").value = "";
+  document.querySelector("#priority").value = "";
+  document.querySelector("#done").checked = false;
+  document.querySelector("#trashTask").checked = false;
+  document.querySelector("#notes").value = "";
+ };
 
 
 
@@ -441,36 +474,4 @@ function createAddTaskField() {
 //   );
 // }
 
-
-
-
-
-function Task(taskName, dueDate, priority, done, trashTask, notes) {
-    this.priority = priority;
-    this.taskName = taskName;
-    this.dueDate = dueDate;
-    this.projectIdentifier = projectIdentifier;
-    this.trashTask = trashTask;
-    this.notes = notes
-}
-
-function addTaskToList() {
-    let taskName = document.querySelector("#taskName").value;
-    let dueDate = document.querySelector("#dueDate").value;
-    let priority = document.querySelector("#priority").value;
-    let done = document.querySelector("#done").checked;
-    let trashTask = document.querySelector("#trashTask").checked;
-    let notes = document.querySelector("#notes").value;
-    var addTask = new Task(title, fname, lname, pubDate, contrib, own);
-    taskList.push(addTask);
-    render();
-    document.querySelector("#taskName").value = "";
-    document.querySelector("#dueDate").value = "";
-    document.querySelector("#priority").value = "";
-    document.querySelector("#done").checked = false;
-    document.querySelector("#trashTask").checked = false;
-    document.querySelector("#notes").value = "";
-   };
-
-
-  // when I render I will have to filter by project, sort by date
+// when I render I will have to filter by project, sort by date
