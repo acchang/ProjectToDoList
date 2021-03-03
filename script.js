@@ -160,7 +160,6 @@ function getProjectIdentifier() {
   return(taskProjectIdentifier)
 };
 
-// I need the Create Task Button to be on the right
 
 function createTaskInput() {
   let taskInputContainer = document.createElement("div");
@@ -178,6 +177,7 @@ function createTaskInput() {
 createTaskInput()
 let taskBtn = document.getElementById("taskBtn");
 taskBtn.addEventListener("click", function(event){ 
+  // taskOverallCreate.classList.toggle("flex")
   taskInputContainer.classList.toggle("flex")
 });
 
@@ -354,7 +354,28 @@ function createTaskNotesField() {
   let taskNotesIcon = document.createElement("span") 
   taskNotesIcon.setAttribute("class", "glyphicon glyphicon-edit");
   document.getElementById("taskNotesButton").appendChild(taskNotesIcon);
+
+  let taskNotesInput = document.createElement("div");
+  taskNotesInput.setAttribute("id", "taskNotesInput");
+  taskNotesInput.setAttribute("input", "text");
+  document.getElementById('taskProjectHolder').appendChild(taskNotesInput);
+  taskNotesInput.innerText = "Notes: ";
+
+  let taskNotesBox = document.createElement("input");
+  taskNotesBox.setAttribute("id", "taskNotesBox");
+  taskNotesBox.setAttribute("type", "textarea");
+  taskNotesBox.setAttribute("rows", "4");
+  taskNotesBox.setAttribute("cols", "50");
+  taskNotesBox.setAttribute("placeholder", "Add notes here");
+  document.getElementById('taskNotesInput').appendChild(taskNotesBox);
+
+  taskNotesButton.addEventListener("click", function(event){ 
+  taskNotesInput.classList.toggle("show")
+  })
 };
+
+
+
 
 
 // project with default, option to change?
