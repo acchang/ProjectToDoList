@@ -106,15 +106,6 @@ font-size: medium;
   padding: 10px;
 }
 
-#taskPrioritySelector {
-border: 0px;
-}
-
-#taskCalendarSelector {
-width: 130px;
-border: 0px;
-}
-
 .taskOverallContainer {
   display: none;
   justify-content: space-between;
@@ -123,9 +114,33 @@ border: 0px;
 
 .taskInputContainer {
 /* display: none; */
+display: flex;
 justify-content: space-between;
 padding: 5px;
 }
+
+.taskPrioritySection {
+  display: flex;
+  flex-direction: column;
+}
+
+.taskPrioritySelector {
+display: none;
+}
+
+#taskCalendarSelector {
+width: 130px;
+border: 0px;
+}
+
+.taskProjectSection {
+  display: flex;
+  flex-direction: column;
+}
+
+.taskProjectSelector {
+  display: none;
+  }
 
 
 #taskInputField {
