@@ -136,8 +136,10 @@ function addProjectOpenButton(projectUUID) {
 function openProject(projectUUID) {
   let projectPrefixSpan = document.getElementById('projectPrefix');
   let projectHeadlineSpan = document.getElementById('projectHeadline');
+
   let taskProjectHolder = document.getElementById('taskProjectHolder');
-  taskProjectHolder.innerHTML = '';
+  taskProjectHolder.innerText = '';
+
   projectPrefixSpan.innerHTML = '';
   projectHeadlineSpan.innerHTML = '';
   const projectIndex = projectList.findIndex((el) => el.identifier === projectUUID)
@@ -160,12 +162,17 @@ function getProjectIdentifier() {
   return(taskProjectIdentifier)
 };
 
-
 function createTaskInput() {
+  let taskOverallContainer = document.createElement("div");
+  taskOverallContainer.setAttribute("class", "taskOverallContainer");
+  taskOverallContainer.setAttribute("id", "taskOverallContainer");
+  // taskOverallContainer.textContent = "taskOverallContainer";
+  document.getElementById('taskProjectHolder').appendChild(taskOverallContainer);
+
   let taskInputContainer = document.createElement("div");
   taskInputContainer.setAttribute("class", "taskInputContainer");
   taskInputContainer.setAttribute("id", "taskInputContainer");
-  document.getElementById('taskProjectHolder').appendChild(taskInputContainer);
+  document.getElementById('taskOverallContainer').appendChild(taskInputContainer);
   createTaskPriorityField();
   createTaskField();
   createTaskCalendarField();
@@ -174,11 +181,23 @@ function createTaskInput() {
   createAddTaskField();
 }
 
+// taskProjectHolder is on the page, taskInputContainer is created & added
+// button works on taskInputContainer, 
+// TaskInputContainer holds task field, priority, calendar, notes, project, plus
+
+// taskProjectHolder is on the page, taskOverallContainer is created & added
+// button hides taskOverallContainer
+// TaskInputContainer is added to taskOverallContainer 
+// TaskInputContainer holds task field, priority, calendar, notes, project, plus
+// Notesfield added to taskOverallContainer 
+
+
+
+
 createTaskInput()
 let taskBtn = document.getElementById("taskBtn");
 taskBtn.addEventListener("click", function(event){ 
-  // taskOverallCreate.classList.toggle("flex")
-  taskInputContainer.classList.toggle("flex")
+  taskOverallContainer.classList.toggle("flex")
 });
 
 
@@ -190,21 +209,14 @@ function createTaskField() {
   let taskInputField = document.createElement("input");
   taskInputField.setAttribute("id", "taskInputField");
   taskInputField.setAttribute("type", "text");
-  taskInputField.setAttribute("maxlength", "65");
-  taskInputField.setAttribute("size", "65");
+  taskInputField.setAttribute("maxlength", "60");
+  taskInputField.setAttribute("size", "60");
   taskInputField.setAttribute("placeholder", "Add task name here");
   taskInputField.classList.add("task-input");
   document.getElementById('taskInputFieldHolder').appendChild(taskInputField);
 };
 
 function createTaskPriorityField() {
-  // let taskPriorityInput = document.createElement("input");
-  // taskPriorityInput.setAttribute("type", "text");
-  // taskPriorityInput.setAttribute("size", "7");
-  // taskPriorityInput.setAttribute("id", "taskPriorityInput");
-  // taskPriorityInput.setAttribute("placeholder", "Priority");
-  // document.getElementById('taskInputContainer').appendChild(taskPriorityInput);
-
   let taskPrioritySelector = document.createElement("select");
   taskPrioritySelector.setAttribute("id", "taskPrioritySelector");
   document.getElementById('taskInputContainer').appendChild(taskPrioritySelector);
@@ -214,11 +226,6 @@ function createTaskPriorityField() {
   taskPriorityTitle.setAttribute("value", "Neutral");
   taskPriorityTitle.innerText = "Priority";
   document.getElementById("taskPrioritySelector").appendChild(taskPriorityTitle);
-
-  // no span in selects, best I can do is button to show selector underneath, ugly
-  // let taskPriorityIcon = document.createElement("span") 
-  // taskPriorityIcon.setAttribute("class", "glyphicon glyphicon-sort")
-  // document.getElementById("taskPriorityTitle").appendChild(taskPriorityIcon);
 
   let taskPriorityOne = document.createElement("option");
   taskPriorityOne.setAttribute("value", "High");
@@ -246,70 +253,7 @@ function createTaskPriorityField() {
   select.onchange = function() {
       input.value = select.value;
   }
-}
-
-
-// function createTaskPriorityField() {
-//   let taskPriorityDropdown = document.createElement("span");
-//   taskPriorityDropdown.setAttribute("id", "taskPriorityDropdown");
-//   taskPriorityDropdown.setAttribute("class", "dropdown");
-//   document.getElementById('taskInputContainer').appendChild(taskPriorityDropdown);
-
-//   let taskPriorityButton = document.createElement("button");
-//   taskPriorityButton.setAttribute("id", "taskPriorityButton");
-//   taskPriorityButton.setAttribute("class", "dropbtn");
-//   taskPriorityButton.innerText = "priority";
-//   taskPriorityButton.addEventListener("click", function(event) {myFunction()});
-//   document.getElementById('taskPriorityDropdown').appendChild(taskPriorityButton);
-
-//   let taskPriorityIcon = document.createElement("span") 
-//   taskPriorityIcon.setAttribute("class", "glyphicon glyphicon-sort")
-//   document.getElementById("taskPriorityButton").appendChild(taskPriorityIcon);
-
-//   // I want these to change to the top field and then be recorded.n
-
-//   let taskPriorityField = document.createElement("div");
-//   taskPriorityField.setAttribute("id", "taskPriorityChoices");
-//   taskPriorityField.setAttribute("class", "dropdown-content");
-//   document.getElementById('taskPriorityDropdown').appendChild(taskPriorityField);
-
-//   let priorityOne = document.createElement("a");
-//   priorityOne.setAttribute("href", "http://cnn.com");
-//   priorityOne.innerText = "Hi"
-//   document.getElementById('taskPriorityChoices').appendChild(priorityOne);
-
-//   let priorityTwo = document.createElement("a");
-//   priorityTwo.setAttribute("href", "http://nyt.com");
-//   priorityTwo.innerText = "Med"
-//   document.getElementById('taskPriorityChoices').appendChild(priorityTwo);
-
-//   let priorityThree = document.createElement("a");
-//   priorityThree.setAttribute("href", "http://reddit.com");
-//   priorityThree.innerText = "Low"
-//   document.getElementById('taskPriorityChoices').appendChild(priorityThree);
-
-//   let priorityFour = document.createElement("a");
-//   priorityFour.setAttribute("href", "http://google.com");
-//   priorityFour.innerText = "Done"
-//   document.getElementById('taskPriorityChoices').appendChild(priorityFour);
-
-//   function myFunction() {
-//     document.getElementById("taskPriorityChoices").classList.toggle("show");
-//   }
-
-//   window.onclick = function(event) {
-//     if (!event.target.matches('.dropbtn')) {
-//       let dropdowns = document.getElementsByClassName("dropdown-content");
-//       let i;
-//       for (i = 0; i < dropdowns.length; i++) {
-//         var openDropdown = dropdowns[i];
-//         if (openDropdown.classList.contains('show')) {
-//           openDropdown.classList.remove('show');
-//         }
-//       }
-//     }
-//   }
-// };
+};
 
 
 // on to creating a calendar dropdown and then picking from it
@@ -323,42 +267,37 @@ function createTaskCalendarField() {
   taskCalendarSelector.setAttribute("id", "taskCalendarSelector");
   taskCalendarSelector.setAttribute("type", "date");
   document.getElementById('taskCalendarField').appendChild(taskCalendarSelector);
-
-  // let taskCalendarButton = document.createElement("button");
-  // taskCalendarButton.setAttribute("id", "taskCalendarButton");
-  // taskCalendarButton.innerText = "due date ";
-  // document.getElementById('taskCalendarField').appendChild(taskCalendarButton);
-
-  // let taskCalendarIcon = document.createElement("span") 
-  // taskCalendarIcon.setAttribute("class", "glyphicon glyphicon-calendar");
-  // document.getElementById("taskCalendarField").appendChild(taskCalendarIcon);
-
-  // <form action="/action_page.php">
-  // <label for="birthday">Birthday:</label>
-  // <input type="date" id="birthday" name="birthday">
-  // <input type="submit">
-  // </form>
 }
 
 // notes hide and show, linebreak then new input field.
 function createTaskNotesField() {
   let taskNotesField = document.createElement("span");
   taskNotesField.setAttribute("id", "taskNotesField");
+  taskNotesField.setAttribute("Class", "taskNotesField");
   document.getElementById('taskInputContainer').appendChild(taskNotesField);
 
-  let taskNotesButton = document.createElement("button");
-  taskNotesButton.setAttribute("id", "taskNotesButton");
-  taskNotesButton.innerText = "notes ";
-  document.getElementById('taskNotesField').appendChild(taskNotesButton);
+    let taskNotesButton = document.createElement("button");
+    taskNotesButton.setAttribute("id", "taskNotesButton");
+    taskNotesButton.innerText = "notes ";
+    document.getElementById('taskNotesField').appendChild(taskNotesButton);
 
-  let taskNotesIcon = document.createElement("span") 
-  taskNotesIcon.setAttribute("class", "glyphicon glyphicon-edit");
-  document.getElementById("taskNotesButton").appendChild(taskNotesIcon);
+      let taskNotesIcon = document.createElement("span") 
+      taskNotesIcon.setAttribute("class", "glyphicon glyphicon-edit");
+      document.getElementById("taskNotesButton").appendChild(taskNotesIcon);
+
+  // let taskNotesBreak = document.createElement("div");
+  // taskNotesBreak.setAttribute("id", "taskNotesBreak");
+  // // taskNotesBreak.innerText = "taskNotesBreak";
+  // document.getElementById('taskOverallContainer').appendChild(taskNotesBreak);
 
   let taskNotesInput = document.createElement("div");
   taskNotesInput.setAttribute("id", "taskNotesInput");
   taskNotesInput.setAttribute("input", "text");
-  document.getElementById('taskProjectHolder').appendChild(taskNotesInput);
+  // attached to taskProjectHolder so we need something around that
+  // document.getElementById('taskInputContainer').appendChild(taskNotesInput);
+  // document.getElementById('taskNotesBreak').appendChild(taskNotesInput);
+  document.getElementById('taskOverallContainer').appendChild(taskNotesInput);
+  // document.getElementById('taskProjectHolder').appendChild(taskNotesInput);
   taskNotesInput.innerText = "Notes: ";
 
   let taskNotesBox = document.createElement("input");
@@ -373,9 +312,6 @@ function createTaskNotesField() {
   taskNotesInput.classList.toggle("show")
   })
 };
-
-
-
 
 
 // project with default, option to change?

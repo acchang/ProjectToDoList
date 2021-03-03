@@ -111,15 +111,22 @@ border: 0px;
 }
 
 #taskCalendarSelector {
-width: 125px;
+width: 130px;
 border: 0px;
 }
 
+.taskOverallContainer {
+  display: none;
+  justify-content: space-between;
+  flex-direction: column
+}
+
 .taskInputContainer {
-display: none;
+/* display: none; */
 justify-content: space-between;
 padding: 5px;
 }
+
 
 #taskInputField {
 border: 0px;
