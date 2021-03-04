@@ -315,33 +315,39 @@ function createTaskProjectField() {
   taskProjectSelector.classList.toggle("flex");
 
   removeOptions(taskProjectSelector);
-  alert(getProjectIdentifier())
+  let taskProjectCurrentID = getProjectIdentifier();
+  let taskProjectCurrentTitle = projectList.find(x => x.identifier === taskProjectCurrentID).projectName;
+  console.log(taskProjectCurrentTitle);
 
   let taskProjectTitle = document.createElement("option");
-  taskProjectTitle.setAttribute("id", "taskProjectTitle");
-  taskProjectTitle.setAttribute("value", "Default");
-  taskProjectTitle.innerText = "Default ";
+  taskProjectTitle.setAttribute("id", taskProjectCurrentID);
+  taskProjectTitle.setAttribute("value", taskProjectCurrentID);
+  taskProjectTitle.innerText = taskProjectCurrentTitle;
   document.getElementById("taskProjectSelector").appendChild(taskProjectTitle);
-
-  // function getProjectIdentifier() {
-  //   let taskProjectTitleSpace = document.getElementById('projectHeadline');
-  //   let taskProjectTitle = taskProjectTitleSpace.textContent;
-  //   const projectIndex = projectList.findIndex((el) => el.projectName === taskProjectTitle);
-  //   taskProjectIdentifier = projectList[projectIndex].identifier;
-  //   return(taskProjectIdentifier)
-  // };
-  
-  // maybe for that last remove the first with remove()
-
 
   for (i = 0; i < projectList.length; i++) {
     let taskProjectOption = document.createElement("option");
     taskProjectOption.setAttribute("id", projectList[i].identifier);
     taskProjectOption.setAttribute("value", projectList[i].identifier);
     taskProjectOption.innerText = projectList[i].projectName;
-    document.getElementById("taskProjectSelector").appendChild(taskProjectOption);}
-  });  
+    document.getElementById("taskProjectSelector").appendChild(taskProjectOption)};
+  });   
 }
+
+  // remove it from the options too
+  // function getProjectIdentifier() {
+  //   let taskProjectTitleSpace = document.getElementById('projectHeadline');
+  //   let taskProjectTitle = taskProjectTitleSpace.textContent;
+  //   const projectIndex = projectList.findIndex((el) => el.projectName === taskProjectTitle);
+  //   taskProjectIdentifier = projectList[projectIndex].identifier;
+  //   return(taskProjectIdentifier)
+  // };  
+  // maybe for that last remove the first with remove()
+
+
+
+
+
 
 function removeOptions(selectElement) {
   var i, L = selectElement.options.length - 1;
@@ -391,14 +397,13 @@ function addTaskToList() {
   taskPrioritySelector.classList.toggle("flex");
   document.querySelector("#taskCalendarSelector").value = "";
   document.querySelector("#taskNotesBox").value = "";
-  taskNotesInput.classList.toggle("flex");
+  taskNotesInput.classList.toggle("none");
   document.querySelector("#taskProjectSelector").value;
   taskProjectSelector.classList.toggle("flex");
   console.log(taskList)
  };
 
-// make first one folder and if not default using getProjectIdentifier
-//https://stackoverflow.com/questions/3364493/how-do-i-clear-all-options-in-a-dropdown-box
+
 
 // create task UUID for each when adding to list with nanoID; may need webpack
 // read the nanoid documentation to see if they had a CLI
