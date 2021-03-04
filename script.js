@@ -227,12 +227,6 @@ function createTaskPriorityField() {
   taskPrioritySelector.setAttribute("id", "taskPrioritySelector");
   document.getElementById('taskPrioritySection').appendChild(taskPrioritySelector);
   
-  // let taskPriorityTitle = document.createElement("option");
-  // taskPriorityTitle.setAttribute("id", "taskPriorityTitle");
-  // taskPriorityTitle.setAttribute("value", "Neutral");
-  // taskPriorityTitle.innerText = "Select";
-  // document.getElementById("taskPrioritySelector").appendChild(taskPriorityTitle);
-
   let taskPriorityOne = document.createElement("option");
   taskPriorityOne.setAttribute("value", "High");
   taskPriorityOne.innerText = "High";
@@ -252,13 +246,6 @@ function createTaskPriorityField() {
   taskPriorityFour.setAttribute("value", "Done");
   taskPriorityFour.innerText = "Done";
   document.getElementById("taskPrioritySelector").appendChild(taskPriorityFour);
-
-  // what I want from this is select.value
-  var select = document.getElementById('taskPrioritySelector');
-  var input = document.getElementById('taskPriorityInput');
-  select.onchange = function() {
-      input.value = select.value;
-  }
 };
 
 
@@ -347,7 +334,7 @@ function createTaskProjectField() {
   for (i = 0; i < projectList.length; i++) {
     let taskProjectOption = document.createElement("option");
     taskProjectOption.setAttribute("id", projectList[i].identifier);
-    taskProjectOption.setAttribute("value", projectList[i].projectName);
+    taskProjectOption.setAttribute("value", projectList[i].identifier);
     taskProjectOption.innerText = projectList[i].projectName;
     document.getElementById("taskProjectSelector").appendChild(taskProjectOption);}
   });  
@@ -366,112 +353,43 @@ function createAddTaskField() {
   let addTaskIcon = document.createElement("span") 
   addTaskIcon.setAttribute("class", "glyphicon glyphicon-plus-sign");
   document.getElementById("addTaskButton").appendChild(addTaskIcon);
-// addtaskbutton should push all tasks to task list with selected project.  
-// openProjects would take all tasks matching that UUID and display them.
-// sorting will also teach me when I need to render for today and this week
+
+  addTaskButton.addEventListener("click", function(event){
+    addTaskToList()
+  })
+  // this works except for notes get undefined and need to clear form after
 };
 
-function Task(taskName, dueDate, priority, done, trashTask, notes) {
-  this.priority = priority;
+
+function Task(taskName, taskPriority, taskDue, taskNotes, taskProject) {
   this.taskName = taskName;
-  this.dueDate = dueDate;
-  this.projectIdentifier = projectIdentifier;
-  this.trashTask = trashTask;
-  this.notes = notes
+  this.taskPriority = taskPriority;
+  this.taskDue = taskDue;
+  this.taskNotes = taskNotes;
+  this.taskProject = taskProject;
 }
 
 function addTaskToList() {
-  let taskName = document.querySelector("#taskName").value;
-  let dueDate = document.querySelector("#dueDate").value;
-  let priority = document.querySelector("#priority").value;
-  let done = document.querySelector("#done").checked;
-  let trashTask = document.querySelector("#trashTask").checked;
-  let notes = document.querySelector("#notes").value;
-  var addTask = new Task(title, fname, lname, pubDate, contrib, own);
+  let taskName = document.querySelector("#taskInputField").value;
+  let taskPriority = document.querySelector("#taskPrioritySelector").value;
+  let taskDue = document.querySelector("#taskCalendarSelector").value;
+  let taskNotes = document.querySelector("#taskNotesInput").value;
+  let taskProject = document.querySelector("#taskProjectSelector").value;
+  var addTask = new Task(taskName, taskPriority, taskDue, taskNotes, taskProject);
   taskList.push(addTask);
-  render();
-  document.querySelector("#taskName").value = "";
-  document.querySelector("#dueDate").value = "";
-  document.querySelector("#priority").value = "";
-  document.querySelector("#done").checked = false;
-  document.querySelector("#trashTask").checked = false;
-  document.querySelector("#notes").value = "";
+  document.querySelector("#taskInputField").value = "";
+  document.querySelector("#taskPrioritySelector").value = "";
+  taskPrioritySelector.classList.toggle("flex");
+  document.querySelector("#taskCalendarSelector").value = "";
+  document.querySelector("#taskNotesInput").value;
+  taskNotesInput.classList.toggle("show");
+  document.querySelector("#taskProjectSelector").value;
+  taskProjectSelector.classList.toggle("flex");
+  console.log(taskList)
  };
 
-
-
-
-
-
-
-
-// function renderTask() {
-//   let taskUUID = createUUID();
-//   addTaskCheckbox(taskUUID);
-//   addTaskText(taskUUID, taskName);
-  // editTaskText(taskUUID, taskName);
-  // addTaskButton(taskUUID);
-  // addTaskOpenButton(taskUUID);
-  // getProjectIdentifier()
-  // addTaskToList()
-// }
-
-// function addTaskCheckbox(taskUUID) {
-//   let taskDoneCheckbox = document.createElement("input");
-//   taskDoneCheckbox.setAttribute("type", "checkbox");
-//   taskDoneCheckbox.setAttribute("id", "CB" + taskUUID);
-//   document.getElementById("C" + taskUUID).appendChild(taskDoneCheckbox)
-// }
-
-// function activateTaskCheckbox(taskUUID, projectContainerTextHolder) {
-//   let thisProjectContainer = document.getElementById("C" + projectUUID)
-//   thisProjectContainer.querySelector("input[type=checkbox]").addEventListener("click", (event)=>{
-//   projectContainerTextHolder.classList.toggle("done")
-//   })
-// };
-
-// function addTaskText(taskUUID, taskName) {
-//   let taskTextHolder = document.createElement("input");
-//   taskContainerTextHolder.classList.add("taskContainerTextHolder");
-//   taskContainerTextHolder.setAttribute("type", "text");
-//   // taskContainerTextHolder.setAttribute("id", "TH" + projectUUID);
-//   // projectContainerTextHolder.setAttribute("contentEditable", true);
-//   // taskContainerTextHolder.setAttribute("onkeypress", "return (this.innerText.length <= 25)");
-
-//   document.getElementById("C" + projectUUID).appendChild(projectContainerTextHolder);
-//   let projectContainerText = document.createTextNode(projectName);
-//   document.getElementById("TH" + projectUUID).appendChild(projectContainerText);
-//   activateProjectCheckbox(projectUUID, projectContainerTextHolder)
-// };
-
-// function addtaskTrashButton(taskUUID) {
-//   let taskTrashButton = document.createElement("button") 
-//   taskTrashButton.setAttribute("class", "taskTrashButton icon-button right")
-//   taskTrashButton.setAttribute("id", "TB" + projectUUID)
-//   document.getElementById("C" + projectUUID).appendChild(taskTrashButton);
-
-//   let taskTrashIcon = document.createElement("span") 
-//   taskTrashIcon.setAttribute("class", "glyphicon glyphicon-trash")
-//   document.getElementById("TB" + projectUUID).appendChild(taskTrashIcon);
-
-//   taskTrashButton.addEventListener("click", function(event) {
-//     const deleteDivTarget = document.getElementById("C" + taskUUID);
-//     taskHolder.removeChild(deleteDivTarget);
-//     taskList = taskList.filter(object => object.identifier !== taskUUID);
-//   })
-// };
-  
-// function addProjectOpenButton(projectUUID) {
-//   let projectOpenButton = document.createElement("button") 
-//   projectOpenButton.setAttribute("class", "projectOpenButton icon-button right")
-//   projectOpenButton.setAttribute("id", "OB" + projectUUID)
-//   document.getElementById("C" + projectUUID).appendChild(projectOpenButton);
-
-//   let projectOpenIcon = document.createElement("span") 
-//   projectOpenIcon.setAttribute("class", "glyphicon glyphicon-zoom-in")
-//   document.getElementById("OB" + projectUUID).appendChild(projectOpenIcon);
-//   projectOpenButton.addEventListener("click", function(event){openProject(projectUUID)}
-//   );
-// }
-
-// when I render I will have to filter by project, sort by date
+// I need to clear project list, make first one folder and if not default
+// I need a task UUID for each when adding to list
+// resize notes box and intake notes
+// clear task form
+// render tasks, need a delete option
