@@ -317,36 +317,19 @@ function createTaskProjectField() {
   removeOptions(taskProjectSelector);
   let taskProjectCurrentID = getProjectIdentifier();
   let taskProjectCurrentTitle = projectList.find(x => x.identifier === taskProjectCurrentID).projectName;
-  console.log(taskProjectCurrentTitle);
-
-  let taskProjectTitle = document.createElement("option");
-  taskProjectTitle.setAttribute("id", taskProjectCurrentID);
-  taskProjectTitle.setAttribute("value", taskProjectCurrentID);
-  taskProjectTitle.innerText = taskProjectCurrentTitle;
-  document.getElementById("taskProjectSelector").appendChild(taskProjectTitle);
 
   for (i = 0; i < projectList.length; i++) {
     let taskProjectOption = document.createElement("option");
     taskProjectOption.setAttribute("id", projectList[i].identifier);
     taskProjectOption.setAttribute("value", projectList[i].identifier);
     taskProjectOption.innerText = projectList[i].projectName;
-    document.getElementById("taskProjectSelector").appendChild(taskProjectOption)};
+    document.getElementById("taskProjectSelector").appendChild(taskProjectOption);
+      if (taskProjectOption.innerText === taskProjectCurrentTitle)
+      {document.getElementById(taskProjectCurrentID).selected = "true"}  
+  }
+
   });   
 }
-
-  // remove it from the options too
-  // function getProjectIdentifier() {
-  //   let taskProjectTitleSpace = document.getElementById('projectHeadline');
-  //   let taskProjectTitle = taskProjectTitleSpace.textContent;
-  //   const projectIndex = projectList.findIndex((el) => el.projectName === taskProjectTitle);
-  //   taskProjectIdentifier = projectList[projectIndex].identifier;
-  //   return(taskProjectIdentifier)
-  // };  
-  // maybe for that last remove the first with remove()
-
-
-
-
 
 
 function removeOptions(selectElement) {
@@ -394,15 +377,23 @@ function addTaskToList() {
   taskList.push(addTask);
   document.querySelector("#taskInputField").value = "";
   document.querySelector("#taskPrioritySelector").value = "";
-  taskPrioritySelector.classList.toggle("flex");
+    if(taskPrioritySelector.classList.contains('flex')) {
+      taskPrioritySelector.classList.toggle('flex');
+      } 
   document.querySelector("#taskCalendarSelector").value = "";
   document.querySelector("#taskNotesBox").value = "";
-  taskNotesInput.classList.toggle("none");
-  document.querySelector("#taskProjectSelector").value;
-  taskProjectSelector.classList.toggle("flex");
+    if(taskNotesInput.classList.contains('flex')) {
+      taskNotesInput.classList.toggle("flex");
+      } 
+  document.querySelector("#taskProjectSelector").value = "";
+    if(taskProjectSelector.classList.contains('flex')) {
+      taskProjectSelector.classList.toggle("flex");
+      } 
   console.log(taskList)
  };
 
+
+//  On submission check what state it’s in first and hide it if it’s not already hidden.
 
 
 // create task UUID for each when adding to list with nanoID; may need webpack
