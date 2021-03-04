@@ -150,10 +150,13 @@ border-bottom: double;
 
 .taskNotesInput {
   display: none;
-  text-align: center;
+  margin-left: 150px;
+  /* text-align: end; */
+  /* flex-direction: column; */
 }
 
 #taskNotesBox {
+  /* display: flex; */
   width: 400px;
   height: 100px;
 }
