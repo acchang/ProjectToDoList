@@ -314,17 +314,25 @@ function createTaskProjectField() {
   taskProjectButton.addEventListener("click", function(event){ 
   taskProjectSelector.classList.toggle("flex");
 
-  // for (
-    // (i = 0; document.getElementById(taskProjectSelector).options.length; i++
-    // var i=document.getElementById(taskProjectSelector).options.length; i-->0;
-    // ) {document.getElementById(taskProjectSelector).options[i] = null};
+  removeOptions(taskProjectSelector);
+  alert(getProjectIdentifier())
 
-  // need to clear this every time it's pressed or it will keep adding.
   let taskProjectTitle = document.createElement("option");
   taskProjectTitle.setAttribute("id", "taskProjectTitle");
   taskProjectTitle.setAttribute("value", "Default");
   taskProjectTitle.innerText = "Default ";
   document.getElementById("taskProjectSelector").appendChild(taskProjectTitle);
+
+  // function getProjectIdentifier() {
+  //   let taskProjectTitleSpace = document.getElementById('projectHeadline');
+  //   let taskProjectTitle = taskProjectTitleSpace.textContent;
+  //   const projectIndex = projectList.findIndex((el) => el.projectName === taskProjectTitle);
+  //   taskProjectIdentifier = projectList[projectIndex].identifier;
+  //   return(taskProjectIdentifier)
+  // };
+  
+  // maybe for that last remove the first with remove()
+
 
   for (i = 0; i < projectList.length; i++) {
     let taskProjectOption = document.createElement("option");
@@ -333,6 +341,13 @@ function createTaskProjectField() {
     taskProjectOption.innerText = projectList[i].projectName;
     document.getElementById("taskProjectSelector").appendChild(taskProjectOption);}
   });  
+}
+
+function removeOptions(selectElement) {
+  var i, L = selectElement.options.length - 1;
+  for(i = L; i >= 0; i--) {
+     selectElement.remove(i);
+  }
 }
 
 function createAddTaskField() {
@@ -382,12 +397,11 @@ function addTaskToList() {
   console.log(taskList)
  };
 
-
-// create task UUID for each when adding to list (use shorter) use nanoID, learn to import it
-// get notes to show centered with label at top
-// clear project list, make first one folder and if not default using getProjectIdentifier
+// make first one folder and if not default using getProjectIdentifier
 //https://stackoverflow.com/questions/3364493/how-do-i-clear-all-options-in-a-dropdown-box
 
+// create task UUID for each when adding to list with nanoID; may need webpack
+// read the nanoid documentation to see if they had a CLI
 
-// render tasks, add delete/trash option, cross out done
-// sort by project, sort by date
+// render tasks (will need UUID), add delete/trash option, cross out done
+// first all, then sort by project, sort by date
