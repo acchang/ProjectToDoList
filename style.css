@@ -148,9 +148,9 @@ border: 0px;
 border-bottom: double;
 }
 
-#taskNotesInput {
-  text-align: center;
+.taskNotesInput {
   display: none;
+  text-align: center;
 }
 
 #taskNotesBox {

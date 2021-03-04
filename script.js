@@ -248,8 +248,6 @@ function createTaskPriorityField() {
   document.getElementById("taskPrioritySelector").appendChild(taskPriorityFour);
 };
 
-
-// on to creating a calendar dropdown and then picking from it
 function createTaskCalendarField() {
   let taskCalendarField = document.createElement("span");
   taskCalendarField.setAttribute("id", "taskCalendarField");
@@ -278,21 +276,18 @@ function createTaskNotesField() {
       document.getElementById("taskNotesButton").appendChild(taskNotesIcon);
 
   let taskNotesInput = document.createElement("div");
+  taskNotesInput.setAttribute("class", "taskNotesInput");
   taskNotesInput.setAttribute("id", "taskNotesInput");
-  taskNotesInput.setAttribute("input", "text");
   document.getElementById('taskOverallContainer').appendChild(taskNotesInput);
   taskNotesInput.innerText = "Additional info: ";
 
-  let taskNotesBox = document.createElement("input");
+  let taskNotesBox = document.createElement("textarea");
   taskNotesBox.setAttribute("id", "taskNotesBox");
-  taskNotesBox.setAttribute("type", "textarea");
-  taskNotesBox.setAttribute("rows", "4");
-  taskNotesBox.setAttribute("cols", "50");
   taskNotesBox.setAttribute("placeholder", "Add notes here");
   document.getElementById('taskNotesInput').appendChild(taskNotesBox);
 
   taskNotesButton.addEventListener("click", function(event){ 
-  taskNotesInput.classList.toggle("show")
+  taskNotesInput.classList.toggle("flex")
   })
 };
 
@@ -357,7 +352,6 @@ function createAddTaskField() {
   addTaskButton.addEventListener("click", function(event){
     addTaskToList()
   })
-  // this works except for notes get undefined and need to clear form after
 };
 
 
@@ -373,7 +367,7 @@ function addTaskToList() {
   let taskName = document.querySelector("#taskInputField").value;
   let taskPriority = document.querySelector("#taskPrioritySelector").value;
   let taskDue = document.querySelector("#taskCalendarSelector").value;
-  let taskNotes = document.querySelector("#taskNotesInput").value;
+  let taskNotes = document.querySelector("#taskNotesBox").value;
   let taskProject = document.querySelector("#taskProjectSelector").value;
   var addTask = new Task(taskName, taskPriority, taskDue, taskNotes, taskProject);
   taskList.push(addTask);
@@ -381,15 +375,19 @@ function addTaskToList() {
   document.querySelector("#taskPrioritySelector").value = "";
   taskPrioritySelector.classList.toggle("flex");
   document.querySelector("#taskCalendarSelector").value = "";
-  document.querySelector("#taskNotesInput").value;
-  taskNotesInput.classList.toggle("show");
+  document.querySelector("#taskNotesBox").value = "";
+  taskNotesInput.classList.toggle("flex");
   document.querySelector("#taskProjectSelector").value;
   taskProjectSelector.classList.toggle("flex");
   console.log(taskList)
  };
 
-// I need to clear project list, make first one folder and if not default
-// I need a task UUID for each when adding to list
-// resize notes box and intake notes
-// clear task form
-// render tasks, need a delete option
+
+// create task UUID for each when adding to list (use shorter) use nanoID, learn to import it
+// get notes to show centered with label at top
+// clear project list, make first one folder and if not default using getProjectIdentifier
+//https://stackoverflow.com/questions/3364493/how-do-i-clear-all-options-in-a-dropdown-box
+
+
+// render tasks, add delete/trash option, cross out done
+// sort by project, sort by date
