@@ -1,19 +1,3 @@
-import _ from 'lodash';
-// import '/script.js';
-
-// import _ from './script';
-
-// function component() {
-//     const element = document.createElement('div');
-  
-//     // Lodash, currently included via a script, is required for this line to work
-//     element.innerHTML = _.join(['Hello', 'webpack'], ' ');
-  
-//     return element;
-//   }
-  
-//   document.body.appendChild(component());
-
 let projectList = [];
 let taskList = [];
 let projectSubmitForm = document.querySelector(".projectSubmitForm");
