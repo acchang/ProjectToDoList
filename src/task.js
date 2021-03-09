@@ -6,7 +6,7 @@ function getProjectIdentifier() {
     return(taskProjectIdentifier)
   };
   
-  function createTaskInput() {
+function createTaskInput() {
     let taskOverallContainer = document.createElement("div");
     taskOverallContainer.setAttribute("class", "taskOverallContainer");
     taskOverallContainer.setAttribute("id", "taskOverallContainer");
@@ -31,7 +31,7 @@ function getProjectIdentifier() {
   });
   
   
-  function createTaskField() {
+function createTaskField() {
     let taskInputFieldHolder = document.createElement("span");
     taskInputFieldHolder.setAttribute("id", "taskInputFieldHolder");
     document.getElementById('taskInputContainer').appendChild(taskInputFieldHolder);
@@ -46,7 +46,7 @@ function getProjectIdentifier() {
     document.getElementById('taskInputFieldHolder').appendChild(taskInputField);
   };
   
-  function createTaskPriorityField() {
+function createTaskPriorityField() {
     let taskPrioritySection = document.createElement("span");
     taskPrioritySection.setAttribute("id", "taskPrioritySection");
     taskPrioritySection.setAttribute("Class", "taskPrioritySection");
@@ -91,7 +91,7 @@ function getProjectIdentifier() {
     document.getElementById("taskPrioritySelector").appendChild(taskPriorityFour);
   };
   
-  function createTaskCalendarField() {
+function createTaskCalendarField() {
     let taskCalendarField = document.createElement("span");
     taskCalendarField.setAttribute("id", "taskCalendarField");
     taskCalendarField.textContent = "Due: "
@@ -103,7 +103,7 @@ function getProjectIdentifier() {
     document.getElementById('taskCalendarField').appendChild(taskCalendarSelector);
   }
   
-  function createTaskNotesField() {
+function createTaskNotesField() {
     let taskNotesField = document.createElement("span");
     taskNotesField.setAttribute("id", "taskNotesField");
     taskNotesField.setAttribute("Class", "taskNotesField");
@@ -134,7 +134,7 @@ function getProjectIdentifier() {
     })
   };
   
-  function createTaskProjectField() {
+function createTaskProjectField() {
     let taskProjectSection = document.createElement("span");
     taskProjectSection.setAttribute("id", "taskProjectSection");
     taskProjectSection.setAttribute("Class", "taskProjectSection");
@@ -173,16 +173,15 @@ function getProjectIdentifier() {
   
     });   
   }
-  
-  
-  function removeOptions(selectElement) {
+
+function removeOptions(selectElement) {
     var i, L = selectElement.options.length - 1;
     for(i = L; i >= 0; i--) {
        selectElement.remove(i);
     }
   }
   
-  function createAddTaskField() {
+function createAddTaskField() {
     let addTaskField = document.createElement("span");
     addTaskField.setAttribute("id", "addTaskField");
     document.getElementById('taskInputContainer').appendChild(addTaskField);
@@ -204,7 +203,7 @@ function getProjectIdentifier() {
   
   // I need to generate a UUID with nanoID
   
-  function Task(taskName, taskPriority, taskDue, taskNotes, taskProject) {
+function Task(taskName, taskPriority, taskDue, taskNotes, taskProject) {
     this.taskName = taskName;
     this.taskPriority = taskPriority;
     this.taskDue = taskDue;
@@ -212,7 +211,7 @@ function getProjectIdentifier() {
     this.taskProject = taskProject;
   }
   
-  function addTaskToList() {
+function addTaskToList() {
     let taskName = document.querySelector("#taskInputField").value;
     let taskPriority = document.querySelector("#taskPrioritySelector").value;
     let taskDue = document.querySelector("#taskCalendarSelector").value;
@@ -237,7 +236,7 @@ function getProjectIdentifier() {
     console.log(taskList)
    };
   
-  function populateTaskHolder() {
+function populateTaskHolder() {
     TaskHolder.innerText = TaskList
   }
   
