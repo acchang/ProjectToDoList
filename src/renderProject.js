@@ -1,10 +1,17 @@
+globalVar.projectList
+
 
 function renderProject() {
-  let projectUUID = projectList[projectList.length-1].identifier
+  // let projectUUID = projectList[projectList.length-1].identifier
+  let projectUUID = globalVar.projectList[globalVar.projectList.length-1].identifier
+
   let projectContainer = document.createElement("div");
   projectContainer.classList.add("project-container");
   projectContainer.setAttribute("id", "C" + projectUUID);
-  let projectName = projectList[projectList.length-1].projectName;
+
+  // let projectName = projectList[projectList.length-1].projectName;
+  let globalVar.projectList = globalVar.projectList[globalVar.projectList.length-1].projectName;
+
   document.getElementById('projectHolder').appendChild(projectContainer);
   addProjectCheckbox(projectUUID);
   addProjectText(projectUUID, projectName);
@@ -39,10 +46,16 @@ function editProjectText(projectUUID, projectName) {
     let newProjectContainerTextHolder = document.getElementById("TH" + projectUUID);
     newProjectContainerTextHolder.addEventListener('input', function() {    
         let newProjectContainerText = newProjectContainerTextHolder.textContent
-        const index = projectList.findIndex((el) => el.identifier === projectUUID);
-        projectList[index].projectName = newProjectContainerText
-        projectName = projectList[projectList.length-1].projectName
-        console.log(projectList)
+        // const index = projectList.findIndex((el) => el.identifier === projectUUID);
+        // projectList[index].projectName = newProjectContainerText
+        // projectName = projectList[projectList.length-1].projectName
+        // console.log(projectList)
+
+        const index = globalVar.projectList.findIndex((el) => el.identifier === projectUUID);
+        globalVar.projectList[index].projectName = newProjectContainerText
+        projectName = globalVar.projectList[globalVar.projectList.length-1].projectName
+        console.log(globalVar.projectList)
+
         });
   
     newProjectContainerTextHolder.addEventListener('keydown', function(e) {
@@ -65,7 +78,9 @@ function addProjectTrashButton(projectUUID) {
     projectTrashButton.addEventListener("click", function(event) {
       const deleteDivTarget = document.getElementById("C" + projectUUID);
       projectHolder.removeChild(deleteDivTarget);
-      projectList = projectList.filter(object => object.identifier !== projectUUID);
+      // projectList = projectList.filter(object => object.identifier !== projectUUID);
+      globalVar.projectList = globalVar.projectList.filter(object => object.identifier !== projectUUID);
+
     })
   };
     
@@ -99,14 +114,24 @@ function openProject(projectUUID) {
   
     projectPrefixSpan.innerHTML = '';
     projectHeadlineSpan.innerHTML = '';
-    const projectIndex = projectList.findIndex((el) => el.identifier === projectUUID)
+    // const projectIndex = projectList.findIndex((el) => el.identifier === projectUUID)
+    // let taskProjectPrefix = document.createTextNode('Project: ');
+    // let taskProjectHead = document.createTextNode(projectList[projectIndex].projectName);
+    // document.getElementById('projectPrefix').appendChild(taskProjectPrefix); 
+    // document.getElementById('projectHeadline').appendChild(taskProjectHead); 
+    // // render/populate the TaskHolder with the TaskList that corresponds with the projectUUID
+    // console.log(projectList)
+    // createTaskInput()
+
+    const projectIndex = globalVar.projectList.findIndex((el) => el.identifier === projectUUID)
     let taskProjectPrefix = document.createTextNode('Project: ');
-    let taskProjectHead = document.createTextNode(projectList[projectIndex].projectName);
+    let taskProjectHead = document.createTextNode(globalVar.projectList[projectIndex].projectName);
     document.getElementById('projectPrefix').appendChild(taskProjectPrefix); 
     document.getElementById('projectHeadline').appendChild(taskProjectHead); 
     // render/populate the TaskHolder with the TaskList that corresponds with the projectUUID
-    console.log(projectList)
-    createTaskInput()
+    console.log(globalVar.projectList)
+    createTaskInput()  
+
   }
   
 
