@@ -11,6 +11,8 @@ function renderProject() {
   editProjectText(projectUUID, projectName);
   addProjectTrashButton(projectUUID);
   addProjectOpenButton(projectUUID);
+  activateProjectCheckbox(projectUUID, projectContainerTextHolder);
+  openProject(projectUUID);
 };
 
 function addProjectCheckbox(projectUUID) {
@@ -79,5 +81,34 @@ function addProjectOpenButton(projectUUID) {
     projectOpenButton.addEventListener("click", function(event){openProject(projectUUID)}
     );
   }
+
+function activateProjectCheckbox(projectUUID, projectContainerTextHolder) {
+    let thisProjectContainer = document.getElementById("C" + projectUUID)
+    thisProjectContainer.querySelector("input[type=checkbox]").addEventListener("click", (event)=>{
+    projectContainerTextHolder.classList.toggle("done")
+    })
+  };
+  
+function openProject(projectUUID) {
+    let projectPrefixSpan = document.getElementById('projectPrefix');
+    let projectHeadlineSpan = document.getElementById('projectHeadline');
+  
+    let taskProjectHolder = document.getElementById('taskProjectHolder');
+    taskProjectHolder.innerText = '';
+  
+  
+    projectPrefixSpan.innerHTML = '';
+    projectHeadlineSpan.innerHTML = '';
+    const projectIndex = projectList.findIndex((el) => el.identifier === projectUUID)
+    let taskProjectPrefix = document.createTextNode('Project: ');
+    let taskProjectHead = document.createTextNode(projectList[projectIndex].projectName);
+    document.getElementById('projectPrefix').appendChild(taskProjectPrefix); 
+    document.getElementById('projectHeadline').appendChild(taskProjectHead); 
+    // render/populate the TaskHolder with the TaskList that corresponds with the projectUUID
+    console.log(projectList)
+    createTaskInput()
+  }
+  
+
 
 export default renderProject;
