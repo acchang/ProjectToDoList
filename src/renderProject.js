@@ -133,7 +133,5 @@ function openProject(projectUUID) {
     createTaskInput()  
 
   }
-  
-
 
 export default renderProject;
