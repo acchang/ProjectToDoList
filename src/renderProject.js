@@ -1,27 +1,3 @@
-globalVar.projectList
-
-
-function renderProject() {
-  // let projectUUID = projectList[projectList.length-1].identifier
-  let projectUUID = globalVar.projectList[globalVar.projectList.length-1].identifier
-
-  let projectContainer = document.createElement("div");
-  projectContainer.classList.add("project-container");
-  projectContainer.setAttribute("id", "C" + projectUUID);
-
-  // let projectName = projectList[projectList.length-1].projectName;
-  let globalVar.projectList = globalVar.projectList[globalVar.projectList.length-1].projectName;
-
-  document.getElementById('projectHolder').appendChild(projectContainer);
-  addProjectCheckbox(projectUUID);
-  addProjectText(projectUUID, projectName);
-  editProjectText(projectUUID, projectName);
-  addProjectTrashButton(projectUUID);
-  addProjectOpenButton(projectUUID);
-  activateProjectCheckbox(projectUUID, projectContainerTextHolder);
-  openProject(projectUUID);
-};
-
 function addProjectCheckbox(projectUUID) {
     let projectDoneCheckbox = document.createElement("input");
     projectDoneCheckbox.setAttribute("type", "checkbox");
@@ -131,7 +107,30 @@ function openProject(projectUUID) {
     // render/populate the TaskHolder with the TaskList that corresponds with the projectUUID
     console.log(globalVar.projectList)
     createTaskInput()  
-
   }
+
+function renderProject() {
+
+  console.log(globalVar.projectList)
+  // // let projectUUID = projectList[projectList.length-1].identifier
+  // let projectUUID = globalVar.projectList[globalVar.projectList.length-1].identifier
+
+  // let projectContainer = document.createElement("div");
+  // projectContainer.classList.add("project-container");
+  // projectContainer.setAttribute("id", "C" + projectUUID);
+
+  // // let projectName = projectList[projectList.length-1].projectName;
+  // let globalVar.projectList = globalVar.projectList[globalVar.projectList.length-1].projectName;
+
+  // document.getElementById('projectHolder').appendChild(projectContainer);
+  // addProjectCheckbox(projectUUID);
+  // addProjectText(projectUUID, projectName);
+  // editProjectText(projectUUID, projectName);
+  // addProjectTrashButton(projectUUID);
+  // addProjectOpenButton(projectUUID);
+  // activateProjectCheckbox(projectUUID, projectContainerTextHolder);
+  // openProject(projectUUID);
+};
+
 
 export default renderProject;

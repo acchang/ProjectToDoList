@@ -1,14 +1,15 @@
 import createUUID from './UUID';
 import createProjectListeners from './createProjectListeners';
-import establishArrays from './establishArrays';
-import renderProject from './renderProject';
 import addProjectToList from './addProjectToList';
 
+// import renderProject from './renderProject';
+
 createUUID();
-establishArrays();
 createProjectListeners();
-renderProject();
 addProjectToList();
+
+// renderProject();
+
 
 // error here bc projectList is not defined
 // even after putting projectList into global variables via establishArrays.
