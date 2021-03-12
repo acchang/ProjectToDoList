@@ -1,15 +1,10 @@
-import createUUID from './UUID';
+
 import createProjectListeners from './createProjectListeners';
-import addProjectToList from './addProjectToList';
+
+createProjectListeners();
 
 // import renderProject from './renderProject';
-
-createUUID();
-createProjectListeners();
-addProjectToList();
-
 // renderProject();
-
 
 // error here bc projectList is not defined
 // even after putting projectList into global variables via establishArrays.
@@ -30,7 +25,7 @@ function component() {
     const element = document.createElement('div');
   
     // Lodash, currently included via a script, is required for this line to work
-    element.innerHTML = _.join(['testy', 'testy'], ' ');
+    element.innerHTML = _.join(['test1', 'test1'], ' ');
     return element;
   }
 

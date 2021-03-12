@@ -1,4 +1,6 @@
 
+import addProjectToList from './addProjectToList';
+
 function createProjectListeners() {
     const projectSubmitButton = document.querySelector(".projectSubmitButton")
     projectSubmitButton.addEventListener("click", e => {
