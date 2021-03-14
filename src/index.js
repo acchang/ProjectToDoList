@@ -1,10 +1,16 @@
-
 import createProjectListeners from './createProjectListeners';
-
 createProjectListeners();
 
-// import renderProject from './renderProject';
-// renderProject();
+import _ from 'lodash';
+
+function component() {
+    const element = document.createElement('div');
+  
+    // Lodash, currently included via a script, is required for this line to work
+    element.innerHTML = _.join(['9', '9'], ' ');
+    return element;
+  }
+document.body.appendChild(component());
 
 // error here bc projectList is not defined
 // even after putting projectList into global variables via establishArrays.
@@ -19,14 +25,6 @@ createProjectListeners();
 // import _ from './script';
 
 // use below to test if changes coming through.
-import _ from 'lodash';
 
-function component() {
-    const element = document.createElement('div');
-  
-    // Lodash, currently included via a script, is required for this line to work
-    element.innerHTML = _.join(['test1', 'test1'], ' ');
-    return element;
-  }
 
-document.body.appendChild(component());
+

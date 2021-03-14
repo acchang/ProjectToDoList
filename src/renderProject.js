@@ -1,3 +1,5 @@
+// import UUID
+
 function addProjectCheckbox(projectUUID) {
     let projectDoneCheckbox = document.createElement("input");
     projectDoneCheckbox.setAttribute("type", "checkbox");

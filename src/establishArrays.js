@@ -6,13 +6,17 @@
 
 function establishArrays() {
 
-    let globalVar = (function () {
-        let projectList = [];
-        return {
-            projectList: projectList
-        };
-    }());
-    console.log(globalVar.projectList)
+    let ProjectList=[]
+
+    // let globalVar = (function () {
+    //     let projectList = [];
+    //     return {
+    //         projectList: projectList
+    //     };
+    // }());
+
+
+    // console.log(globalVar.projectList)
     // this works
 };
 
