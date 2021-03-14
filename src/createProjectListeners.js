@@ -11,6 +11,7 @@ function createProjectListeners() {
     projectSubmitButton.addEventListener("click", e => {
         e.preventDefault();
         addProjectToList.getValue();
+        // this may also be where render gets executed or in addProjectToList
         });
 
     const projectCloseButton = document.querySelector(".projectCloseButton")
@@ -18,8 +19,6 @@ function createProjectListeners() {
         e.preventDefault();
         projectSubmitForm.classList.toggle("show")
         });
-
-
     };
 
     export default createProjectListeners;

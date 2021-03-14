@@ -1,4 +1,7 @@
 import createUUID from './UUID';
+import renderProject from './renderProject'
+
+//import renderProject code
 
 function Project(projectName, identifier) {
   this.projectName = projectName;
@@ -6,19 +9,24 @@ function Project(projectName, identifier) {
 }
 
 const addProjectToList = {
-  projectList: ['One', 'Two'],
+  projectList: [],
   UUID: function() {
     this.number = createUUID();
     console.log(this.number)
   },
   getValue: function() {
-    const UUID = createUUID()
+    const UUID = createUUID();
     const projectName = document.querySelector("#projectName").value;
     const addProject = new Project(projectName, UUID);
     this.projectList.push(addProject);
-    console.log(this.projectList)
+    // then renderProject? test it by rendering just one line in the projects space
+    // can I just insert code as is since the variables apply?
+    renderProject();
+    console.log("addproject: " + this.projectList);
     document.querySelector("#projectName").value = "";
   }
 }
 
 export default addProjectToList;
+
+
