@@ -1,3 +1,5 @@
+import addTaskToList from './addTaskToList';
+
 function createTaskInput() {
     let taskOverallContainer = document.createElement("div");
     taskOverallContainer.setAttribute("class", "taskOverallContainer");
@@ -15,6 +17,7 @@ function createTaskInput() {
     createTaskProjectField();
     createAddTaskField();
   };
+
 
   function createTaskPriorityField() {
     let taskPrioritySection = document.createElement("span");
@@ -144,6 +147,7 @@ function createTaskProjectField() {
     taskProjectButton.addEventListener("click", function(event){ 
     taskProjectSelector.classList.toggle("flex");
   
+    //I need to work on this section which pulls from addtoProjects and gets ProjectList
     removeOptions(taskProjectSelector);
     let taskProjectCurrentID = getProjectIdentifier();
     let taskProjectCurrentTitle = projectList.find(x => x.identifier === taskProjectCurrentID).projectName;
@@ -183,6 +187,17 @@ function createAddTaskField() {
     document.getElementById("addTaskButton").appendChild(addTaskIcon);
   
     addTaskButton.addEventListener("click", function(event){
-      addTaskToList()
+      alert("click");
+      addTaskToList.getValue();
     })
   };
+
+function getProjectIdentifier() {
+  let taskProjectTitleSpace = document.getElementById('projectHeadline');
+  let taskProjectTitle = taskProjectTitleSpace.textContent;
+  const projectIndex = projectList.findIndex((el) => el.projectName === taskProjectTitle);
+  taskProjectIdentifier = projectList[projectIndex].identifier;
+  return(taskProjectIdentifier)
+};
+
+export default createTaskInput;

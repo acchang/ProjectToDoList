@@ -18,13 +18,7 @@ function renderProject() {
   editProjectText(projectUUID, projectName);
   addProjectTrashButton(projectUUID);
   addProjectOpenButton(projectUUID);
-
-// the ones below are the problem:
-  // activateProjectCheckbox(projectUUID, projectContainerTextHolder);
-  // openProject(projectUUID);
 };
-
-// ** resolve Uncaught ReferenceError: projectContainerTextHolder is not defined
 
 function addProjectCheckbox(projectUUID) {
     let projectDoneCheckbox = document.createElement("input");
@@ -46,13 +40,21 @@ function addProjectText(projectUUID, projectName) {
     activateProjectCheckbox(projectUUID, projectContainerTextHolder)
   };
 
+function activateProjectCheckbox(projectUUID, projectContainerTextHolder) {
+    let thisProjectContainer = document.getElementById("C" + projectUUID)
+    thisProjectContainer.querySelector("input[type=checkbox]").addEventListener("click", (event)=>{
+    projectContainerTextHolder.classList.toggle("done")
+    })
+};
+
 function editProjectText(projectUUID, projectName) {
     let newProjectContainerTextHolder = document.getElementById("TH" + projectUUID);
     newProjectContainerTextHolder.addEventListener('input', function() {  
     const newProjectContainerText = newProjectContainerTextHolder.textContent;
     addProjectToList.changeProjectName(projectUUID, newProjectContainerText)
     })
-  
+// it would be nice to dynamically change the task list heading too if currently showing
+    
     newProjectContainerTextHolder.addEventListener('keydown', function(e) {
         if (e.key === 'Enter') {
             e.preventDefault();
@@ -90,13 +92,8 @@ function addProjectOpenButton(projectUUID) {
     );
   }
 
-function activateProjectCheckbox(projectUUID, projectContainerTextHolder) {
-    let thisProjectContainer = document.getElementById("C" + projectUUID)
-    thisProjectContainer.querySelector("input[type=checkbox]").addEventListener("click", (event)=>{
-    projectContainerTextHolder.classList.toggle("done")
-    })
-  };
-  
+/// this one is onworking, how to populate, works with OpenButton Glyphicon
+
 function openProject(projectUUID) {
     let projectPrefixSpan = document.getElementById('projectPrefix');
     let projectHeadlineSpan = document.getElementById('projectHeadline');
@@ -104,37 +101,24 @@ function openProject(projectUUID) {
     let taskProjectHolder = document.getElementById('taskProjectHolder');
     taskProjectHolder.innerText = '';
   
-  
     projectPrefixSpan.innerHTML = '';
     projectHeadlineSpan.innerHTML = '';
 
-    const projectIndex = projectList.findIndex((el) => el.identifier === projectUUID)
+    // "main.js:2 Uncaught ReferenceError: projectList is not defined" use addProjectToList.projectList
+    // const projectIndex = projectList.findIndex((el) => el.identifier === projectUUID)
+    const projectIndex = addProjectToList.projectList.findIndex((el) => el.identifier === projectUUID)
 
     let taskProjectPrefix = document.createTextNode('Project: ');
-    let taskProjectHead = document.createTextNode(projectList[projectIndex].projectName);
+    
+    // let taskProjectHead = document.createTextNode(projectList[projectIndex].projectName);
+    let taskProjectHead = document.createTextNode(addProjectToList.projectList[projectIndex].projectName);
 
     document.getElementById('projectPrefix').appendChild(taskProjectPrefix); 
     document.getElementById('projectHeadline').appendChild(taskProjectHead); 
     // render/populate the TaskHolder with the TaskList that corresponds with the projectUUID
-    console.log(this.projectList)
-    createTaskInput()
+  
+    // console.log(this.projectList)
+    // createTaskInput()
   }
 
 export default renderProject;
-
-
-// function renderProject() {
-//   let projectUUID = projectList[projectList.length-1].identifier
-//   let projectName = projectList[projectList.length-1].projectName;
-//   let projectContainer = document.createElement("div");
-//   projectContainer.classList.add("project-container");
-//   projectContainer.setAttribute("id", "C" + projectUUID);
-//   document.getElementById('projectHolder').appendChild(projectContainer);
-//   addProjectCheckbox(projectUUID);
-//   addProjectText(projectUUID, projectName);
-//   editProjectText(projectUUID, projectName);
-//   addProjectTrashButton(projectUUID);
-//   addProjectOpenButton(projectUUID);
-//   activateProjectCheckbox(projectUUID, projectContainerTextHolder);
-//   openProject(projectUUID);
-// };
