@@ -1,6 +1,4 @@
-// import list and then render?
 import addProjectToList from './addProjectToList';
-// get addProjectToList.projectList
 
 function renderProject() {
   const projectList = addProjectToList.projectList
@@ -20,13 +18,13 @@ function renderProject() {
   editProjectText(projectUUID, projectName);
   addProjectTrashButton(projectUUID);
   addProjectOpenButton(projectUUID);
-  activateProjectCheckbox(projectUUID, projectContainerTextHolder);
-  openProject(projectUUID);
+
+// the ones below are the problem:
+  // activateProjectCheckbox(projectUUID, projectContainerTextHolder);
+  // openProject(projectUUID);
 };
 
 // ** resolve Uncaught ReferenceError: projectContainerTextHolder is not defined
-// ** Delete cannot affect ProjectList! I need a method in addProjectToList 
-// ** that's why add project is not clearing the field
 
 function addProjectCheckbox(projectUUID) {
     let projectDoneCheckbox = document.createElement("input");
@@ -50,14 +48,10 @@ function addProjectText(projectUUID, projectName) {
 
 function editProjectText(projectUUID, projectName) {
     let newProjectContainerTextHolder = document.getElementById("TH" + projectUUID);
-    newProjectContainerTextHolder.addEventListener('input', function() {    
-        let newProjectContainerText = newProjectContainerTextHolder.textContent
-        const index = projectList.findIndex((el) => el.identifier === projectUUID);
-        projectList[index].projectName = newProjectContainerText
-        projectName = projectList[projectList.length-1].projectName
-        console.log(projectList)
-
-        });
+    newProjectContainerTextHolder.addEventListener('input', function() {  
+    const newProjectContainerText = newProjectContainerTextHolder.textContent;
+    addProjectToList.changeProjectName(projectUUID, newProjectContainerText)
+    })
   
     newProjectContainerTextHolder.addEventListener('keydown', function(e) {
         if (e.key === 'Enter') {
@@ -79,9 +73,7 @@ function addProjectTrashButton(projectUUID) {
     projectTrashButton.addEventListener("click", function(event) {
       const deleteDivTarget = document.getElementById("C" + projectUUID);
       projectHolder.removeChild(deleteDivTarget);
-
-      projectList = projectList.filter(object => object.identifier !== projectUUID);
-
+      addProjectToList.deleteObject(projectUUID);
     })
   };
     

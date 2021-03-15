@@ -1,8 +1,6 @@
 import createUUID from './UUID';
 import renderProject from './renderProject'
 
-//import renderProject code
-
 function Project(projectName, identifier) {
   this.projectName = projectName;
   this.identifier = identifier;
@@ -10,24 +8,22 @@ function Project(projectName, identifier) {
 
 const addProjectToList = {
   projectList: [],
-  UUID: function() {
-    this.number = createUUID();
-    console.log(this.number)
-  },
   getValue: function() {
     const UUID = createUUID();
     const projectName = document.querySelector("#projectName").value;
     const addProject = new Project(projectName, UUID);
     this.projectList.push(addProject);
-    // then renderProject? test it by rendering just one line in the projects space
-    // can I just insert code as is since the variables apply?
     renderProject();
     document.querySelector("#projectName").value = "";
-  // },
-  //   delete: function() {
-  //     projectList splice-1
-  //   }
-  }
+  },
+  deleteObject: function(UUID) {
+    this.projectList = this.projectList.filter(object => object.identifier !== UUID);
+    },
+  changeProjectName: function(projectUUID, newProjectContainerText) {
+    const index = this.projectList.findIndex((el) => el.identifier === projectUUID);
+    this.projectList[index].projectName = newProjectContainerText;
+    console.log(this.projectList)
+    }
 }
 
 export default addProjectToList;
