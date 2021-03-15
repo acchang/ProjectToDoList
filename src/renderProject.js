@@ -1,5 +1,4 @@
 import addProjectToList from './addProjectToList';
-// import createTaskListener from './createTaskListener';
 
 function renderProject() {
   const projectList = addProjectToList.projectList
@@ -112,11 +111,11 @@ function openProject(projectUUID) {
     document.getElementById('projectPrefix').appendChild(taskProjectPrefix); 
     document.getElementById('projectHeadline').appendChild(taskProjectHead); 
 
-    // why does createTask button expose 'taskOverallContainer.classList.toggle("flex");'
-  // when newProjectHeadline is appended?
-    // says taskOverallContainer is not defined
+    // why does createTask button NOT expose 'taskOverallContainer.classList.toggle("flex");'
+    // when newProjectHeadline is appended? says taskOverallContainer is not defined
 
     // render/populate the TaskHolder with the TaskList that corresponds with the projectUUID
+    // render/populare the TaskHolder that corresponds with duedates
     // createTaskInput()
 
   }

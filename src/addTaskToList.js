@@ -1,4 +1,4 @@
-import { nanoid } from 'nanoid'
+import { nanoid } from 'nanoid';
 
 
 function Task(taskName, taskID, taskPriority, taskDue, taskNotes, taskProject) {

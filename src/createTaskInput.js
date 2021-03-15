@@ -161,6 +161,7 @@ function createTaskProjectField() {
         taskProjectOption.setAttribute("value", listOfProjects[i].identifier);
         taskProjectOption.innerText = listOfProjects[i].projectName;
         document.getElementById("taskProjectSelector").appendChild(taskProjectOption);
+        // when taskCreate Button works, this auto-selects the project
         // if (taskProjectOption.innerText === taskProjectCurrentTitle)
         // {document.getElementById(taskProjectCurrentID).selected = "true"}  
       }
