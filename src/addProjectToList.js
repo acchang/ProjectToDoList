@@ -22,8 +22,11 @@ const addProjectToList = {
     // then renderProject? test it by rendering just one line in the projects space
     // can I just insert code as is since the variables apply?
     renderProject();
-    console.log("addproject: " + this.projectList);
     document.querySelector("#projectName").value = "";
+  // },
+  //   delete: function() {
+  //     projectList splice-1
+  //   }
   }
 }
 

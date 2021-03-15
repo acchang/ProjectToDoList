@@ -1,19 +1,17 @@
 import createProjectListeners from './createProjectListeners';
 createProjectListeners();
 
+// use below to test if changes coming through.
 import _ from 'lodash';
 
 function component() {
     const element = document.createElement('div');
   
     // Lodash, currently included via a script, is required for this line to work
-    element.innerHTML = _.join(['2', '2'], ' ');
+    element.innerHTML = _.join(['3', '3'], ' ');
     return element;
   }
 document.body.appendChild(component());
-
-// error here bc projectList is not defined
-// even after putting projectList into global variables via establishArrays.
 
 // import nanoID
 // maybe import time/calendar
@@ -24,7 +22,6 @@ document.body.appendChild(component());
 // import '/script.js'; 
 // import _ from './script';
 
-// use below to test if changes coming through.
 
 
 
