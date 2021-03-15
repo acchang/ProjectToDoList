@@ -1,4 +1,5 @@
 import addProjectToList from './addProjectToList';
+// import createTaskListener from './createTaskListener';
 
 function renderProject() {
   const projectList = addProjectToList.projectList
@@ -104,21 +105,20 @@ function openProject(projectUUID) {
     projectPrefixSpan.innerHTML = '';
     projectHeadlineSpan.innerHTML = '';
 
-    // "main.js:2 Uncaught ReferenceError: projectList is not defined" use addProjectToList.projectList
-    // const projectIndex = projectList.findIndex((el) => el.identifier === projectUUID)
-    const projectIndex = addProjectToList.projectList.findIndex((el) => el.identifier === projectUUID)
-
-    let taskProjectPrefix = document.createTextNode('Project: ');
-    
-    // let taskProjectHead = document.createTextNode(projectList[projectIndex].projectName);
-    let taskProjectHead = document.createTextNode(addProjectToList.projectList[projectIndex].projectName);
+   const projectIndex = addProjectToList.projectList.findIndex((el) => el.identifier === projectUUID);
+   let taskProjectPrefix = document.createTextNode('Project: ');
+   let taskProjectHead = document.createTextNode(addProjectToList.projectList[projectIndex].projectName);
 
     document.getElementById('projectPrefix').appendChild(taskProjectPrefix); 
     document.getElementById('projectHeadline').appendChild(taskProjectHead); 
+
+    // why does createTask button expose 'taskOverallContainer.classList.toggle("flex");'
+  // when newProjectHeadline is appended?
+    // says taskOverallContainer is not defined
+
     // render/populate the TaskHolder with the TaskList that corresponds with the projectUUID
-  
-    // console.log(this.projectList)
     // createTaskInput()
+
   }
 
 export default renderProject;

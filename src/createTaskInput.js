@@ -146,9 +146,13 @@ function createTaskProjectField() {
     taskProjectSelector.setAttribute("class", "taskProjectSelector");
     document.getElementById('taskProjectSection').appendChild(taskProjectSelector);
   
-    taskProjectButton.addEventListener("click", function(event){ 
+    taskProjectButton.addEventListener("click", function(event){       
       taskProjectSelector.classList.toggle("flex");
       renewOptions(taskProjectSelector);
+
+      // let taskProjectCurrentID = getProjectIdentifier();
+      // console.log(taskProjectCurrentID)
+
       let listOfProjects = addProjectToList.projectList;
       let i;
       for (i = 0; i < listOfProjects.length; i++) {        
@@ -161,8 +165,6 @@ function createTaskProjectField() {
         // {document.getElementById(taskProjectCurrentID).selected = "true"}  
       }
 
-    // let taskProjectCurrentID = getProjectIdentifier();
-    // console.log(taskProjectCurrentID)
     // // let taskProjectCurrentTitle = projectList.find(x => x.identifier === taskProjectCurrentID).projectName;
     // let taskProjectCurrentTitle = lisfOfProjects.find(x => x.identifier === taskProjectCurrentID).projectName;
     })
@@ -210,6 +212,8 @@ function createAddTaskField() {
     addTaskButton.addEventListener("click", function(event){
       addTaskToList.getValue();
       // I need a render function here to go under the input module.
+      // render it to show on home, reverse order
+      // all the other links sort home by due date or project.
     })
   };
 
