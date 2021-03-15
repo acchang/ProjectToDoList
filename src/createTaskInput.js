@@ -1,4 +1,6 @@
 import addTaskToList from './addTaskToList';
+import addProjectToList from './addProjectToList';
+// will need to import renderTask module.
 
 function createTaskInput() {
     let taskOverallContainer = document.createElement("div");
@@ -145,24 +147,25 @@ function createTaskProjectField() {
     document.getElementById('taskProjectSection').appendChild(taskProjectSelector);
   
     taskProjectButton.addEventListener("click", function(event){ 
-    taskProjectSelector.classList.toggle("flex");
-  
-    //I need to work on this section which pulls from addtoProjects and gets ProjectList
-    removeOptions(taskProjectSelector);
-    let taskProjectCurrentID = getProjectIdentifier();
-    let taskProjectCurrentTitle = projectList.find(x => x.identifier === taskProjectCurrentID).projectName;
-  
-    for (i = 0; i < projectList.length; i++) {
-      let taskProjectOption = document.createElement("option");
-      taskProjectOption.setAttribute("id", projectList[i].identifier);
-      taskProjectOption.setAttribute("value", projectList[i].identifier);
-      taskProjectOption.innerText = projectList[i].projectName;
-      document.getElementById("taskProjectSelector").appendChild(taskProjectOption);
-        if (taskProjectOption.innerText === taskProjectCurrentTitle)
-        {document.getElementById(taskProjectCurrentID).selected = "true"}  
-    }
-  
-    });   
+      taskProjectSelector.classList.toggle("flex");
+      let listOfProjects = addProjectToList.projectList;
+      let i;
+      for (i = 0; i < listOfProjects.length; i++) {        
+        let taskProjectOption = document.createElement("option");
+        taskProjectOption.setAttribute("id", listOfProjects[i].identifier);
+        taskProjectOption.setAttribute("value", listOfProjects[i].identifier);
+        taskProjectOption.innerText = listOfProjects[i].projectName;
+        document.getElementById("taskProjectSelector").appendChild(taskProjectOption);
+        // if (taskProjectOption.innerText === taskProjectCurrentTitle)
+        // {document.getElementById(taskProjectCurrentID).selected = "true"}  
+      }
+      
+    // removeOptions(taskProjectSelector);
+    // let taskProjectCurrentID = getProjectIdentifier();
+    // console.log(taskProjectCurrentID)
+    // // let taskProjectCurrentTitle = projectList.find(x => x.identifier === taskProjectCurrentID).projectName;
+    // let taskProjectCurrentTitle = lisfOfProjects.find(x => x.identifier === taskProjectCurrentID).projectName;
+    })
   }
 
 function removeOptions(selectElement) {
@@ -172,6 +175,24 @@ function removeOptions(selectElement) {
     }
   }
   
+function getProjectIdentifier() {
+  let taskProjectTitleSpace = document.getElementById('projectHeadline');
+  let taskProjectTitle = taskProjectTitleSpace.textContent;
+  // let listOfProjects = addProjectToList.projectList;
+
+  // const projectIndex = projectList.findIndex((el) => el.projectName === taskProjectTitle);
+  const projectIndex = addProjectToList.projectList.findIndex((el) => el.projectName === taskProjectTitle);
+
+alert(addProjectToList.projectList[projectIndex].identifier)
+
+  // taskProjectIdentifier = projectList[projectIndex].identifier;
+  taskProjectIdentifier = addProjectToList.projectList[projectIndex].identifier;
+
+  return(taskProjectIdentifier)
+};
+  
+
+
 function createAddTaskField() {
     let addTaskField = document.createElement("span");
     addTaskField.setAttribute("id", "addTaskField");
@@ -187,17 +208,9 @@ function createAddTaskField() {
     document.getElementById("addTaskButton").appendChild(addTaskIcon);
   
     addTaskButton.addEventListener("click", function(event){
-      alert("click");
       addTaskToList.getValue();
+      // I need a render function here to go under the input module.
     })
   };
-
-function getProjectIdentifier() {
-  let taskProjectTitleSpace = document.getElementById('projectHeadline');
-  let taskProjectTitle = taskProjectTitleSpace.textContent;
-  const projectIndex = projectList.findIndex((el) => el.projectName === taskProjectTitle);
-  taskProjectIdentifier = projectList[projectIndex].identifier;
-  return(taskProjectIdentifier)
-};
 
 export default createTaskInput;
