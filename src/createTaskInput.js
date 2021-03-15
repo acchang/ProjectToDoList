@@ -148,6 +148,7 @@ function createTaskProjectField() {
   
     taskProjectButton.addEventListener("click", function(event){ 
       taskProjectSelector.classList.toggle("flex");
+      renewOptions(taskProjectSelector);
       let listOfProjects = addProjectToList.projectList;
       let i;
       for (i = 0; i < listOfProjects.length; i++) {        
@@ -159,8 +160,7 @@ function createTaskProjectField() {
         // if (taskProjectOption.innerText === taskProjectCurrentTitle)
         // {document.getElementById(taskProjectCurrentID).selected = "true"}  
       }
-      
-    // removeOptions(taskProjectSelector);
+
     // let taskProjectCurrentID = getProjectIdentifier();
     // console.log(taskProjectCurrentID)
     // // let taskProjectCurrentTitle = projectList.find(x => x.identifier === taskProjectCurrentID).projectName;
@@ -168,7 +168,7 @@ function createTaskProjectField() {
     })
   }
 
-function removeOptions(selectElement) {
+function renewOptions(selectElement) {
     var i, L = selectElement.options.length - 1;
     for(i = L; i >= 0; i--) {
        selectElement.remove(i);
