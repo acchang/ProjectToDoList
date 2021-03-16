@@ -20,6 +20,7 @@ function createTaskInput() {
     createTaskNotesField();
     createTaskProjectField();
     createAddTaskField();
+    console.log(addTaskToList.taskList)
   };
 
 

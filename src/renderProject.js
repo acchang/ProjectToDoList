@@ -77,6 +77,7 @@ function addProjectTrashButton(projectUUID) {
       const deleteDivTarget = document.getElementById("C" + projectUUID);
       projectHolder.removeChild(deleteDivTarget);
       addProjectToList.deleteObject(projectUUID);
+      console.log(addProjectToList.projectList)
     })
   };
     

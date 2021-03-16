@@ -80,10 +80,18 @@ function addTaskTrashIcon(i,taskArray) {
     taskTrashButton.addEventListener("click", function(event) {
       const deleteDivTarget = document.getElementById("TC" + taskArray[i].taskID);
       taskHolder.removeChild(deleteDivTarget);
+    //   addTaskToList.taskList.deleteObject(addTaskToList.taskList.taskID)
+      addTaskToList.deleteObject(addTaskToList.taskList.taskID)
+// n.taskList.deleteObject is not a function
+
 //    NEEDS some function to remove from TaskList by taskArray[i].taskID
 //    it will look like addProjectToList.deleteObject(projectUUID);
+//  addProjectToList.deleteObject(addProjectToList.projectList[addProjectToList.projectList.length-1].identifier);
     })
 }
+
+
+
 
 export default renderTask;
 
