@@ -149,10 +149,6 @@ function createTaskProjectField() {
     taskProjectButton.addEventListener("click", function(event){       
       taskProjectSelector.classList.toggle("flex");
       renewOptions(taskProjectSelector);
-
-      // let taskProjectCurrentID = getProjectIdentifier();
-      // console.log(taskProjectCurrentID)
-
       let listOfProjects = addProjectToList.projectList;
       let i;
       for (i = 0; i < listOfProjects.length; i++) {        
@@ -161,13 +157,13 @@ function createTaskProjectField() {
         taskProjectOption.setAttribute("value", listOfProjects[i].identifier);
         taskProjectOption.innerText = listOfProjects[i].projectName;
         document.getElementById("taskProjectSelector").appendChild(taskProjectOption);
-        // when taskCreate Button works, this auto-selects the project
-        // if (taskProjectOption.innerText === taskProjectCurrentTitle)
-        // {document.getElementById(taskProjectCurrentID).selected = "true"}  
-      }
 
-    // // let taskProjectCurrentTitle = projectList.find(x => x.identifier === taskProjectCurrentID).projectName;
-    // let taskProjectCurrentTitle = lisfOfProjects.find(x => x.identifier === taskProjectCurrentID).projectName;
+      let taskProjectCurrentID = getProjectIdentifier();
+      let taskProjectCurrentTitle = addProjectToList.projectList.find(x => x.identifier === taskProjectCurrentID).projectName;
+      
+      if (taskProjectOption.innerText === taskProjectCurrentTitle)
+        {document.getElementById(taskProjectCurrentID).selected = "true"}  
+      }
     })
   }
 
@@ -181,16 +177,8 @@ function renewOptions(selectElement) {
 function getProjectIdentifier() {
   let taskProjectTitleSpace = document.getElementById('projectHeadline');
   let taskProjectTitle = taskProjectTitleSpace.textContent;
-  // let listOfProjects = addProjectToList.projectList;
-
-  // const projectIndex = projectList.findIndex((el) => el.projectName === taskProjectTitle);
   const projectIndex = addProjectToList.projectList.findIndex((el) => el.projectName === taskProjectTitle);
-
-alert(addProjectToList.projectList[projectIndex].identifier)
-
-  // taskProjectIdentifier = projectList[projectIndex].identifier;
-  taskProjectIdentifier = addProjectToList.projectList[projectIndex].identifier;
-
+  let taskProjectIdentifier = addProjectToList.projectList[projectIndex].identifier;
   return(taskProjectIdentifier)
 };
   

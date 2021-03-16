@@ -88,31 +88,23 @@ function addProjectOpenButton(projectUUID) {
     let projectOpenIcon = document.createElement("span") 
     projectOpenIcon.setAttribute("class", "glyphicon glyphicon-zoom-in")
     document.getElementById("OB" + projectUUID).appendChild(projectOpenIcon);
-    projectOpenButton.addEventListener("click", function(event){openProject(projectUUID)}
+    projectOpenButton.addEventListener("click", function(event){
+      openProject(projectUUID)
+    }
     );
   }
 
-/// this one is onworking, how to populate, works with OpenButton Glyphicon
+function openProject(projectUUID) { 
+  let projectPrefixSpan = document.getElementById('projectPrefix');
+  let projectHeadlineSpan = document.getElementById('projectHeadline');  
+  projectPrefixSpan.innerHTML = '';
+  projectHeadlineSpan.innerHTML = '';
+  const projectIndex = addProjectToList.projectList.findIndex((el) => el.identifier === projectUUID);
+  let taskProjectPrefix = document.createTextNode('Project: ');
+  let taskProjectHead = document.createTextNode(addProjectToList.projectList[projectIndex].projectName);
 
-function openProject(projectUUID) {
-    let projectPrefixSpan = document.getElementById('projectPrefix');
-    let projectHeadlineSpan = document.getElementById('projectHeadline');
-  
-    let taskProjectHolder = document.getElementById('taskProjectHolder');
-    taskProjectHolder.innerText = '';
-  
-    projectPrefixSpan.innerHTML = '';
-    projectHeadlineSpan.innerHTML = '';
-
-   const projectIndex = addProjectToList.projectList.findIndex((el) => el.identifier === projectUUID);
-   let taskProjectPrefix = document.createTextNode('Project: ');
-   let taskProjectHead = document.createTextNode(addProjectToList.projectList[projectIndex].projectName);
-
-    document.getElementById('projectPrefix').appendChild(taskProjectPrefix); 
-    document.getElementById('projectHeadline').appendChild(taskProjectHead); 
-
-    // why does createTask button NOT expose 'taskOverallContainer.classList.toggle("flex");'
-    // when newProjectHeadline is appended? says taskOverallContainer is not defined
+  document.getElementById('projectPrefix').appendChild(taskProjectPrefix); 
+  document.getElementById('projectHeadline').appendChild(taskProjectHead); 
 
     // render/populate the TaskHolder with the TaskList that corresponds with the projectUUID
     // render/populare the TaskHolder that corresponds with duedates
