@@ -202,7 +202,6 @@ function createAddTaskField() {
   
     addTaskButton.addEventListener("click", function(event){
       addTaskToList.getValue();
-      console.log(addTaskToList.taskList);
       renderTask(addTaskToList.taskList);
       // this above works
     })

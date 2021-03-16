@@ -9,20 +9,28 @@ function renderTask(taskArray) {
     for (i = 0; i < taskArray.length; i++) {    
       let taskContainer = document.createElement("div");
       taskContainer.setAttribute("id", "TC" + taskArray[i].taskID);
-
-    //   addTaskDropdown() etc 
+      taskContainer.innerText = taskArray[i].taskName;
       document.getElementById("taskHolder").appendChild(taskContainer);
+      //addTaskName(i)
+        //   addTaskDropdown() etc 
+      console.log(taskArray)
     }
 }
 
-function addTaskName() {
-    
+function addTaskName(i) {
+    let TaskName = document.createElement("span");
+    taskName.setAttribute("id", "TN" + taskArray[i].taskID);
+    taskContainer.innerText = taskArray[i].taskName;
+    document.getElementById("TC" + taskArray[i].taskID).appendChild(taskName);
+
 }
 
-taskContainer.innerText = taskArray[i].taskName;
 // use this to find the projectName:
 // let taskProjectCurrentTitle = addProjectToList.projectList.find(x => x.identifier === taskProjectID).projectName;
-      
+
+
+
+
 function addTaskDropdown() {
     let addTaskDropdown = document.createElement("input");
     addTaskDropdown.setAttribute("type", "checkbox");
@@ -34,6 +42,7 @@ function addTaskDropdown() {
 // each one will be a capsule added to container
 // methods from addTask to list will need to be added to change each.
 // start off with just display, then write methods.
+
 
 export default renderTask;
 

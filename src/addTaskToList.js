@@ -35,7 +35,6 @@ const addTaskToList = {
         if(taskProjectSelector.classList.contains('flex')) {
             taskProjectSelector.classList.toggle("flex");
             } 
-        console.log(this.taskList)
     }
    };
 
