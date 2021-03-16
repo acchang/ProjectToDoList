@@ -1,5 +1,8 @@
 import addTaskToList from './addTaskToList';
 import addProjectToList from './addProjectToList';
+
+  import renderTask from './renderTask';
+
 // will need to import renderTask module.
 
 function createTaskInput() {
@@ -200,9 +203,9 @@ function createAddTaskField() {
   
     addTaskButton.addEventListener("click", function(event){
       addTaskToList.getValue();
-      // I need a render function here to go under the input module.
-      // render it to show on home, reverse order
-      // all the other links sort home by due date or project.
+
+      renderTask(addTaskToList.taskList);
+      // this above works
     })
   };
 

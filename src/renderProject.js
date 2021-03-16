@@ -109,7 +109,6 @@ function openProject(projectUUID) {
     // render/populate the TaskHolder with the TaskList that corresponds with the projectUUID
     // render/populare the TaskHolder that corresponds with duedates
     // createTaskInput()
-
   }
 
 export default renderProject;
