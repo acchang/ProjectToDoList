@@ -77,6 +77,8 @@ function addProjectTrashButton(projectUUID) {
       const deleteDivTarget = document.getElementById("C" + projectUUID);
       projectHolder.removeChild(deleteDivTarget);
       addProjectToList.deleteObject(projectUUID);
+// this should also target all tasks with UUID or taskProjectID and eliminate them
+// so something like addTasktoList.deleteProject(taskProjectID)
       console.log(addProjectToList.projectList)
     })
   };

@@ -27,11 +27,59 @@ function addTaskPriority(i,taskArray) {
     // pre-selected, then change attributes of askTaskName
     // change this on the fly so you can either color code or X out.
     // high is red and bold, medium black, muted low, done strikethrough.
-    let taskPriority = document.createElement("span");
-    taskPriority.setAttribute("id", "TP" + taskArray[i].taskID);
-    taskPriority.innerText = taskArray[i].taskPriority;
-    document.getElementById("TC" + taskArray[i].taskID).appendChild(taskPriority);
+    let taskRenderPrioritySelect = document.createElement("select");
+    taskRenderPrioritySelect.setAttribute("id", "taskRenderPrioritySelect" + taskArray[i].taskID);
+    taskRenderPrioritySelect.setAttribute("class", "taskRenderPrioritySelect");
+    taskRenderPrioritySelect.innerText = "test"
+    document.getElementById("TC" + taskArray[i].taskID).appendChild(taskRenderPrioritySelect);
+
+    let taskPriorityOptionHigh = document.createElement("option");
+    taskPriorityOptionHigh.setAttribute("id", "High" + taskArray[i].taskID);
+    taskPriorityOptionHigh.setAttribute("value", "High");
+    taskPriorityOptionHigh.innerText = "High"
+    document.getElementById("taskRenderPrioritySelect" + taskArray[i].taskID).appendChild(taskPriorityOptionHigh);
+
+    let taskPriorityOptionMed = document.createElement("option");
+    taskPriorityOptionMed.setAttribute("id", "Med"+ taskArray[i].taskID);
+    taskPriorityOptionMed.setAttribute("value", "Med");
+    taskPriorityOptionMed.innerText = "Med"
+    document.getElementById("taskRenderPrioritySelect" + taskArray[i].taskID).appendChild(taskPriorityOptionMed);
+
+    let taskPriorityOptionLow = document.createElement("option");
+    taskPriorityOptionLow.setAttribute("id", "Low"+ taskArray[i].taskID);
+    taskPriorityOptionLow.setAttribute("value", "Low");
+    taskPriorityOptionLow.innerText = "Low"
+    document.getElementById("taskRenderPrioritySelect" + taskArray[i].taskID).appendChild(taskPriorityOptionLow);
+
+    let taskPriorityOptionDone = document.createElement("option");
+    taskPriorityOptionDone.setAttribute("id", "Med"+ taskArray[i].taskID);
+    taskPriorityOptionDone.setAttribute("value", "Med");
+    taskPriorityOptionDone.innerText = "Med"
+    document.getElementById("taskRenderPrioritySelect" + taskArray[i].taskID).appendChild(taskPriorityOptionDone);
+    
+    const priorityTable = {
+        High: "0",
+        Medium: "1",
+        Low: "2",
+        Done: "3",
+      };
+
+    const priorityMapper = (rating) => priorityTable[rating];  
+    console.log(taskArray[i].taskPriority) // High
+    let priorityIndex = priorityMapper[taskArray[i].taskPriority];
+    alert(priorityIndex) // undefined
+    taskRenderPrioritySelect.options[priorityIndex].selected = true;
+
+//    taskArray[i].taskPriority
+//    const taskPriority = document.querySelector("#taskPrioritySelector").value;
+//    let taskProjectCurrentID = getProjectIdentifier();
+//    let taskProjectCurrentTitle = addProjectToList.projectList.find(x => x.identifier === taskProjectCurrentID).projectName;
+//     if (taskProjectOption.innerText === taskProjectCurrentTitle)
+//     {document.getElementById(taskProjectCurrentID).selected = "true"}  
+
 };
+
+
 
 function addTaskName(i,taskArray) {
     let taskName = document.createElement("span");
@@ -77,8 +125,7 @@ function addTaskEditNotes(i,taskArray) {
     taskEditNotesButton.addEventListener("click", function(event) {
         alert("edit open window")
         // adds window underneath showing editable notes, eventListener like editTaskName
-        // dropdown to reassign project
-        // date is editable too
+        // 3 methods for 3 options -- dropdown to reassign project, change notes, change date
         // updates addTasktoList
     })
 }
