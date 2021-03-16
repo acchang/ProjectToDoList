@@ -12,6 +12,7 @@ function renderTask(taskArray) {
       document.getElementById("taskHolder").appendChild(taskContainer);
       addTaskPriority(i,taskArray)
       addTaskName(i, taskArray);
+      editTaskName(i,taskArray)
       addTaskDue(i, taskArray);
       addTaskTrashIcon(i,taskArray);
       addTaskEditNotes(i,taskArray);
@@ -22,6 +23,8 @@ function renderTask(taskArray) {
 // Priority - Name - Due - Edit/notes - Delete
 
 function addTaskPriority(i,taskArray) {
+    // do this like the project, it's pre-selected
+    // pre-selected, then change attributes of askTaskName
     // change this on the fly so you can either color code or X out.
     // high is red and bold, medium black, muted low, done strikethrough.
     let taskPriority = document.createElement("span");
@@ -33,12 +36,26 @@ function addTaskPriority(i,taskArray) {
 function addTaskName(i,taskArray) {
     let taskName = document.createElement("span");
     taskName.setAttribute("id", "TN" + taskArray[i].taskID);
+    taskName.setAttribute("contentEditable", true);
     taskName.innerText = taskArray[i].taskName;
     document.getElementById("TC" + taskArray[i].taskID).appendChild(taskName);
-    // make name editable? problem is it will have to change taskArray and then taskArray will have to be refiltered?
-    // no, it's the same as deleting,
-    // updates addTasktoList
 };
+
+function editTaskName(i,taskArray) {
+    let newTaskName = document.getElementById("TN" + taskArray[i].taskID);
+
+    newTaskName.addEventListener('input', function() { 
+    const newTaskNameText = newTaskName.textContent;
+    addTaskToList.changeTaskName(taskArray[i].taskID, newTaskNameText)
+    })    
+
+    newTaskName.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter') {
+            e.preventDefault();
+        }
+      });
+  };
+
 
 function addTaskDue(i,taskArray) {
     let taskDue = document.createElement("span");
@@ -59,13 +76,12 @@ function addTaskEditNotes(i,taskArray) {
   
     taskEditNotesButton.addEventListener("click", function(event) {
         alert("edit open window")
-        // adds window underneath showing editable notes
+        // adds window underneath showing editable notes, eventListener like editTaskName
         // dropdown to reassign project
         // date is editable too
         // updates addTasktoList
     })
 }
-
 
 function addTaskTrashIcon(i,taskArray) {
     let taskTrashButton = document.createElement("button") 
@@ -80,19 +96,8 @@ function addTaskTrashIcon(i,taskArray) {
     taskTrashButton.addEventListener("click", function(event) {
       const deleteDivTarget = document.getElementById("TC" + taskArray[i].taskID);
       taskHolder.removeChild(deleteDivTarget);
-    //   addTaskToList.taskList.deleteObject(addTaskToList.taskList.taskID)
-      addTaskToList.deleteObject(addTaskToList.taskList.taskID)
-// n.taskList.deleteObject is not a function
-
-//    NEEDS some function to remove from TaskList by taskArray[i].taskID
-//    it will look like addProjectToList.deleteObject(projectUUID);
-//  addProjectToList.deleteObject(addProjectToList.projectList[addProjectToList.projectList.length-1].identifier);
+      addTaskToList.deleteObject(addTaskToList.taskList[i].taskID)
     })
 }
 
-
-
-
 export default renderTask;
-
-

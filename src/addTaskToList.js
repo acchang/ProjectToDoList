@@ -35,7 +35,17 @@ const addTaskToList = {
         if(taskProjectSelector.classList.contains('flex')) {
             taskProjectSelector.classList.toggle("flex");
             } 
-    }
+        },
+
+    deleteObject: function(taskID) {
+        this.taskList = this.taskList.filter(object => object.taskID !== taskID);
+        },
+
+    changeTaskName: function(taskID, newTaskNameText) {
+        const index = this.taskList.findIndex((el) => el.taskID === taskID);
+        this.taskList[index].taskName = newTaskNameText;
+        console.log(this.taskList)
+        }
    };
 
   export default addTaskToList;

@@ -15,7 +15,7 @@ function renderProject() {
   document.getElementById('projectHolder').appendChild(projectContainer);
   addProjectCheckbox(projectUUID);
   addProjectText(projectUUID, projectName);
-  editProjectText(projectUUID, projectName);
+  editProjectText(projectUUID);
   addProjectTrashButton(projectUUID);
   addProjectOpenButton(projectUUID);
 };
