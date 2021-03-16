@@ -1,25 +1,25 @@
 import { nanoid } from 'nanoid';
 
-
-function Task(taskName, taskID, taskPriority, taskDue, taskNotes, taskProject) {
+function Task(taskName, taskID, taskPriority, taskDue, taskNotes, taskProjectID) {
     this.taskName = taskName;
     this.taskID = taskID;
     this.taskPriority = taskPriority;
     this.taskDue = taskDue;
     this.taskNotes = taskNotes;
-    this.taskProject = taskProject;
+    this.taskProjectID = taskProjectID;
   }
 
 const addTaskToList = {
     taskList: [],
     getValue: function() {
+        let taskProject = document.querySelector("#taskProjectSelector").value
         const taskName = document.querySelector("#taskInputField").value;
         const taskID = nanoid();
         const taskPriority = document.querySelector("#taskPrioritySelector").value;
         const taskDue = document.querySelector("#taskCalendarSelector").value;
         const taskNotes = document.querySelector("#taskNotesBox").value;
-        const taskProject = document.querySelector("#taskProjectSelector").value;
-        const addTask = new Task(taskName, taskID, taskPriority, taskDue, taskNotes, taskProject);
+        const taskProjectID = document.querySelector("#taskProjectSelector").value;
+        const addTask = new Task(taskName, taskID, taskPriority, taskDue, taskNotes, taskProjectID);
         this.taskList.push(addTask);
         document.querySelector("#taskInputField").value = "";
         document.querySelector("#taskPrioritySelector").value = "";

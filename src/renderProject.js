@@ -47,13 +47,14 @@ function activateProjectCheckbox(projectUUID, projectContainerTextHolder) {
     })
 };
 
-function editProjectText(projectUUID, projectName) {
+function editProjectText(projectUUID) {
     let newProjectContainerTextHolder = document.getElementById("TH" + projectUUID);
     newProjectContainerTextHolder.addEventListener('input', function() {  
     const newProjectContainerText = newProjectContainerTextHolder.textContent;
     addProjectToList.changeProjectName(projectUUID, newProjectContainerText)
     })
 // it would be nice to dynamically change the task list heading too if currently showing
+// this will be done by the openProjectButton listening to ProjectText and changing if it changes.
     
     newProjectContainerTextHolder.addEventListener('keydown', function(e) {
         if (e.key === 'Enter') {

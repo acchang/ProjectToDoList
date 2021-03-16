@@ -1,16 +1,35 @@
 import addTaskToList from './addTaskToList';
+import addProjectToList from './addProjectToList';
 
 function renderTask(taskArray) {
+  let taskHolder = document.getElementById("taskHolder");
+  taskHolder.innerHTML = '';
+
     let i;
-    for (i = 0; i < taskArray.length; i++) {        
+    for (i = 0; i < taskArray.length; i++) {    
       let taskContainer = document.createElement("div");
-      taskContainer.setAttribute("id", taskArray[i].taskID);
-      taskContainer.innerText = taskArray[i].taskName;
+      taskContainer.setAttribute("id", "TC" + taskArray[i].taskID);
+
+    //   addTaskDropdown() etc 
       document.getElementById("taskHolder").appendChild(taskContainer);
     }
 }
 
-// so far so good above, taskArray is imported into renderTask
+function addTaskName() {
+    
+}
+
+taskContainer.innerText = taskArray[i].taskName;
+// use this to find the projectName:
+// let taskProjectCurrentTitle = addProjectToList.projectList.find(x => x.identifier === taskProjectID).projectName;
+      
+function addTaskDropdown() {
+    let addTaskDropdown = document.createElement("input");
+    addTaskDropdown.setAttribute("type", "checkbox");
+    addTaskDropdown.setAttribute("id", "CB" + taskArray[i].taskID);
+    document.getElementById("taskHolder").appendChild(addTaskDropdown)
+  }
+
 // display will show status, name, date, notes, project, delete.
 // each one will be a capsule added to container
 // methods from addTask to list will need to be added to change each.
@@ -37,12 +56,7 @@ export default renderTask;
 //   addProjectOpenButton(projectUUID);
 // };
 
-// function addProjectCheckbox(projectUUID) {
-//     let projectDoneCheckbox = document.createElement("input");
-//     projectDoneCheckbox.setAttribute("type", "checkbox");
-//     projectDoneCheckbox.setAttribute("id", "CB" + projectUUID);
-//     document.getElementById("C" + projectUUID).appendChild(projectDoneCheckbox)
-//   }
+
 
 // function addProjectText(projectUUID, projectName) {
 //     let projectContainerTextHolder = document.createElement("span");

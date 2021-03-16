@@ -1,7 +1,6 @@
 import addTaskToList from './addTaskToList';
 import addProjectToList from './addProjectToList';
-
-  import renderTask from './renderTask';
+import renderTask from './renderTask';
 
 // will need to import renderTask module.
 
@@ -203,7 +202,7 @@ function createAddTaskField() {
   
     addTaskButton.addEventListener("click", function(event){
       addTaskToList.getValue();
-
+      console.log(addTaskToList.taskList);
       renderTask(addTaskToList.taskList);
       // this above works
     })

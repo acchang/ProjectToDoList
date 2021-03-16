@@ -204,4 +204,6 @@ display: flex;
 
 .taskHolder {
   background-color: rgb(202, 200, 198);
+  display: flex;
+  flex-direction: column-reverse;
 }
