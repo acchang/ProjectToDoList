@@ -106,7 +106,7 @@ function openProject(projectUUID) {
 
   document.getElementById('projectPrefix').appendChild(taskProjectPrefix); 
   document.getElementById('projectHeadline').appendChild(taskProjectHead); 
-
+    // empty TaskHolder 
     // render/populate the TaskHolder with the TaskList that corresponds with the projectUUID
     // render/populare the TaskHolder that corresponds with duedates
     // createTaskInput()
