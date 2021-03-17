@@ -40,7 +40,7 @@ function createTaskInput() {
     document.getElementById("taskPriorityButton").appendChild(taskPriorityIcon);
   
     taskPriorityButton.addEventListener("click", function(event){ 
-    taskPrioritySelector.classList.toggle("flex")
+        taskPrioritySelector.classList.toggle("flex")
     });
   
     let taskPrioritySelector = document.createElement("select");
@@ -48,6 +48,8 @@ function createTaskInput() {
     taskPrioritySelector.setAttribute("id", "taskPrioritySelector");
     document.getElementById('taskPrioritySection').appendChild(taskPrioritySelector);
     
+    // 
+
     let taskPriorityOne = document.createElement("option");
     taskPriorityOne.setAttribute("value", "High");
     taskPriorityOne.innerText = "High";

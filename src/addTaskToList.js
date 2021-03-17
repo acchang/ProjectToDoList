@@ -44,8 +44,20 @@ const addTaskToList = {
     changeTaskName: function(taskID, newTaskNameText) {
         const index = this.taskList.findIndex((el) => el.taskID === taskID);
         this.taskList[index].taskName = newTaskNameText;
+        },
+
+    changeTaskPriority: function(taskID, newValue) {
+        const index = this.taskList.findIndex((el) => el.taskID === taskID);
+        this.taskList[index].taskPriority = newValue;
         console.log(this.taskList)
-        }
+        },
+
+    // deleteAllInProject: function(axedTaskProjectID) {
+    //     this.taskList = this.taskList.filter(object => object.taskProjectID !== axedTaskProjectID);
+    //     console.log(this.taskList)
+    //     },
+
+
    };
 
   export default addTaskToList;

@@ -1,4 +1,5 @@
 import addProjectToList from './addProjectToList';
+import addTaskToList from './addTaskToList';
 
 function renderProject() {
   const projectList = addProjectToList.projectList
@@ -77,6 +78,8 @@ function addProjectTrashButton(projectUUID) {
       const deleteDivTarget = document.getElementById("C" + projectUUID);
       projectHolder.removeChild(deleteDivTarget);
       addProjectToList.deleteObject(projectUUID);
+
+      // addTaskToList.deleteAllInProject(projectUUID);
 // this should also target all tasks with UUID or taskProjectID and eliminate them
 // so something like addTasktoList.deleteProject(taskProjectID)
       console.log(addProjectToList.projectList)

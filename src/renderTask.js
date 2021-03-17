@@ -12,49 +12,57 @@ function renderTask(taskArray) {
       document.getElementById("taskHolder").appendChild(taskContainer);
       addTaskPriority(i,taskArray)
       addTaskName(i, taskArray);
-      editTaskName(i,taskArray)
-      addTaskDue(i, taskArray);
+      editTaskName(i,taskArray);
       addTaskTrashIcon(i,taskArray);
       addTaskEditNotes(i,taskArray);
+      addTaskDue(i, taskArray);
       console.log(taskArray)
     }
 };
 
-// Priority - Name - Due - Edit/notes - Delete
-
 function addTaskPriority(i,taskArray) {
-    // do this like the project, it's pre-selected
-    // pre-selected, then change attributes of askTaskName
-    // change this on the fly so you can either color code or X out.
-    // high is red and bold, medium black, muted low, done strikethrough.
+// try refactor https://discord.com/channels/505093832157691914/513125308757442562/821757213361307710
+
+    function changePriorityToMatch() {
+        let value = document.getElementById('taskRenderPrioritySelect' + taskArray[i].taskID).value;
+        addTaskToList.changeTaskPriority(taskArray[i].taskID, value);
+        if(value == "Done") 
+        {
+          document.getElementById("TN" + taskArray[i].taskID).classList.toggle("done")
+        }
+        else {document.getElementById("TN" + taskArray[i].taskID).classList.remove("done");}
+      }
+
     let taskRenderPrioritySelect = document.createElement("select");
     taskRenderPrioritySelect.setAttribute("id", "taskRenderPrioritySelect" + taskArray[i].taskID);
     taskRenderPrioritySelect.setAttribute("class", "taskRenderPrioritySelect");
-    taskRenderPrioritySelect.innerText = "test"
     document.getElementById("TC" + taskArray[i].taskID).appendChild(taskRenderPrioritySelect);
 
+    taskRenderPrioritySelect.addEventListener("change", changePriorityToMatch);
+    // selected maybe goes here too?
     let taskPriorityOptionHigh = document.createElement("option");
     taskPriorityOptionHigh.setAttribute("id", "High" + taskArray[i].taskID);
     taskPriorityOptionHigh.setAttribute("value", "High");
-    taskPriorityOptionHigh.innerText = "High"
+    taskPriorityOptionHigh.innerText = "🟥"
     document.getElementById("taskRenderPrioritySelect" + taskArray[i].taskID).appendChild(taskPriorityOptionHigh);
 
     let taskPriorityOptionMed = document.createElement("option");
     taskPriorityOptionMed.setAttribute("id", "Med"+ taskArray[i].taskID);
     taskPriorityOptionMed.setAttribute("value", "Med");
-    taskPriorityOptionMed.innerText = "Med"
+    taskPriorityOptionMed.innerText = "🔲"
     document.getElementById("taskRenderPrioritySelect" + taskArray[i].taskID).appendChild(taskPriorityOptionMed);
 
     let taskPriorityOptionLow = document.createElement("option");
     taskPriorityOptionLow.setAttribute("id", "Low"+ taskArray[i].taskID);
     taskPriorityOptionLow.setAttribute("value", "Low");
-    taskPriorityOptionLow.innerText = "Low"
+    taskPriorityOptionLow.innerText = "⬜️"
     document.getElementById("taskRenderPrioritySelect" + taskArray[i].taskID).appendChild(taskPriorityOptionLow);
 
     let taskPriorityOptionDone = document.createElement("option");
-    taskPriorityOptionDone.setAttribute("id", "Med"+ taskArray[i].taskID);
-    taskPriorityOptionDone.setAttribute("value", "Med");
-    taskPriorityOptionDone.innerText = "Med"
+    taskPriorityOptionDone.setAttribute("id", "Done"+ taskArray[i].taskID);
+    taskPriorityOptionDone.setAttribute("value", "Done");
+    taskPriorityOptionDone.innerText = "𝗫"
+
     document.getElementById("taskRenderPrioritySelect" + taskArray[i].taskID).appendChild(taskPriorityOptionDone);
     
     const priorityTable = {
@@ -64,18 +72,19 @@ function addTaskPriority(i,taskArray) {
         Done: "3",
       };
 
-    const priorityMapper = (rating) => priorityTable[rating];  
-    console.log(taskArray[i].taskPriority) // High
-    let priorityIndex = priorityMapper[taskArray[i].taskPriority];
-    alert(priorityIndex) // undefined
-    taskRenderPrioritySelect.options[priorityIndex].selected = true;
+      let priorityChoice = taskArray[i].taskPriority;
+    
+    //   if (priorityChoice="") {(console.log(priorityChoice))}
 
-//    taskArray[i].taskPriority
-//    const taskPriority = document.querySelector("#taskPrioritySelector").value;
-//    let taskProjectCurrentID = getProjectIdentifier();
-//    let taskProjectCurrentTitle = addProjectToList.projectList.find(x => x.identifier === taskProjectCurrentID).projectName;
-//     if (taskProjectOption.innerText === taskProjectCurrentTitle)
-//     {document.getElementById(taskProjectCurrentID).selected = "true"}  
+      const priorityMapper = (rating) => priorityTable[rating]; 
+      let priorityIndex = priorityMapper(priorityChoice);
+      taskRenderPrioritySelect.options[priorityIndex].selected = true;
+
+// why default to high?
+// error occurs when there are no options selected, so it can't be translated over. 
+// main.js:2 Uncaught TypeError: Cannot set property 'selected' of undefined
+// try updating priorityTable so when there's nothing, it selects something.
+// if taskArray[i].taskPriority is anything, give it a medium.
 
 };
 
@@ -108,6 +117,7 @@ function editTaskName(i,taskArray) {
 function addTaskDue(i,taskArray) {
     let taskDue = document.createElement("span");
     taskDue.setAttribute("id", "TD" + taskArray[i].taskID);
+    taskDue.setAttribute("class", "right");
     taskDue.innerText = taskArray[i].taskDue;
     document.getElementById("TC" + taskArray[i].taskID).appendChild(taskDue);
 };
@@ -123,9 +133,14 @@ function addTaskEditNotes(i,taskArray) {
     document.getElementById("TE" + taskArray[i].taskID).appendChild(taskEditIcon);
   
     taskEditNotesButton.addEventListener("click", function(event) {
-        alert("edit open window")
+
+        let taskEditWindow = document.createElement("div") 
+        taskEditWindow.setAttribute("id", "EW" + taskArray[i].taskID)
+        taskEditWindow.innerText = addTaskToList.taskList[i].taskNotes
+        document.getElementById("TC" + taskArray[i].taskID).appendChild(taskEditWindow);
+
         // adds window underneath showing editable notes, eventListener like editTaskName
-        // 3 methods for 3 options -- dropdown to reassign project, change notes, change date
+        // 3 methods for 3 options -- change notes, change date, dropdown to reassign project
         // updates addTasktoList
     })
 }
