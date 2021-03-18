@@ -116,11 +116,19 @@ font-size: medium;
 }
 
 .taskInputContainer {
-/* display: none; */
 display: flex;
 justify-content: space-between;
 padding: 5px;
 }
+
+.taskEditNotes {
+  display: none;
+  }
+
+.taskEditProject {
+  display: none;
+  }
+
 
 .taskPrioritySection {
   display: flex;
