@@ -54,6 +54,11 @@ const addTaskToList = {
     changeTaskDate: function (taskID, newValue) {
         const index = this.taskList.findIndex((el) => el.taskID === taskID);
         this.taskList[index].taskDue = newValue;
+        },
+
+    changeTaskNotes: function (taskID, newValue) {
+        const index = this.taskList.findIndex((el) => el.taskID === taskID);
+        this.taskList[index].taskNotes = newValue;
         console.log(this.taskList)
         },
 

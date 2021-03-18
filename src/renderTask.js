@@ -6,18 +6,21 @@ function renderTask(taskArray) {
   taskHolder.innerHTML = '';
 
     let i;
-    for (i = 0; i < taskArray.length; i++) {    
-      let taskContainer = document.createElement("div");
-      taskContainer.setAttribute("id", "TC" + taskArray[i].taskID);
-      document.getElementById("taskHolder").appendChild(taskContainer);
-      addTaskName(i, taskArray);
-      editTaskName(i,taskArray);
-      addTaskPriority(i,taskArray)
-      addTaskTrashIcon(i,taskArray);
-      addTaskProjectEdit(i,taskArray)
-      addTaskNotesEdit(i,taskArray);
-      addTaskDueEditable(i,taskArray);
-      console.log(taskArray)
+    for (i = 0; i < taskArray.length; i++) {
+      let bigTaskContainer = document.createElement("div");
+      bigTaskContainer.setAttribute("id", "BTC" + taskArray[i].taskID);  
+      document.getElementById("taskHolder").appendChild(bigTaskContainer);  
+        let taskContainer = document.createElement("div");
+        taskContainer.setAttribute("id", "TC" + taskArray[i].taskID);
+        document.getElementById("BTC" + taskArray[i].taskID).appendChild(taskContainer);
+        addTaskName(i, taskArray);
+        editTaskName(i,taskArray);
+        addTaskPriority(i,taskArray)
+        addTaskTrashIcon(i,taskArray);
+        addTaskProjectEdit(i,taskArray)
+        addTaskNotesEdit(i,taskArray);
+        addTaskDueEditable(i,taskArray);
+        console.log(taskArray)
     }
 };
 
@@ -124,7 +127,7 @@ function addTaskDueEditable(i,taskArray) {
         taskDueField.addEventListener('input', function() { 
         const newTaskDue = taskDueField.value;
         addTaskToList.changeTaskDate(taskArray[i].taskID, newTaskDue)
-        })    
+        }) 
 };
 
 function addTaskNotesEdit(i,taskArray) {
@@ -137,18 +140,32 @@ function addTaskNotesEdit(i,taskArray) {
     taskEditIcon.setAttribute("class", "glyphicon glyphicon-edit")
     document.getElementById("TE" + taskArray[i].taskID).appendChild(taskEditIcon);
 
-    let taskEditWindow = document.createElement("div") 
-    taskEditWindow.setAttribute("id", "EW" + taskArray[i].taskID)
-    taskEditWindow.setAttribute("class", "flex")
-    taskEditWindow.innerText = "Notes: " + addTaskToList.taskList[i].taskNotes
-    document.getElementById("TC" + taskArray[i].taskID).appendChild(taskEditWindow);
-
     taskEditNotesButton.addEventListener("click", function(event) {
-        alert("button")
-        document.getElementById("EW" + taskArray[i].taskID).classList.toggle("none");
+        document.getElementById("EN" + taskArray[i].taskID).classList.toggle("flex");
     })
-    
-    
+
+    let taskEditNotes = document.createElement("div") 
+    taskEditNotes.setAttribute("id", "EN" + taskArray[i].taskID)
+    taskEditNotes.setAttribute("class", "taskEditNotes")
+    document.getElementById("BTC" + taskArray[i].taskID).appendChild(taskEditNotes);
+
+    let taskEditNotesHeader = document.createElement("span") 
+    taskEditNotesHeader.setAttribute("id", "ENH" + taskArray[i].taskID)
+    taskEditNotesHeader.setAttribute("class", "taskEditNotesHeader")
+    taskEditNotes.innerText = "Notes:" 
+    document.getElementById("EN" + taskArray[i].taskID).appendChild(taskEditNotesHeader);
+
+    let taskEditNotesText = document.createElement("span") 
+    taskEditNotesText.setAttribute("id", "ENT" + taskArray[i].taskID)
+    taskEditNotesText.setAttribute("class", " taskEditNotesText")
+    taskEditNotesText.innerText = addTaskToList.taskList[i].taskNotes
+    taskEditNotesText.setAttribute("contentEditable", true)
+    document.getElementById("EN" + taskArray[i].taskID).appendChild(taskEditNotesText);
+
+    taskEditNotesText.addEventListener('input', function() { 
+        const newTaskNotes = taskEditNotesText.textContent;
+        addTaskToList.changeTaskNotes(taskArray[i].taskID, newTaskNotes)
+        })     
 }
 
 function addTaskProjectEdit(i,taskArray) {
@@ -162,15 +179,38 @@ function addTaskProjectEdit(i,taskArray) {
     document.getElementById("TBP" + taskArray[i].taskID).appendChild(taskEditIcon);
 
     taskEditNotesButton.addEventListener("click", function(event) {
-        alert("project") // not even clicking
-        // document.getElementById("EW" + taskArray[i].taskID).classList.toggle("none");
+        alert("project")
+        document.getElementById("EP" + taskArray[i].taskID).classList.toggle("flex");
     })
-    // let taskEditWindow = document.createElement("div") 
-    // // this div is a new line in the TC
-    // taskEditWindow.setAttribute("id", "EW" + taskArray[i].taskID)
-    // taskEditWindow.innerText = "Notes: " + addTaskToList.taskList[i].taskNotes
-    // document.getElementById("TC" + taskArray[i].taskID).appendChild(taskEditWindow);
-}
+
+    let taskEditProject = document.createElement("div") 
+    taskEditProject.setAttribute("id", "EP" + taskArray[i].taskID)
+    taskEditProject.setAttribute("class", "taskEditProject")
+    // taskEditProject.innerText = "XXX"
+    document.getElementById("BTC" + taskArray[i].taskID).appendChild(taskEditProject);
+
+    let taskEditProjectSelector = document.createElement("select");
+    taskEditProjectSelector.setAttribute("id", "TEPS" + taskArray[i].taskID);
+    taskEditProjectSelector.setAttribute("class", "taskEditProjectSelector");
+    document.getElementById("EP" + taskArray[i].taskID).appendChild(taskEditProjectSelector);
+        
+    let listOfProjects = addProjectToList.projectList;
+    let p;
+    for (p = 0; p < listOfProjects.length; p++) {        
+        let taskProjectOption = document.createElement("option");
+        taskProjectOption.setAttribute("id", listOfProjects[p].identifier);
+        taskProjectOption.setAttribute("value", listOfProjects[p].identifier);
+        taskProjectOption.innerText = listOfProjects[p].projectName;
+        document.getElementById("TEPS" + taskArray[i].taskID).appendChild(taskProjectOption);}
+};
+
+// now just have to mak dropdown correspond to input and change in array if changed.
+
+//const taskProjectID = document.querySelector("#taskProjectSelector").value;
+    //   let taskProjectCurrentID = getProjectIdentifier();
+    //   let taskProjectCurrentTitle = addProjectToList.projectList.find(x => x.identifier === taskProjectCurrentID).projectName;
+    //   if (taskProjectOption.innerText === taskProjectCurrentTitle)
+    //     {document.getElementById(taskProjectCurrentID).selected = "true"}  
 
 
 function addTaskTrashIcon(i,taskArray) {
@@ -184,7 +224,7 @@ function addTaskTrashIcon(i,taskArray) {
     document.getElementById("TBT" + taskArray[i].taskID).appendChild(taskTrashIcon);
   
     taskTrashButton.addEventListener("click", function(event) {
-      const deleteDivTarget = document.getElementById("TC" + taskArray[i].taskID);
+      const deleteDivTarget = document.getElementById("BTC" + taskArray[i].taskID);
       taskHolder.removeChild(deleteDivTarget);
       addTaskToList.deleteObject(addTaskToList.taskList[i].taskID)
     })
