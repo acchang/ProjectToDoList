@@ -31,6 +31,9 @@ display: block;
 .right {
 float: right;}
 
+.left {
+  float: left;}
+
 .behind-glyphicon {
 position: absolute;
 left: -100vw;
@@ -160,7 +163,6 @@ border-bottom: double;
   width: 400px;
   height: 100px;
 }
-
 
 .flex {
 display: flex;

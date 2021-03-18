@@ -9,13 +9,15 @@ function renderTask(taskArray) {
     for (i = 0; i < taskArray.length; i++) {    
       let taskContainer = document.createElement("div");
       taskContainer.setAttribute("id", "TC" + taskArray[i].taskID);
+    //   taskContainer.setAttribute("class", "flex");
       document.getElementById("taskHolder").appendChild(taskContainer);
-      addTaskPriority(i,taskArray)
       addTaskName(i, taskArray);
       editTaskName(i,taskArray);
+      addTaskPriority(i,taskArray)
       addTaskTrashIcon(i,taskArray);
       addTaskEditNotes(i,taskArray);
-      addTaskDue(i, taskArray);
+    //   addTaskDue(i, taskArray);
+      addTaskDueEdit(i,taskArray);
       console.log(taskArray)
     }
 };
@@ -23,23 +25,11 @@ function renderTask(taskArray) {
 function addTaskPriority(i,taskArray) {
 // try refactor https://discord.com/channels/505093832157691914/513125308757442562/821757213361307710
 
-    function changePriorityToMatch() {
-        let value = document.getElementById('taskRenderPrioritySelect' + taskArray[i].taskID).value;
-        addTaskToList.changeTaskPriority(taskArray[i].taskID, value);
-        if(value == "Done") 
-        {
-          document.getElementById("TN" + taskArray[i].taskID).classList.toggle("done")
-        }
-        else {document.getElementById("TN" + taskArray[i].taskID).classList.remove("done");}
-      }
-
     let taskRenderPrioritySelect = document.createElement("select");
     taskRenderPrioritySelect.setAttribute("id", "taskRenderPrioritySelect" + taskArray[i].taskID);
-    taskRenderPrioritySelect.setAttribute("class", "taskRenderPrioritySelect");
+    taskRenderPrioritySelect.setAttribute("class", "taskRenderPrioritySelect left");
     document.getElementById("TC" + taskArray[i].taskID).appendChild(taskRenderPrioritySelect);
-
-    taskRenderPrioritySelect.addEventListener("change", changePriorityToMatch);
-    // selected maybe goes here too?
+    
     let taskPriorityOptionHigh = document.createElement("option");
     taskPriorityOptionHigh.setAttribute("id", "High" + taskArray[i].taskID);
     taskPriorityOptionHigh.setAttribute("value", "High");
@@ -72,23 +62,30 @@ function addTaskPriority(i,taskArray) {
         Done: "3",
       };
 
-      let priorityChoice = taskArray[i].taskPriority;
-    
-    //   if (priorityChoice="") {(console.log(priorityChoice))}
+    let priorityChoice = taskArray[i].taskPriority;
+    if (priorityChoice === '' || priorityChoice === null || priorityChoice === undefined) {
+        taskRenderPrioritySelect.options[1].selected = true;
+    } else if (priorityChoice == "Done") {
+        taskRenderPrioritySelect.options[3].selected = true;
+        document.getElementById("TN" + taskArray[i].taskID).classList.toggle("done");
+    } else {
+        const priorityMapper = (rating) => priorityTable[rating];
+        let priorityIndex = priorityMapper(priorityChoice);
+        taskRenderPrioritySelect.options[priorityIndex].selected = true;
+    }
 
-      const priorityMapper = (rating) => priorityTable[rating]; 
-      let priorityIndex = priorityMapper(priorityChoice);
-      taskRenderPrioritySelect.options[priorityIndex].selected = true;
+    taskRenderPrioritySelect.addEventListener("change", changeArrayPriorityToMatch);
 
-// why default to high?
-// error occurs when there are no options selected, so it can't be translated over. 
-// main.js:2 Uncaught TypeError: Cannot set property 'selected' of undefined
-// try updating priorityTable so when there's nothing, it selects something.
-// if taskArray[i].taskPriority is anything, give it a medium.
-
+    function changeArrayPriorityToMatch() {
+        let value = document.getElementById('taskRenderPrioritySelect' + taskArray[i].taskID).value;
+        addTaskToList.changeTaskPriority(taskArray[i].taskID, value);
+        if(value == "Done") 
+        {
+          document.getElementById("TN" + taskArray[i].taskID).classList.toggle("done")
+        }
+        else {document.getElementById("TN" + taskArray[i].taskID).classList.remove("done");}
+      }
 };
-
-
 
 function addTaskName(i,taskArray) {
     let taskName = document.createElement("span");
@@ -114,12 +111,37 @@ function editTaskName(i,taskArray) {
   };
 
 
-function addTaskDue(i,taskArray) {
-    let taskDue = document.createElement("span");
-    taskDue.setAttribute("id", "TD" + taskArray[i].taskID);
-    taskDue.setAttribute("class", "right");
-    taskDue.innerText = taskArray[i].taskDue;
-    document.getElementById("TC" + taskArray[i].taskID).appendChild(taskDue);
+// function addTaskDue(i,taskArray) {
+//     let taskDue = document.createElement("span");
+//     taskDue.setAttribute("id", "TD" + taskArray[i].taskID);
+//     taskDue.setAttribute("class", "right");
+//     taskDue.innerText = taskArray[i].taskDue;
+//     document.getElementById("TC" + taskArray[i].taskID).appendChild(taskDue);
+// };
+
+function addTaskDueEdit(i,taskArray) {
+    let addTaskDueEdit = document.createElement("span");
+    addTaskDueEdit.setAttribute("id", "TE" + taskArray[i].taskID);
+    addTaskDueEdit.setAttribute("class", "right");
+    document.getElementById("TC" + taskArray[i].taskID).appendChild(addTaskDueEdit);
+
+        let taskDueField = document.createElement("input");
+        taskDueField.setAttribute("id", "TD" + taskArray[i].taskID);
+        taskDueField.setAttribute("type", "date");
+        taskDueField.setAttribute("value", taskArray[i].taskDue);
+        document.getElementById("TE" + taskArray[i].taskID).appendChild(taskDueField);
+
+        taskDueField.addEventListener('input', function() { 
+        const newTaskDue = taskDueField.value;
+        addTaskToList.changeTaskDate(taskArray[i].taskID, newTaskDue)
+        })    
+
+        // I don't need a button, just change with Eventlistener
+            // let taskDueButton = document.createElement("button");
+            // taskDueButton.setAttribute("id", "TB" + taskArray[i].taskID);
+            // document.getElementById("TE" + taskArray[i].taskID).appendChild(taskDueButton);
+        // addTaskToList.changeTaskName(taskArray[i].taskID, newTaskNameText)
+
 };
 
 function addTaskEditNotes(i,taskArray) {
@@ -133,16 +155,19 @@ function addTaskEditNotes(i,taskArray) {
     document.getElementById("TE" + taskArray[i].taskID).appendChild(taskEditIcon);
   
     taskEditNotesButton.addEventListener("click", function(event) {
-
-        let taskEditWindow = document.createElement("div") 
-        taskEditWindow.setAttribute("id", "EW" + taskArray[i].taskID)
-        taskEditWindow.innerText = addTaskToList.taskList[i].taskNotes
-        document.getElementById("TC" + taskArray[i].taskID).appendChild(taskEditWindow);
-
-        // adds window underneath showing editable notes, eventListener like editTaskName
-        // 3 methods for 3 options -- change notes, change date, dropdown to reassign project
-        // updates addTasktoList
+        // toggle to open and close
     })
+
+    let taskEditWindow = document.createElement("div") 
+    // this div is a new line in the TC
+    taskEditWindow.setAttribute("id", "EW" + taskArray[i].taskID)
+    taskEditWindow.innerText = "Notes: " + addTaskToList.taskList[i].taskNotes
+    document.getElementById("TC" + taskArray[i].taskID).appendChild(taskEditWindow);
+
+    // adds window underneath showing editable notes, eventListener like editTaskName
+    // 2 methods for 2 options -- change notes, dropdown to reassign project
+    // updates addTasktoList
+
 }
 
 function addTaskTrashIcon(i,taskArray) {

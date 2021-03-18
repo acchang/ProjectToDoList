@@ -2,8 +2,6 @@ import addTaskToList from './addTaskToList';
 import addProjectToList from './addProjectToList';
 import renderTask from './renderTask';
 
-// will need to import renderTask module.
-
 function createTaskInput() {
     let taskOverallContainer = document.createElement("div");
     taskOverallContainer.setAttribute("class", "taskOverallContainer");
@@ -22,7 +20,6 @@ function createTaskInput() {
     createAddTaskField();
     console.log(addTaskToList.taskList)
   };
-
 
   function createTaskPriorityField() {
     let taskPrioritySection = document.createElement("span");
@@ -47,8 +44,6 @@ function createTaskInput() {
     taskPrioritySelector.setAttribute("class", "taskPrioritySelector");
     taskPrioritySelector.setAttribute("id", "taskPrioritySelector");
     document.getElementById('taskPrioritySection').appendChild(taskPrioritySelector);
-    
-    // 
 
     let taskPriorityOne = document.createElement("option");
     taskPriorityOne.setAttribute("value", "High");
@@ -69,6 +64,8 @@ function createTaskInput() {
     taskPriorityFour.setAttribute("value", "Done");
     taskPriorityFour.innerText = "Done";
     document.getElementById("taskPrioritySelector").appendChild(taskPriorityFour);
+
+    document.getElementById("taskPrioritySelector").value= "Medium";
   };
 
 
