@@ -9,15 +9,14 @@ function renderTask(taskArray) {
     for (i = 0; i < taskArray.length; i++) {    
       let taskContainer = document.createElement("div");
       taskContainer.setAttribute("id", "TC" + taskArray[i].taskID);
-    //   taskContainer.setAttribute("class", "flex");
       document.getElementById("taskHolder").appendChild(taskContainer);
       addTaskName(i, taskArray);
       editTaskName(i,taskArray);
       addTaskPriority(i,taskArray)
       addTaskTrashIcon(i,taskArray);
-      addTaskEditNotes(i,taskArray);
-    //   addTaskDue(i, taskArray);
-      addTaskDueEdit(i,taskArray);
+      addTaskProjectEdit(i,taskArray)
+      addTaskNotesEdit(i,taskArray);
+      addTaskDueEditable(i,taskArray);
       console.log(taskArray)
     }
 };
@@ -110,75 +109,79 @@ function editTaskName(i,taskArray) {
       });
   };
 
-
-// function addTaskDue(i,taskArray) {
-//     let taskDue = document.createElement("span");
-//     taskDue.setAttribute("id", "TD" + taskArray[i].taskID);
-//     taskDue.setAttribute("class", "right");
-//     taskDue.innerText = taskArray[i].taskDue;
-//     document.getElementById("TC" + taskArray[i].taskID).appendChild(taskDue);
-// };
-
-function addTaskDueEdit(i,taskArray) {
+function addTaskDueEditable(i,taskArray) {
     let addTaskDueEdit = document.createElement("span");
-    addTaskDueEdit.setAttribute("id", "TE" + taskArray[i].taskID);
+    addTaskDueEdit.setAttribute("id", "TDE" + taskArray[i].taskID);
     addTaskDueEdit.setAttribute("class", "right");
     document.getElementById("TC" + taskArray[i].taskID).appendChild(addTaskDueEdit);
 
         let taskDueField = document.createElement("input");
-        taskDueField.setAttribute("id", "TD" + taskArray[i].taskID);
+        taskDueField.setAttribute("id", "TDF" + taskArray[i].taskID);
         taskDueField.setAttribute("type", "date");
         taskDueField.setAttribute("value", taskArray[i].taskDue);
-        document.getElementById("TE" + taskArray[i].taskID).appendChild(taskDueField);
+        document.getElementById("TDE" + taskArray[i].taskID).appendChild(taskDueField);
 
         taskDueField.addEventListener('input', function() { 
         const newTaskDue = taskDueField.value;
         addTaskToList.changeTaskDate(taskArray[i].taskID, newTaskDue)
         })    
-
-        // I don't need a button, just change with Eventlistener
-            // let taskDueButton = document.createElement("button");
-            // taskDueButton.setAttribute("id", "TB" + taskArray[i].taskID);
-            // document.getElementById("TE" + taskArray[i].taskID).appendChild(taskDueButton);
-        // addTaskToList.changeTaskName(taskArray[i].taskID, newTaskNameText)
-
 };
 
-function addTaskEditNotes(i,taskArray) {
+function addTaskNotesEdit(i,taskArray) {
     let taskEditNotesButton = document.createElement("button") 
-    taskEditNotesButton.setAttribute("class", "projectTrashButton icon-button right")
+    taskEditNotesButton.setAttribute("class", "right")
     taskEditNotesButton.setAttribute("id", "TE" + taskArray[i].taskID)
     document.getElementById("TC" + taskArray[i].taskID).appendChild(taskEditNotesButton);
-  
+
     let taskEditIcon = document.createElement("span") 
     taskEditIcon.setAttribute("class", "glyphicon glyphicon-edit")
     document.getElementById("TE" + taskArray[i].taskID).appendChild(taskEditIcon);
-  
-    taskEditNotesButton.addEventListener("click", function(event) {
-        // toggle to open and close
-    })
 
     let taskEditWindow = document.createElement("div") 
-    // this div is a new line in the TC
     taskEditWindow.setAttribute("id", "EW" + taskArray[i].taskID)
+    taskEditWindow.setAttribute("class", "flex")
     taskEditWindow.innerText = "Notes: " + addTaskToList.taskList[i].taskNotes
     document.getElementById("TC" + taskArray[i].taskID).appendChild(taskEditWindow);
 
-    // adds window underneath showing editable notes, eventListener like editTaskName
-    // 2 methods for 2 options -- change notes, dropdown to reassign project
-    // updates addTasktoList
-
+    taskEditNotesButton.addEventListener("click", function(event) {
+        alert("button")
+        document.getElementById("EW" + taskArray[i].taskID).classList.toggle("none");
+    })
+    
+    
 }
+
+function addTaskProjectEdit(i,taskArray) {
+    let taskEditNotesButton = document.createElement("button") 
+    taskEditNotesButton.setAttribute("class", "right")
+    taskEditNotesButton.setAttribute("id", "TBP" + taskArray[i].taskID)
+    document.getElementById("TC" + taskArray[i].taskID).appendChild(taskEditNotesButton);
+
+    let taskEditIcon = document.createElement("span") 
+    taskEditIcon.setAttribute("class", "glyphicon glyphicon-folder-open")
+    document.getElementById("TBP" + taskArray[i].taskID).appendChild(taskEditIcon);
+
+    taskEditNotesButton.addEventListener("click", function(event) {
+        alert("project") // not even clicking
+        // document.getElementById("EW" + taskArray[i].taskID).classList.toggle("none");
+    })
+    // let taskEditWindow = document.createElement("div") 
+    // // this div is a new line in the TC
+    // taskEditWindow.setAttribute("id", "EW" + taskArray[i].taskID)
+    // taskEditWindow.innerText = "Notes: " + addTaskToList.taskList[i].taskNotes
+    // document.getElementById("TC" + taskArray[i].taskID).appendChild(taskEditWindow);
+}
+
 
 function addTaskTrashIcon(i,taskArray) {
     let taskTrashButton = document.createElement("button") 
-    taskTrashButton.setAttribute("class", "projectTrashButton icon-button right")
-    taskTrashButton.setAttribute("id", "TB" + taskArray[i].taskID)
+    taskTrashButton.setAttribute("class", "right")
+    taskTrashButton.setAttribute("id", "TBT" + taskArray[i].taskID)
     document.getElementById("TC" + taskArray[i].taskID).appendChild(taskTrashButton);
   
     let taskTrashIcon = document.createElement("span") 
     taskTrashIcon.setAttribute("class", "glyphicon glyphicon-trash")
-    document.getElementById("TB" + taskArray[i].taskID).appendChild(taskTrashIcon);
+    document.getElementById("TBT" + taskArray[i].taskID).appendChild(taskTrashIcon);
   
     taskTrashButton.addEventListener("click", function(event) {
       const deleteDivTarget = document.getElementById("TC" + taskArray[i].taskID);

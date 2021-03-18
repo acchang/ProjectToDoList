@@ -51,7 +51,7 @@ const addTaskToList = {
         this.taskList[index].taskPriority = newValue;
         },
     
-    changeTaskDate: function (taskArray[i].taskID, newValue) {
+    changeTaskDate: function (taskID, newValue) {
         const index = this.taskList.findIndex((el) => el.taskID === taskID);
         this.taskList[index].taskDue = newValue;
         console.log(this.taskList)
