@@ -1,5 +1,6 @@
 import addTaskToList from './addTaskToList';
 import addProjectToList from './addProjectToList';
+import { fromUnixTime } from 'date-fns';
 
 function renderTask(taskArray) {
   let taskHolder = document.getElementById("taskHolder");
@@ -179,14 +180,12 @@ function addTaskProjectEdit(i,taskArray) {
     document.getElementById("TBP" + taskArray[i].taskID).appendChild(taskEditIcon);
 
     taskEditNotesButton.addEventListener("click", function(event) {
-        alert("project")
         document.getElementById("EP" + taskArray[i].taskID).classList.toggle("flex");
     })
 
     let taskEditProject = document.createElement("div") 
     taskEditProject.setAttribute("id", "EP" + taskArray[i].taskID)
     taskEditProject.setAttribute("class", "taskEditProject")
-    // taskEditProject.innerText = "XXX"
     document.getElementById("BTC" + taskArray[i].taskID).appendChild(taskEditProject);
 
     let taskEditProjectSelector = document.createElement("select");
@@ -198,19 +197,45 @@ function addTaskProjectEdit(i,taskArray) {
     let p;
     for (p = 0; p < listOfProjects.length; p++) {        
         let taskProjectOption = document.createElement("option");
-        taskProjectOption.setAttribute("id", listOfProjects[p].identifier);
+        // taskProjectOption.setAttribute("id", listOfProjects[p].identifier);
+        taskProjectOption.setAttribute("id", p);
         taskProjectOption.setAttribute("value", listOfProjects[p].identifier);
         taskProjectOption.innerText = listOfProjects[p].projectName;
-        document.getElementById("TEPS" + taskArray[i].taskID).appendChild(taskProjectOption);}
+        document.getElementById("TEPS" + taskArray[i].taskID).appendChild(taskProjectOption);
+        
+        // document.getElementById(taskArray[i].taskProjectID).selected = "true";
+        // elsewhere I did: taskRenderPrioritySelect.options[priorityIndex].selected = true;
+        // taskEditProjectSelector.options[taskEditProjectSelector.options.length].selected = true;
+    };  
+
+    // document.getElementById(1).selected = "true";
+    // document.getElementById(i).selected = "true";
+    // these worked for first take, I need it to fire every time that a task is constructed.  
+    // it only changes the first task created 
+
+
 };
 
-// now just have to mak dropdown correspond to input and change in array if changed.
 
-//const taskProjectID = document.querySelector("#taskProjectSelector").value;
-    //   let taskProjectCurrentID = getProjectIdentifier();
-    //   let taskProjectCurrentTitle = addProjectToList.projectList.find(x => x.identifier === taskProjectCurrentID).projectName;
-    //   if (taskProjectOption.innerText === taskProjectCurrentTitle)
-    //     {document.getElementById(taskProjectCurrentID).selected = "true"}  
+// function selectOption(i,taskArray) {
+    // document.getElementById("orange").selected = "true";
+//     document.getElementById(taskArray[i].taskProjectID).selected = "true"
+//   }
+
+// document.getElementById(addTaskToList.taskList[i].taskProjectID).selected = "true"
+
+// (1) make dropdown correspond to input 
+// I've built this dropdown, I have data on the identifier, why doesn't it select?
+// tried these & an unnecesary if
+// document.getElementById(addTaskToList.taskList[i].taskProjectID).selected = true
+// let in front, different IDs: addTaskToList.taskList[i].taskProjectID, taskProjectOption.value, taskProjectOption.id
+//     if (taskProjectOption.value === addTaskToList.taskList[i].taskProjectID)
+//     {
+//         document.getElementById(addTaskToList.taskList[i].taskProjectID).selected = "true"
+//     }  
+// elsewhere I did: taskRenderPrioritySelect.options[priorityIndex].selected = true;
+
+// (2) set a listener, then change in array if changed.
 
 
 function addTaskTrashIcon(i,taskArray) {

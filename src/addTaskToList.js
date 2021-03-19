@@ -12,7 +12,7 @@ function Task(taskName, taskID, taskPriority, taskDue, taskNotes, taskProjectID)
 const addTaskToList = {
     taskList: [],
     getValue: function() {
-        let taskProject = document.querySelector("#taskProjectSelector").value
+        // let taskProject = document.querySelector("#taskProjectSelector").value
         const taskName = document.querySelector("#taskInputField").value;
         const taskID = nanoid();
         const taskPriority = document.querySelector("#taskPrioritySelector").value;

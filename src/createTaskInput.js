@@ -160,14 +160,33 @@ function createTaskProjectField() {
         taskProjectOption.innerText = listOfProjects[i].projectName;
         document.getElementById("taskProjectSelector").appendChild(taskProjectOption);
 
-      let taskProjectCurrentID = getProjectIdentifier();
-      let taskProjectCurrentTitle = addProjectToList.projectList.find(x => x.identifier === taskProjectCurrentID).projectName;
-      
-      if (taskProjectOption.innerText === taskProjectCurrentTitle)
-        {document.getElementById(taskProjectCurrentID).selected = "true"}  
-      }
-    })
-  }
+        let taskProjectTitleSpace = document.getElementById('projectHeadline');
+        let taskProjectTitle = taskProjectTitleSpace.textContent;
+
+        if (taskProjectTitle === '' || taskProjectTitle === null || taskProjectTitle === undefined) {
+            console.log("no headline")
+        }
+        else {
+          const projectIndex = addProjectToList.projectList.findIndex((el) => el.projectName === taskProjectTitle);
+          let taskProjectIdentifier = addProjectToList.projectList[projectIndex].identifier
+          let taskProjectCurrentTitle = addProjectToList.projectList.find(x => x.identifier === taskProjectIdentifier).projectName;
+          if (taskProjectOption.innerText === taskProjectCurrentTitle)
+          {document.getElementById(taskProjectIdentifier).selected = "true"}}
+        }
+      })
+};
+
+
+// // function getProjectIdentifier() {
+//   let taskProjectTitleSpace = document.getElementById('projectHeadline');
+//   let taskProjectTitle = taskProjectTitleSpace.textContent;
+//   const projectIndex = addProjectToList.projectList.findIndex((el) => el.projectName === taskProjectTitle);
+//   let taskProjectIdentifier = addProjectToList.projectList[projectIndex].identifier;
+// return(taskProjectIdentifier)
+// };
+//   let taskProjectCurrentID = getProjectIdentifier();
+
+
 
 function renewOptions(selectElement) {
     var i, L = selectElement.options.length - 1;
@@ -176,13 +195,13 @@ function renewOptions(selectElement) {
     }
   }
   
-function getProjectIdentifier() {
-  let taskProjectTitleSpace = document.getElementById('projectHeadline');
-  let taskProjectTitle = taskProjectTitleSpace.textContent;
-  const projectIndex = addProjectToList.projectList.findIndex((el) => el.projectName === taskProjectTitle);
-  let taskProjectIdentifier = addProjectToList.projectList[projectIndex].identifier;
-  return(taskProjectIdentifier)
-};
+// function getProjectIdentifier() {
+//   let taskProjectTitleSpace = document.getElementById('projectHeadline');
+//   let taskProjectTitle = taskProjectTitleSpace.textContent;
+//   const projectIndex = addProjectToList.projectList.findIndex((el) => el.projectName === taskProjectTitle);
+//   let taskProjectIdentifier = addProjectToList.projectList[projectIndex].identifier;
+//   return(taskProjectIdentifier)
+// };
   
 
 
