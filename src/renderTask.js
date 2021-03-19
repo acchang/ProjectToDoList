@@ -197,46 +197,18 @@ function addTaskProjectEdit(i,taskArray) {
     let p;
     for (p = 0; p < listOfProjects.length; p++) {        
         let taskProjectOption = document.createElement("option");
-        // taskProjectOption.setAttribute("id", listOfProjects[p].identifier);
-        taskProjectOption.setAttribute("id", p);
+        taskProjectOption.setAttribute("id", listOfProjects[p].identifier);
         taskProjectOption.setAttribute("value", listOfProjects[p].identifier);
         taskProjectOption.innerText = listOfProjects[p].projectName;
         document.getElementById("TEPS" + taskArray[i].taskID).appendChild(taskProjectOption);
-        
-        // document.getElementById(taskArray[i].taskProjectID).selected = "true";
-        // elsewhere I did: taskRenderPrioritySelect.options[priorityIndex].selected = true;
-        // taskEditProjectSelector.options[taskEditProjectSelector.options.length].selected = true;
-    };  
+        }
+    console.log("projectID from input: " + taskArray[i].taskProjectID)
+    console.log("taskProjOpt: " + taskEditProjectSelector.options[1].id)
 
-    // document.getElementById(1).selected = "true";
-    // document.getElementById(i).selected = "true";
-    // these worked for first take, I need it to fire every time that a task is constructed.  
-    // it only changes the first task created 
-
-
+    document.getElementById(taskArray[i].taskProjectID).selected = "true" // fails
+    // taskEditProjectSelector.options[1].selected = true; // works
+    // I could just get the index of taskArray[i].taskProjectID among project and put it in
 };
-
-
-// function selectOption(i,taskArray) {
-    // document.getElementById("orange").selected = "true";
-//     document.getElementById(taskArray[i].taskProjectID).selected = "true"
-//   }
-
-// document.getElementById(addTaskToList.taskList[i].taskProjectID).selected = "true"
-
-// (1) make dropdown correspond to input 
-// I've built this dropdown, I have data on the identifier, why doesn't it select?
-// tried these & an unnecesary if
-// document.getElementById(addTaskToList.taskList[i].taskProjectID).selected = true
-// let in front, different IDs: addTaskToList.taskList[i].taskProjectID, taskProjectOption.value, taskProjectOption.id
-//     if (taskProjectOption.value === addTaskToList.taskList[i].taskProjectID)
-//     {
-//         document.getElementById(addTaskToList.taskList[i].taskProjectID).selected = "true"
-//     }  
-// elsewhere I did: taskRenderPrioritySelect.options[priorityIndex].selected = true;
-
-// (2) set a listener, then change in array if changed.
-
 
 function addTaskTrashIcon(i,taskArray) {
     let taskTrashButton = document.createElement("button") 
