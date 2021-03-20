@@ -59,6 +59,11 @@ const addTaskToList = {
     changeTaskNotes: function (taskID, newValue) {
         const index = this.taskList.findIndex((el) => el.taskID === taskID);
         this.taskList[index].taskNotes = newValue;
+        },
+
+    changeTaskProject: function (taskID, newValue) {
+        const index = this.taskList.findIndex((el) => el.taskID === taskID);
+        this.taskList[index].taskProjectID = newValue;
         console.log(this.taskList)
         },
 
@@ -66,7 +71,6 @@ const addTaskToList = {
     //     this.taskList = this.taskList.filter(object => object.taskProjectID !== axedTaskProjectID);
     //     console.log(this.taskList)
     //     },
-
 
    };
 

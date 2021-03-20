@@ -199,15 +199,19 @@ function addTaskProjectEdit(i,taskArray) {
         let taskProjectOption = document.createElement("option");
         taskProjectOption.setAttribute("id", listOfProjects[p].identifier);
         taskProjectOption.setAttribute("value", listOfProjects[p].identifier);
+
+        if(listOfProjects[p].identifier===taskArray[i].taskProjectID){
+            taskProjectOption.setAttribute("selected",true);
+          }
+
         taskProjectOption.innerText = listOfProjects[p].projectName;
         document.getElementById("TEPS" + taskArray[i].taskID).appendChild(taskProjectOption);
         }
-    console.log("projectID from input: " + taskArray[i].taskProjectID)
-    console.log("taskProjOpt: " + taskEditProjectSelector.options[1].id)
 
-    document.getElementById(taskArray[i].taskProjectID).selected = "true" // fails
-    // taskEditProjectSelector.options[1].selected = true; // works
-    // I could just get the index of taskArray[i].taskProjectID among project and put it in
+        taskEditProjectSelector.addEventListener('input', function() { 
+        const newTaskProject = taskEditProjectSelector.value;
+        addTaskToList.changeTaskProject(taskArray[i].taskID, newTaskProject)
+        })     
 };
 
 function addTaskTrashIcon(i,taskArray) {
