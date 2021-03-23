@@ -25,9 +25,6 @@ function createProjectListeners() {
     const homeHeading = document.getElementById("Home")
     homeHeading.addEventListener("click", 
     function(){
-        // alert("HomeDis");
-        // // need to change project heading
-
         let projectPrefixSpan = document.getElementById('projectPrefix');
         let projectHeadlineSpan = document.getElementById('projectHeadline');  
         projectPrefixSpan.innerHTML = '';

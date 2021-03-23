@@ -11,7 +11,10 @@ import addTaskToList from './addTaskToList';
 addTaskToList.createTaskPrefill();
 let prefillTasks = addTaskToList.taskList
 import renderTask from './renderTask';
-renderTask(prefillTasks)
+
+let taskProjectPrefix = document.createTextNode('Home');
+document.getElementById('projectPrefix').appendChild(taskProjectPrefix); 
+renderTask(addTaskToList.sortByTime(prefillTasks));
 
 import addProjectToList from './addProjectToList';
 let prefillProjects = addProjectToList.projectList
@@ -26,7 +29,7 @@ import _ from 'lodash';
 
 function component() {
     const element = document.createElement('div');
-    element.innerHTML = _.join(['check', 'webpackProj'], ' ');
+    element.innerHTML = _.join(['check', 'webpackL'], ' ');
     return element;
   }
 document.body.appendChild(component());
