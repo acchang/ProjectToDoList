@@ -25,17 +25,22 @@ function createProjectListeners() {
     const homeHeading = document.getElementById("Home")
     homeHeading.addEventListener("click", 
     function(){
-        // console.log(addTaskToList.sortByAllTime)
-        // renderTask (addTaskToList.sortByAllTime)
-        alert("Home");
+        let sortedArray = addTaskToList.sortByTime(addTaskToList.taskList);
+        renderTask(sortedArray);
+        alert("HomeDis");
+        // need to change project heading
         });
     
     const todayHeading = document.getElementById("Today")
+    // read on date, filter for today.
+     // need to change project heading
     todayHeading.addEventListener("click", function(){
         alert("Today");
         });
 
     const thisWeekHeading = document.getElementById("ThisWeek")
+    // filter for today minus 7
+     // need to change project heading
     thisWeekHeading.addEventListener("click", function(){
         alert("ThisWeek");
         });

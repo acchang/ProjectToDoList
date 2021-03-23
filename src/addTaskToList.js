@@ -156,12 +156,16 @@ const addTaskToList = {
         console.log("this is just to execute something in addTaskToList.createTaskPrefill")
         },
 
-    sortByAllTime: function(array) {
-        array.slice().sort(function (a, b) {
-          return a.taskDue - b.taskDue;
-        });
-
+    sortByTime: function(array) {
+            function sorter(a,b){
+               let diff = new Date(a.taskDue) - new Date(b.taskDue);
+               console.log(diff)
+               return diff
+            }
+           let timeSortedArray = array.slice().sort(sorter)
+           return timeSortedArray
         },
+
 
     // sortByToday: function() {},
 
