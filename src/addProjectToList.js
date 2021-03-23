@@ -34,16 +34,15 @@ const addProjectToList = {
   },
   deleteObject: function(UUID) {
     this.projectList = this.projectList.filter(object => object.identifier !== UUID);
-    },
+  },
   changeProjectName: function(projectUUID, newProjectContainerText) {
     const index = this.projectList.findIndex((el) => el.identifier === projectUUID);
     this.projectList[index].projectName = newProjectContainerText;
     console.log(this.projectList)
-    },
+  },
   createProjectPrefill: function(){
     renderProject(this.projectList);
-  }  
-
+  },
 }
 
 export default addProjectToList;

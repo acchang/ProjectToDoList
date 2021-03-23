@@ -199,13 +199,28 @@ function createAddTaskField() {
   
     addTaskButton.addEventListener("click", function(event){
       addTaskToList.getValue();
+      console.log(addTaskToList.taskList)
+      let currentArray = addTaskToList.taskList
+  
+
+      function sortByDate(array){
+         function sorter(a,b){
+            let diff = new Date(a.taskDue) - new Date(b.taskDue);
+            console.log(diff)
+            return diff
+         }
+        let timeSortedArray = array.slice().sort(sorter)
+        return timeSortedArray
+        };
+         // sort array by the difference but how does it match the sorter with the object?
+         // does the Date function make the calculus possible?
+         // is that why this didn't work?
+
+      sortByDate(currentArray);
+      console.log(sortByDate(currentArray));
 
       // remove after and render depending on what's in headline field
-      
-      // Was: renderTask(addTaskToList.taskList);
-
-      renderTask(addTaskToList.sortByAllTime)
-
+      renderTask(addTaskToList.taskList);
     })
   };
 

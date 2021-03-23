@@ -109,7 +109,7 @@ const addTaskToList = {
         if(taskProjectSelector.classList.contains('flex')) {
             taskProjectSelector.classList.toggle("flex");
             } 
-        console.log(this.taskList)
+        console.log("addTaskToList.getValue: " + this.taskList)
         },
 
     deleteObject: function(taskID) {
@@ -153,13 +153,15 @@ const addTaskToList = {
         },
 
     createTaskPrefill: function() {
-        console.log("Prefill:" + this.taskList)
+        console.log("this is just to execute something in addTaskToList.createTaskPrefill")
         },
 
-    // sortByAllTime: function() {
-    //     const sortedByAllTime = this.taskList.sort((a, b) => b.taskDue - a.taskDue)
-    //     console.log(sortedByAllTime)
-    //     },
+    sortByAllTime: function(array) {
+        array.slice().sort(function (a, b) {
+          return a.taskDue - b.taskDue;
+        });
+
+        },
 
     // sortByToday: function() {},
 
