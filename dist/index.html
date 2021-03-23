@@ -18,9 +18,7 @@
 </div>
     
 <div id="sidebar">
-    <!-- first three don't need add they will gather based on time -->
-    <h3 id="Home">Home (all, sort date)</h3>
-    <!-- inbox will show all tasks, maybe sort by priority -->
+    <h3 id="Home">Home (all, sort by date)</h3>
     <h3 id="Today">Today (filter home for time)</h3>
     <h3 id="ThisWeek">This Week(same for week)</h3>
 
@@ -31,7 +29,7 @@
     <div class="projectSubmitForm">
 
     <form>
-        <input class="input" id="projectName" type="text" maxlength="25" size="20">
+        <input class="input" id="projectName" type="text" maxlength="25" size="25">
        
         <button class="projectSubmitButton icon-button" id="projectSubmitButton">
         <span class="glyphicon glyphicon-ok"></span>
@@ -59,10 +57,9 @@
 </div>
 
 
-    <div id="taskProjectHolder"></div>
+    <div id="taskProjectHolder" class="taskProjectHolder" id="taskProjectHolder"></div>
 
-
-<div id="taskHolder" class="taskHolder">
+    <div id="taskHolder" class="taskHolder">
 
 </div>
     

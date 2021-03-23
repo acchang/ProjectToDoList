@@ -176,34 +176,12 @@ function createTaskProjectField() {
       })
 };
 
-
-// // function getProjectIdentifier() {
-//   let taskProjectTitleSpace = document.getElementById('projectHeadline');
-//   let taskProjectTitle = taskProjectTitleSpace.textContent;
-//   const projectIndex = addProjectToList.projectList.findIndex((el) => el.projectName === taskProjectTitle);
-//   let taskProjectIdentifier = addProjectToList.projectList[projectIndex].identifier;
-// return(taskProjectIdentifier)
-// };
-//   let taskProjectCurrentID = getProjectIdentifier();
-
-
-
 function renewOptions(selectElement) {
     var i, L = selectElement.options.length - 1;
     for(i = L; i >= 0; i--) {
        selectElement.remove(i);
     }
-  }
-  
-// function getProjectIdentifier() {
-//   let taskProjectTitleSpace = document.getElementById('projectHeadline');
-//   let taskProjectTitle = taskProjectTitleSpace.textContent;
-//   const projectIndex = addProjectToList.projectList.findIndex((el) => el.projectName === taskProjectTitle);
-//   let taskProjectIdentifier = addProjectToList.projectList[projectIndex].identifier;
-//   return(taskProjectIdentifier)
-// };
-  
-
+  };
 
 function createAddTaskField() {
     let addTaskField = document.createElement("span");
@@ -221,8 +199,13 @@ function createAddTaskField() {
   
     addTaskButton.addEventListener("click", function(event){
       addTaskToList.getValue();
-      renderTask(addTaskToList.taskList);
-      // this above works
+
+      // remove after and render depending on what's in headline field
+      
+      // Was: renderTask(addTaskToList.taskList);
+
+      renderTask(addTaskToList.sortByAllTime)
+
     })
   };
 

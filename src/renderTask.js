@@ -21,7 +21,6 @@ function renderTask(taskArray) {
         addTaskProjectEdit(i,taskArray)
         addTaskNotesEdit(i,taskArray);
         addTaskDueEditable(i,taskArray);
-        console.log(taskArray)
     }
 };
 
@@ -170,6 +169,7 @@ function addTaskNotesEdit(i,taskArray) {
 }
 
 function addTaskProjectEdit(i,taskArray) {
+
     let taskEditNotesButton = document.createElement("button") 
     taskEditNotesButton.setAttribute("class", "right")
     taskEditNotesButton.setAttribute("id", "TBP" + taskArray[i].taskID)

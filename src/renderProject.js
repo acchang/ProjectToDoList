@@ -1,13 +1,9 @@
+import renderTask from './renderTask';
 import addProjectToList from './addProjectToList';
 import addTaskToList from './addTaskToList';
+import createTaskInput from './createTaskInput';
 
-function renderProject() {
-  const projectList = addProjectToList.projectList
-  const projectUUID = addProjectToList.projectList[addProjectToList.projectList.length-1].identifier;
-  const projectName = addProjectToList.projectList[addProjectToList.projectList.length-1].projectName;
-  console.log(projectList)
-  console.log(projectName)
-  console.log(projectUUID)
+function renderProject(projectName, projectUUID) {
 
   let projectContainer = document.createElement("div");
   projectContainer.classList.add("project-container");
@@ -79,9 +75,11 @@ function addProjectTrashButton(projectUUID) {
       projectHolder.removeChild(deleteDivTarget);
       addProjectToList.deleteObject(projectUUID);
 
-      // addTaskToList.deleteAllInProject(projectUUID);
-// this should also target all tasks with UUID or taskProjectID and eliminate them
-// so something like addTasktoList.deleteProject(taskProjectID)
+      addTaskToList.deleteAllInProject(projectUUID);
+
+      renderTask(addTaskToList.taskList);
+      // ** or render whatever is in project, so will need like mag glass for times if not render all
+
       console.log(addProjectToList.projectList)
     })
   };
@@ -113,9 +111,13 @@ function openProject(projectUUID) {
   document.getElementById('projectPrefix').appendChild(taskProjectPrefix); 
   document.getElementById('projectHeadline').appendChild(taskProjectHead); 
     // empty TaskHolder 
+  let taskProjectHolder = document.getElementById('taskProjectHolder');
+  taskProjectHolder.innerHTML = '';
+
     // render/populate the TaskHolder with the TaskList that corresponds with the projectUUID
-    // render/populare the TaskHolder that corresponds with duedates
-    // createTaskInput()
+  let taskListFiltered = addTaskToList.sortbyProject(projectUUID);
+  renderTask(taskListFiltered);
+  createTaskInput();
   }
 
 export default renderProject;
