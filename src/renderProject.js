@@ -116,7 +116,9 @@ function openProject(projectUUID) {
 
     // render/populate the TaskHolder with the TaskList that corresponds with the projectUUID
   let taskListFiltered = addTaskToList.sortbyProject(projectUUID);
-  renderTask(taskListFiltered);
+  let projectSortComplete = addTaskToList.sortByTime(taskListFiltered)
+  renderTask(projectSortComplete);
+
   createTaskInput();
   }
 
