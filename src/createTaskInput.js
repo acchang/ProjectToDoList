@@ -205,8 +205,6 @@ function createAddTaskField() {
       let sortedArray = addTaskToList.sortByTime(addTaskToList.taskList);
       renderTask(sortedArray);
       console.log(addTaskToList.taskList)
-    // this isn't sorting.
-
     })
   };
 

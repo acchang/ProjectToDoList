@@ -158,7 +158,7 @@ const addTaskToList = {
 
     sortByTime: function(array) {
             function sorter(a,b){
-               let diff = new Date(a.taskDue) - new Date(b.taskDue);
+               let diff = new Date(b.taskDue) - new Date(a.taskDue);
                console.log(diff)
                return diff
             }
