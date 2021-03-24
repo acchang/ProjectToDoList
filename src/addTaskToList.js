@@ -181,7 +181,40 @@ const addTaskToList = {
         return todayTaskArray;
     },
 
-    // sortByThisWeek: function() {},
+    sortByThisWeek: function(array) {
+        // let weekTaskArray = array.filter(object => 
+        //  object.taskDue (converted) is > today OR new Date() && < +7days);
+        // https://masteringjs.io/tutorials/fundamentals/compare-dates
+        // get today and then filter for greater than today and less than today plus 7 days
+
+        function Epoch(date) {
+            return Math.round(new Date(date).getTime());
+            // return Math.round(new Date(date).getTime() / 1000.0);
+        }
+
+        let oneWeek = (Date.now() + (7 * 3600 * 1000 * 24))
+
+        let weekTaskArray = array.filter(object => 
+            (   Epoch(object.taskDue) < oneWeek &&
+                Epoch(object.taskDue) > Date.now())
+                ||
+                object.taskDue == today 
+            )
+
+            //these are ok
+            // Epoch(object.taskDue) > Date.now())
+            // object.taskDue == today)
+
+        return weekTaskArray
+
+
+        // let nowEpoch = Date.now();
+        // let now = new Date();
+        // alert("nowEpoch: " + nowEpoch + " getTime " + now.getTime());
+
+        // take taskDue and convert via .getTime()
+
+    },
 
    };
 
