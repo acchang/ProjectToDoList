@@ -9,15 +9,15 @@ function Project(projectName, identifier) {
 const addProjectToList = {
   projectList: [
       {
-          "projectName": "a",
+          "projectName": "Live on a Prayer",
           "identifier": "b8d991cd-839c-4138-8b87-164caa3dbddf"
       },
       {
-          "projectName": "b",
+          "projectName": "DC Christmas prep",
           "identifier": "2e9a220e-e8fd-4784-841f-b01d4fb7ed9c"
       },
       {
-          "projectName": "c",
+          "projectName": "Get Fit",
           "identifier": "f8c1426c-2e1b-470d-9466-a95d964f5d07"
       }  
   ],

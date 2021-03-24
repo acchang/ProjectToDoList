@@ -1,6 +1,7 @@
 import addProjectToList from './addProjectToList';
 import addTaskToList from './addTaskToList';
 import renderTask from './renderTask';
+import createTaskInput from './createTaskInput';
 
 function createProjectListeners() {
     const projectSubmitForm = document.querySelector(".projectSubmitForm");
@@ -59,6 +60,7 @@ function clearHeadlineField() {
     projectHeadlineSpan.innerHTML = '';
     let taskProjectHolder = document.getElementById('taskProjectHolder');
     taskProjectHolder.innerHTML = '';
+    createTaskInput();
     }
 
 

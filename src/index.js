@@ -10,8 +10,8 @@ createProjectListeners();
 import addTaskToList from './addTaskToList';
 addTaskToList.createTaskPrefill();
 let prefillTasks = addTaskToList.taskList
-import renderTask from './renderTask';
 
+import renderTask from './renderTask';
 let taskProjectPrefix = document.createTextNode('Home');
 document.getElementById('projectPrefix').appendChild(taskProjectPrefix); 
 renderTask(addTaskToList.sortByTime(prefillTasks));

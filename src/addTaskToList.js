@@ -15,23 +15,23 @@ function Task(taskName, taskID, taskPriority, taskDue, taskNotes, taskProjectID)
 const addTaskToList = {
     taskList: [
             {
-                "taskName": "1",
+                "taskName": "Join a different union",
                 "taskID": "Ebl6XLPlKnl3zG07lMj14",
                 "taskPriority": "Low",
                 "taskDue": "2022-01-01",
-                "taskNotes": "",
+                "taskNotes": "Maybe electricians after dockworkers",
                 "taskProjectID": "b8d991cd-839c-4138-8b87-164caa3dbddf"
             },
             {
-                "taskName": "2",
+                "taskName": "Pick up Gina at the diner",
                 "taskID": "lrT9coUi2ji5f1-bzdPHB",
                 "taskPriority": "Medium",
                 "taskDue": "2022-01-02",
-                "taskNotes": "",
+                "taskNotes": "Sing her a song since flowers too expensive!",
                 "taskProjectID": "b8d991cd-839c-4138-8b87-164caa3dbddf"
             },
             {
-                "taskName": "3",
+                "taskName": "Pay back pawn shop for guitar",
                 "taskID": "C1mjjETF1giwRVClMWo6Z",
                 "taskPriority": "High",
                 "taskDue": "2022-01-03",
@@ -39,65 +39,65 @@ const addTaskToList = {
                 "taskProjectID": "b8d991cd-839c-4138-8b87-164caa3dbddf"
             },
             {
-                "taskName": "4",
+                "taskName": "Try a new deodorant",
                 "taskID": "mxGxxqXrplLs1iFF2624-",
                 "taskPriority": "Low",
-                "taskDue": "2022-02-04",
-                "taskNotes": "",
+                "taskDue": "2021-12-23",
+                "taskNotes": "Someone says I smell",
                 "taskProjectID": "2e9a220e-e8fd-4784-841f-b01d4fb7ed9c"
             },
             {
-                "taskName": "5",
+                "taskName": "Get Robin a frying pan",
                 "taskID": "Def7UCU43cDqUpoIaRH42",
                 "taskPriority": "Medium",
-                "taskDue": "2022-02-05",
+                "taskDue": "2021-12-24",
                 "taskNotes": "",
                 "taskProjectID": "2e9a220e-e8fd-4784-841f-b01d4fb7ed9c"
             },
             {
-                "taskName": "6",
+                "taskName": "Repair my car",
                 "taskID": "0UJ7thsq4P5Fs65wkZesX",
                 "taskPriority": "High",
-                "taskDue": "2022-02-06",
-                "taskNotes": "",
+                "taskDue": "2021-12-25",
+                "taskNotes": "Then go after that dastardly Joker!",
                 "taskProjectID": "2e9a220e-e8fd-4784-841f-b01d4fb7ed9c"
             },
             {
-                "taskName": "7",
+                "taskName": "VO2 Max test",
                 "taskID": "aFdBEuS4q3ECvKAcYtoHm",
                 "taskPriority": "Low",
                 "taskDue": "2022-03-07",
-                "taskNotes": "",
+                "taskNotes": "Sleep early the night before",
                 "taskProjectID": "f8c1426c-2e1b-470d-9466-a95d964f5d07"
             },
             {
-                "taskName": "8",
+                "taskName": "Weigh In",
                 "taskID": "sbY0fgcGRyjQq3hIx0CVu",
                 "taskPriority": "Medium",
                 "taskDue": "2022-03-08",
-                "taskNotes": "",
+                "taskNotes": "Target: 5% body fat",
                 "taskProjectID": "f8c1426c-2e1b-470d-9466-a95d964f5d07"
             },
             {
-                "taskName": "9",
+                "taskName": "Win tournament",
                 "taskID": "zlU0YMeCas6s1yRdxeXid",
                 "taskPriority": "High",
                 "taskDue": "2022-03-09",
-                "taskNotes": "",
+                "taskNotes": "Who's number 1?",
                 "taskProjectID": "f8c1426c-2e1b-470d-9466-a95d964f5d07"
             },
             {
-                "taskName": "Meditate daily",
+                "taskName": "Drink 8 glasses of water a day",
                 "taskID": "zlU0YMeCas6s1yRdxeXie",
-                "taskPriority": "High",
+                "taskPriority": "Done",
                 "taskDue": today,
                 "taskNotes": "",
                 "taskProjectID": "f8c1426c-2e1b-470d-9466-a95d964f5d07"
             },
             {
-                "taskName": "Yoga every four days",
+                "taskName": "Weekly yoga",
                 "taskID": "zlU0YMeCas6s1yRdxeXif",
-                "taskPriority": "High",
+                "taskPriority": "Medium",
                 "taskDue": plusFourDays,
                 "taskNotes": "",
                 "taskProjectID": "f8c1426c-2e1b-470d-9466-a95d964f5d07"

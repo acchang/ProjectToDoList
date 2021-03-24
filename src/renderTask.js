@@ -158,7 +158,8 @@ function addTaskNotesEdit(i,taskArray) {
     let taskEditNotesText = document.createElement("span") 
     taskEditNotesText.setAttribute("id", "ENT" + taskArray[i].taskID)
     taskEditNotesText.setAttribute("class", " taskEditNotesText")
-    taskEditNotesText.innerText = addTaskToList.taskList[i].taskNotes
+    // taskEditNotesText.innerText = addTaskToList.taskList[i].taskNotes
+    taskEditNotesText.innerText = taskArray[i].taskNotes
     taskEditNotesText.setAttribute("contentEditable", true)
     document.getElementById("EN" + taskArray[i].taskID).appendChild(taskEditNotesText);
 
@@ -227,7 +228,8 @@ function addTaskTrashIcon(i,taskArray) {
     taskTrashButton.addEventListener("click", function(event) {
       const deleteDivTarget = document.getElementById("BTC" + taskArray[i].taskID);
       taskHolder.removeChild(deleteDivTarget);
-      addTaskToList.deleteObject(addTaskToList.taskList[i].taskID)
+    //   addTaskToList.deleteObject(addTaskToList.taskList[i].taskID)
+      addTaskToList.deleteObject(taskArray[i].taskID)
     })
 }
 
