@@ -1,6 +1,7 @@
 import { nanoid } from 'nanoid';
 
 let today = new Date().toISOString().slice(0,10)
+let plusFourDays = new Date(Date.now() + (4 * 3600 * 1000 * 24)).toISOString().slice(0,10)
 
 function Task(taskName, taskID, taskPriority, taskDue, taskNotes, taskProjectID) {
     this.taskName = taskName;
@@ -87,9 +88,17 @@ const addTaskToList = {
             },
             {
                 "taskName": "Meditate daily",
-                "taskID": "zlU0YMeRas6s1yRdxeXid",
+                "taskID": "zlU0YMeCas6s1yRdxeXie",
                 "taskPriority": "High",
                 "taskDue": today,
+                "taskNotes": "",
+                "taskProjectID": "f8c1426c-2e1b-470d-9466-a95d964f5d07"
+            },
+            {
+                "taskName": "Yoga every four days",
+                "taskID": "zlU0YMeCas6s1yRdxeXif",
+                "taskPriority": "High",
+                "taskDue": plusFourDays,
                 "taskNotes": "",
                 "taskProjectID": "f8c1426c-2e1b-470d-9466-a95d964f5d07"
             }
@@ -169,7 +178,6 @@ const addTaskToList = {
     sortByTime: function(array) {
         function sorter(a,b){
             let diff = new Date(b.taskDue) - new Date(a.taskDue);
-            console.log(diff)
             return diff
         }
         let timeSortedArray = array.slice().sort(sorter)
@@ -182,14 +190,8 @@ const addTaskToList = {
     },
 
     sortByThisWeek: function(array) {
-        // let weekTaskArray = array.filter(object => 
-        //  object.taskDue (converted) is > today OR new Date() && < +7days);
-        // https://masteringjs.io/tutorials/fundamentals/compare-dates
-        // get today and then filter for greater than today and less than today plus 7 days
-
         function Epoch(date) {
             return Math.round(new Date(date).getTime());
-            // return Math.round(new Date(date).getTime() / 1000.0);
         }
 
         let oneWeek = (Date.now() + (7 * 3600 * 1000 * 24))
@@ -201,19 +203,7 @@ const addTaskToList = {
                 object.taskDue == today 
             )
 
-            //these are ok
-            // Epoch(object.taskDue) > Date.now())
-            // object.taskDue == today)
-
         return weekTaskArray
-
-
-        // let nowEpoch = Date.now();
-        // let now = new Date();
-        // alert("nowEpoch: " + nowEpoch + " getTime " + now.getTime());
-
-        // take taskDue and convert via .getTime()
-
     },
 
    };

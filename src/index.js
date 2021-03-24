@@ -29,7 +29,7 @@ import _ from 'lodash';
 
 function component() {
     const element = document.createElement('div');
-    element.innerHTML = _.join(['check', 'webpackU'], ' ');
+    element.innerHTML = _.join(['Remember to fill out your', 'To-Do List every day!'], ' ');
     return element;
   }
 document.body.appendChild(component());

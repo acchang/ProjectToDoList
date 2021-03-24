@@ -46,23 +46,7 @@ function createProjectListeners() {
         clearHeadlineField();
         let taskProjectPrefix = document.createTextNode('This Week');
         document.getElementById('projectPrefix').appendChild(taskProjectPrefix); 
-        console.log("one week" + (Date.now() + (7 * 3600 * 1000 * 24)))
-        console.log(addTaskToList.sortByThisWeek(addTaskToList.taskList));
-        renderTask(addTaskToList.sortByThisWeek(addTaskToList.taskList));
-
-        // filter for today minus 7
-        // renderTask(addTaskToList.sortByWeek(addTaskToList.taskList));
-        // alert("ThisWeek");
-
-        // let nowEpoch = Date.now();
-        // let now = new Date();
-        // alert("nowEpoch: " + nowEpoch + " getTime " + now.getTime());
-
-        // take taskDue and convert via .getTime()
-
-
-        // let plusWeek = now.setDate(now.getDate() - 7); // add -7 days to your date variable 
-        // alert(plusWeek);
+        renderTask(addTaskToList.sortByThisWeek(addTaskToList.taskList))
 
         });
 
