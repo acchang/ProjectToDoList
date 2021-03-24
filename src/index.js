@@ -29,7 +29,7 @@ import _ from 'lodash';
 
 function component() {
     const element = document.createElement('div');
-    element.innerHTML = _.join(['check', 'webpackL'], ' ');
+    element.innerHTML = _.join(['check', 'webpackG'], ' ');
     return element;
   }
 document.body.appendChild(component());

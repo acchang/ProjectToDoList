@@ -1,5 +1,7 @@
 import { nanoid } from 'nanoid';
 
+let today = new Date().toISOString().slice(0,10)
+
 function Task(taskName, taskID, taskPriority, taskDue, taskNotes, taskProjectID) {
     this.taskName = taskName;
     this.taskID = taskID;
@@ -82,6 +84,14 @@ const addTaskToList = {
                 "taskDue": "2022-03-09",
                 "taskNotes": "",
                 "taskProjectID": "f8c1426c-2e1b-470d-9466-a95d964f5d07"
+            },
+            {
+                "taskName": "Meditate daily",
+                "taskID": "zlU0YMeRas6s1yRdxeXid",
+                "taskPriority": "High",
+                "taskDue": today,
+                "taskNotes": "",
+                "taskProjectID": "f8c1426c-2e1b-470d-9466-a95d964f5d07"
             }
     ],
 
@@ -157,17 +167,19 @@ const addTaskToList = {
         },
 
     sortByTime: function(array) {
-            function sorter(a,b){
-               let diff = new Date(b.taskDue) - new Date(a.taskDue);
-               console.log(diff)
-               return diff
-            }
-           let timeSortedArray = array.slice().sort(sorter)
-           return timeSortedArray
+        function sorter(a,b){
+            let diff = new Date(b.taskDue) - new Date(a.taskDue);
+            console.log(diff)
+            return diff
+        }
+        let timeSortedArray = array.slice().sort(sorter)
+        return timeSortedArray
         },
 
-
-    // sortByToday: function() {},
+    sortByToday: function(array) {
+        let todayTaskArray = array.filter(object => object.taskDue == today);
+        return todayTaskArray;
+    },
 
     // sortByThisWeek: function() {},
 

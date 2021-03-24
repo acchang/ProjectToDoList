@@ -23,39 +23,44 @@ function createProjectListeners() {
         });
 
     const homeHeading = document.getElementById("Home")
-    homeHeading.addEventListener("click", 
-    function(){
-        let projectPrefixSpan = document.getElementById('projectPrefix');
-        let projectHeadlineSpan = document.getElementById('projectHeadline');  
-        projectPrefixSpan.innerHTML = '';
-        projectHeadlineSpan.innerHTML = '';
-        
+    homeHeading.addEventListener("click", function(){
+        clearHeadlineField()
         let taskProjectPrefix = document.createTextNode('Home');
         document.getElementById('projectPrefix').appendChild(taskProjectPrefix); 
         
-        let taskProjectHolder = document.getElementById('taskProjectHolder');
-        taskProjectHolder.innerHTML = '';
-
         let sortedArray = addTaskToList.sortByTime(addTaskToList.taskList);
         renderTask(sortedArray);
  
         });
     
     const todayHeading = document.getElementById("Today")
-    // read up on date(), filter for today.
-     // need to change project heading
     todayHeading.addEventListener("click", function(){
-        alert("Today");
+        clearHeadlineField();
+        let taskProjectPrefix = document.createTextNode('Today');
+        document.getElementById('projectPrefix').appendChild(taskProjectPrefix); 
+        renderTask(addTaskToList.sortByToday(addTaskToList.taskList));
         });
 
     const thisWeekHeading = document.getElementById("ThisWeek")
-    // filter for today minus 7
-     // need to change project heading
     thisWeekHeading.addEventListener("click", function(){
+        clearHeadlineField();
+        let taskProjectPrefix = document.createTextNode('This Week');
+        document.getElementById('projectPrefix').appendChild(taskProjectPrefix); 
+        // filter for today minus 7
+        // renderTask(addTaskToList.sortByWeek(addTaskToList.taskList));
         alert("ThisWeek");
         });
-    
 
     };
+
+function clearHeadlineField() {
+    let projectPrefixSpan = document.getElementById('projectPrefix');
+    let projectHeadlineSpan = document.getElementById('projectHeadline');  
+    projectPrefixSpan.innerHTML = '';
+    projectHeadlineSpan.innerHTML = '';
+    let taskProjectHolder = document.getElementById('taskProjectHolder');
+    taskProjectHolder.innerHTML = '';
+    }
+
 
 export default createProjectListeners;
