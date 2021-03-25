@@ -75,8 +75,7 @@ color: rgb(83, 62, 62);
 }
 
 .projectContainerTextHolder {
-max-width: 17ch;
-display: inline-block;
+display: inline;
 overflow: hidden;
 };
 

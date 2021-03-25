@@ -13,11 +13,11 @@ const addProjectToList = {
           "identifier": "b8d991cd-839c-4138-8b87-164caa3dbddf"
       },
       {
-          "projectName": "DC Christmas prep",
+          "projectName": "DC Superheroes X-mas",
           "identifier": "2e9a220e-e8fd-4784-841f-b01d4fb7ed9c"
       },
       {
-          "projectName": "Get Fit",
+          "projectName": "Get fit for tournament",
           "identifier": "f8c1426c-2e1b-470d-9466-a95d964f5d07"
       }  
   ],
