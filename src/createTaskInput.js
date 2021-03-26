@@ -78,9 +78,8 @@ function createTaskField() {
     taskInputField.setAttribute("id", "taskInputField");
     taskInputField.setAttribute("type", "text");
     taskInputField.setAttribute("maxlength", "60");
-    taskInputField.setAttribute("size", "20");
+    taskInputField.setAttribute("size", "60");
     taskInputField.setAttribute("placeholder", "Add task name here");
-    taskInputField.classList.add("task-input");
     document.getElementById('taskInputFieldHolder').appendChild(taskInputField);
   };
 
