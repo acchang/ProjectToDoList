@@ -146,15 +146,15 @@ padding: 5px;
 #taskPrioritySection {
   display: flex;
   flex-direction: column;
-  width: 8%;
+  width: 10%;
 }
 
-#taskPrioritySelector {
+.taskPrioritySelector {
 display: none;
 }
 
 #taskInputFieldHolder {
-  width: 40%;
+  width: 35%;
 }
 
 #taskInputField {
@@ -200,7 +200,7 @@ display: none;
   };
 
   #addTaskField {
-    width: 7%
+    width: 10%;
   }
 
 
