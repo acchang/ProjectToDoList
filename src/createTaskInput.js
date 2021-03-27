@@ -77,8 +77,8 @@ function createTaskField() {
     let taskInputField = document.createElement("input");
     taskInputField.setAttribute("id", "taskInputField");
     taskInputField.setAttribute("type", "text");
-    taskInputField.setAttribute("maxlength", "60");
-    taskInputField.setAttribute("size", "60");
+    taskInputField.setAttribute("maxlength", "45");
+    taskInputField.setAttribute("size", "45");
     taskInputField.setAttribute("placeholder", "Add task name here");
     document.getElementById('taskInputFieldHolder').appendChild(taskInputField);
   };
@@ -95,7 +95,9 @@ function createTaskCalendarField() {
     taskCalendarSelector.setAttribute("type", "date");
     document.getElementById('taskCalendarField').appendChild(taskCalendarSelector);
   }
-  
+
+
+
 function createTaskNotesField() {
     let taskNotesField = document.createElement("span");
     taskNotesField.setAttribute("id", "taskNotesField");
@@ -104,7 +106,7 @@ function createTaskNotesField() {
   
       let taskNotesButton = document.createElement("button");
       taskNotesButton.setAttribute("id", "taskNotesButton");
-      taskNotesButton.innerText = "Notes: ";
+      taskNotesButton.innerText = "Notes ";
       document.getElementById('taskNotesField').appendChild(taskNotesButton);
   
         let taskNotesIcon = document.createElement("span") 
@@ -127,6 +129,8 @@ function createTaskNotesField() {
     })
   };
   
+
+
 function createTaskProjectField() {
     let taskProjectSection = document.createElement("span");
     taskProjectSection.setAttribute("id", "taskProjectSection");

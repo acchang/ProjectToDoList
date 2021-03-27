@@ -9,6 +9,7 @@ function renderTask(taskArray) {
     let i;
     for (i = 0; i < taskArray.length; i++) {
       let bigTaskContainer = document.createElement("div");
+      bigTaskContainer.setAttribute("class", bigTaskContainer);  
       bigTaskContainer.setAttribute("id", "BTC" + taskArray[i].taskID);  
       document.getElementById("taskHolder").appendChild(bigTaskContainer);  
         let taskContainer = document.createElement("div");

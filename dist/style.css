@@ -94,7 +94,7 @@ overflow: hidden;
 };
 
 /* right tasks section */
-
+/* headings */
 #TaskListProjectName {
 padding: 5px;
 font-weight: 900;
@@ -115,6 +115,7 @@ font-weight: 500;
 font-size: medium;
 }
 
+/* task list */
 #TaskList{
   display: flex;
   justify-content: flex-start;
@@ -123,93 +124,111 @@ font-size: medium;
   padding: 10px;
 }
 
+.taskHolder {
+  background-color: rgb(202, 200, 198);
+  display: flex;
+  flex-direction: column-reverse;
+}
+
+/* Create task */
+
 .taskOverallContainer {
   display: none;
-  /* justify-content: space-between; */
-  flex-direction: column
+  flex-direction: column;
+  justify-content: align-left;
 }
 
 .taskInputContainer {
 display: flex;
 /* justify-content: space-between; */
+align-items: baseline;
 padding: 5px;
+justify-content: align-left;
 }
-
-.taskEditNotes {
-  display: none;
-  }
 
 .taskEditProject {
   display: none;
   }
 
 #taskPrioritySection {
-  display: flex;
+  display: inline;
   flex-direction: column;
   width: 10%;
+  order: 1;
 }
 
-.taskPrioritySelector {
-display: none;
-}
+    .taskPrioritySelector {
+      display: none;
+      }
 
 #taskInputFieldHolder {
-  width: 35%;
+  width: 45%;
+  order: 2;
 }
 
-#taskInputField {
-  border: 0px;
-  /* border-bottom: single; */
-  }
+    #taskInputField {
+      border: 0px;
+      /* border-bottom: single; */
+      }
 
 #taskCalendarField {
-  width:25%;
+  width: 20%;
+  order: 3;
 }
 
-#taskCalendarSelector {
-/* width: 130px; */
-/* border: 0px; */
-}
+    #taskCalendarSelector {
+      border: 0px;
+    }
 
 #taskNotesField {
-  width:8%;
+  width: 8%;
+  order: 4;
+  /* display: flex; // causes padding */
+  display: inline;
 }
 
-.taskNotesInput {
-  display: none;
-  margin-left: 150px;
-  /* text-align: end; */
-  /* flex-direction: column; */
-}
+    .taskNotesInput {
+      display: none;
+    }
 
-#taskNotesBox {
-  /* display: flex; */
-  width: 400px;
-  height: 100px;
-}
+    #taskNotesInput {
+      margin-left: 150px;
+    }
+
+    .taskEditNotes {
+      display: none;
+      }
+
+    #taskNotesBox {
+      display: flex;
+      width: 400px;
+      height: 100px;
+    }
 
 #taskProjectSection {
   display: flex;
   flex-direction: column;
   width: 12%;
+  order: 5;
 }
 
-.taskProjectSelector {
-  display: none;
-  width: 100%;
-  };
+    .taskProjectSelector {
+      display: none;
+      width: 100%;
+    }
 
-  #addTaskField {
-    width: 10%;
+#addTaskField {
+  display: inline;
+  width: 10%;
+  order: 6;
   }
-
 
 .flex {
 display: flex;
 }
 
 
-.dropbtn {
+/* .dropbtn {
   background-color: #3498DB;
   color: white;
   padding: 4px;
@@ -242,10 +261,5 @@ display: flex;
   display: block;
 }
 
-.dropdown a:hover {background-color: #ddd;}
+.dropdown a:hover {background-color: #ddd;} */
 
-.taskHolder {
-  background-color: rgb(202, 200, 198);
-  display: flex;
-  flex-direction: column-reverse;
-}
