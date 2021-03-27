@@ -113,6 +113,9 @@ function createTaskNotesField() {
         taskNotesIcon.setAttribute("class", "glyphicon glyphicon-edit");
         document.getElementById("taskNotesButton").appendChild(taskNotesIcon);
   
+    let grafBreak = document.createElement("br");
+    document.getElementById('taskOverallContainer').appendChild(grafBreak);
+
     let taskNotesInput = document.createElement("div");
     taskNotesInput.setAttribute("class", "taskNotesInput");
     taskNotesInput.setAttribute("id", "taskNotesInput");
