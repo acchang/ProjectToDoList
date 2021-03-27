@@ -134,16 +134,14 @@ font-size: medium;
 
 .taskOverallContainer {
   display: none;
-  flex-direction: column;
-  justify-content: align-left;
+  justify-content: flex-start;
 }
 
 .taskInputContainer {
 display: flex;
-/* justify-content: space-between; */
 align-items: baseline;
 padding: 5px;
-justify-content: align-left;
+width: 100%;
 }
 
 .taskEditProject {
@@ -153,8 +151,9 @@ justify-content: align-left;
 #taskPrioritySection {
   display: inline;
   flex-direction: column;
-  width: 10%;
   order: 1;
+  flex-grow: 1;
+  width: 10%;
 }
 
     .taskPrioritySelector {
@@ -162,8 +161,9 @@ justify-content: align-left;
       }
 
 #taskInputFieldHolder {
-  width: 45%;
   order: 2;
+  flex-grow: 1;
+  width: 35%;
 }
 
     #taskInputField {
@@ -172,8 +172,9 @@ justify-content: align-left;
       }
 
 #taskCalendarField {
-  width: 20%;
   order: 3;
+  flex-grow: 1;
+  width: 25%;
 }
 
     #taskCalendarSelector {
@@ -181,10 +182,11 @@ justify-content: align-left;
     }
 
 #taskNotesField {
-  width: 8%;
   order: 4;
   /* display: flex; // causes padding */
-  display: inline;
+  display: block;
+  flex-grow: 1;
+  width: 8%;
 }
 
     .taskNotesInput {
@@ -210,6 +212,7 @@ justify-content: align-left;
   flex-direction: column;
   width: 12%;
   order: 5;
+  flex-grow: 1;
 }
 
     .taskProjectSelector {
@@ -219,8 +222,9 @@ justify-content: align-left;
 
 #addTaskField {
   display: inline;
-  width: 10%;
   order: 6;
+  flex-grow: 1;
+  width: 10%;
   }
 
 .flex {
@@ -262,4 +266,3 @@ display: flex;
 }
 
 .dropdown a:hover {background-color: #ddd;} */
-
